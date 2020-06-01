@@ -1,0 +1,110 @@
+html, body{
+    background: whitesmoke;
+    margin: 10px;
+    font-family: 'Baskervville', serif;
+}
+
+.carrucel{
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 50px 350px 50px;
+  margin-bottom: 10px;
+}
+
+.items-central{
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  border: 1px solid;
+  height: 60px;
+  background: rgb(12, 118, 179);
+}
+
+.item_carrucel{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  color: white;
+}
+
+#mes_anterior{
+  padding-bottom: 20px;
+}
+
+#mes_siguiente{
+  padding-bottom: 20px;
+}
+
+
+
+.semanas{
+ display: grid;
+ justify-content: center;
+}
+
+.semana{
+  display: grid;
+  background: rgb(0, 113, 128);
+  grid-template-columns: repeat(7, 50px);
+  grid-template-rows:repeat(1, 50px);
+}
+
+
+.numeroDia__semana{
+  display: grid;
+  background: rgb(0, 113, 128);
+  color: black;
+  border: 1px solid; 
+}
+
+.numeroDia__semana .day_month{
+  justify-self: end; 
+  color: rgb(245, 244, 244);
+  padding-top: 2px;
+  padding-right: 5px;
+}
+
+.numeroDia__semana .service{
+  justify-self: start;
+  align-self: end;
+  padding-left: 5px;
+  padding-top: 2px;
+  width: 30px;
+  height: 20px;
+  background: rgb(0, 113, 128);  
+}
+
+.numeroDia__semana:hover{
+  background: rgb(241, 185, 133);
+  cursor: pointer;
+}
+
+.cabecera{
+  display: grid;
+  justify-content: center;
+  
+ }
+ 
+ .dias{
+   display: grid;
+   background: rgb(0, 113, 128);
+   grid-template-columns: repeat(7, 50px);
+   grid-template-rows:repeat(1, 40px);
+   margin-bottom: 2px;
+ }
+ 
+ 
+ .dias__name{
+   display: grid;
+   background: white;
+   color: black;
+   border: 1px solid; 
+   justify-content: center;
+   padding-top: 10px;
+ }
+ 
+ .dias__name:hover{
+   background: rgb(27, 83, 13);
+   cursor: pointer;
+ }
+
+ 

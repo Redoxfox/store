@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="descripcion" content="Pagina interactiva de enseñanza" />
+  <meta name="Keywords" content= "Balance ecuaciones, Reacciones, Caida libre" />
+  <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no"/>
+	<title>TorresEdu.Lab... De todo un poco </title>
+  <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,500,500i,700&display=swap" rel="stylesheet">
+  <link href= "{{ url_for('static', filename='css/css_homels/card.css') }}" rel="stylesheet" type="text/css" media="screen" /> 
+  <style>
+      canvas{
+        border: 1px solid;
+      }
+    </style>
+</head>
+<body> 
+    <h1>Lista de servicio disponibles</h1>
+    <br>
+    <section class="container flex text-center">
+      {% for valor in Oferta_Servicio %}
+        <div class="column">
+          <div class="tipo">
+            {{ valor.tipo }}
+          </div>
+          <hr>
+          <div class="costo">
+            $ {{ valor.costo }}
+          </div>
+          <hr>
+           <div class="detalle">
+              <p>{{ valor.detalles }}</p>
+           </div>
+          <hr>
+           <div>
+              <a class='Editar' href="{{url}}/VerDetallesServicio/{{valor.id}}/">Editar</a>
+              <a class='Eliminar' href="{{url}}/EliminarServicio/{{valor.id}}/">Eliminar</a>
+           </div>
+        </div>
+      {% endfor %}
+    </section>
+    
+   
+  
+<div id='footer'>
+    Copyright &copy; 2017
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

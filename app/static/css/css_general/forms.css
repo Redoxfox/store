@@ -1,0 +1,92 @@
+/*Diseño*/
+/*Tomado: https://www.youtube.com/watch?v=Sb5qOa3R4hY*/
+/*Canal: Traversy Media*/
+.body_form{
+    background: #92bde7;
+    color: #485e74;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 1em;
+}
+.contenedor_primario_form{
+    max-width: 1170px;
+    margin-left: auto;
+    padding: 1em;
+}
+
+ul{
+    list-style: none;
+    padding: 0%;
+}
+
+.item_titulo{
+    text-align: center;
+}
+
+.contenedor_secundario{
+    box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
+}
+
+.contenedor_secundario > *{
+    padding: 1em;
+}
+
+.contenedor_info{
+    background: #c9e6ff;
+}
+
+.contenedor_info h3, .contenedor_info ul{
+    text-align: center;
+    margin: 0 0 1rem 0;
+    padding-top: 15px;
+}
+
+.contenedor_form{
+    background: #f9feff;
+}
+
+.contenedor_form h3{
+    text-align: center;
+}
+
+/*Estilos formulario */
+.contenedor_form form{
+    display: grid;
+    grid-template-columns: 1fr;   
+}
+
+.contenedor_form form input{
+    width: 97%;
+}
+
+.contenedor_form form label{
+    margin-bottom: 5px;
+}
+
+.contenedor_form form select{
+    width: 100%;
+    border: 0;
+    background: white;
+    padding: 6px;
+    border-bottom: 1px solid rgb(230, 223, 223);
+    appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.contenedor_form form textarea{
+    width: 100%;
+    
+}
+
+
+
+@media(min-width:700px){
+    .contenedor_secundario{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+
+
+}
+

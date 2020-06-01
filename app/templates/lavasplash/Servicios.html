@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Lavado Ecologico</title>
+    <link href= "{{ url_for('static', filename='css/css_homels/Servicios.css') }}" rel="stylesheet" type="text/css" media="screen" /> 
+</head>
+<body>
+    <div class="container">
+      <!-- Boxes Section -->
+      <section class="boxes">
+        {% for valor in Oferta_Servicio %}
+        <div class="box">
+          <!-- Codigo color 9AFF42 imagen -->
+          {% if valor.automotor == 1 %}
+            <img src="{{ url_for('static', filename='imgs/car.png') }}">
+          {% elif valor.automotor == 2 %}
+            <img src="{{ url_for('static', filename='imgs/moto.png') }}">
+          {% else %}
+            <img src="{{ url_for('static', filename='imgs/camion.png') }}">
+          {% endif %}
+          
+          <h3>{{ valor.tipo }}</h3>
+          <p>$ {{ valor.costo }}</p>
+          <p>{{ valor.detalles }}</p>
+          <a href="{{url}}/Servicios/1" class="btn">Ver servicios</a>
+        </div>
+        {% endfor %}
+      </section>
+    </div>
+</body>
+</html>

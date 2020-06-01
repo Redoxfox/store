@@ -1,0 +1,7 @@
+*.pyc
+config.json
+config.py
+.vscode/
+tienda/
+
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lavasplash</title>
+    <link href= "{{ url_for('static', filename='css/css_homels/indexls.css') }}" rel="stylesheet" type="text/css" media="screen" /> 
+  </head>
+  <body>
+    <div class="head">
+      <div class="logo">
+        <img class="img-log" src="{{ url_for('static', filename='imgs/logo.png') }}">
+      </div> 
+      <div id="name_company" class="name_company">
+        <h1>Bienvenidos a Sandyvital Store</h1>
+      </div>
+    </div>
+    <div class="wrapper">
+      <!-- Navegacion -->
+      <nav class="main-nav">
+        <ul>
+          <li>
+            <a href="http://">Home</a>
+          </li>
+          <li>
+            <a href="http://">Nosotros</a>
+          </li>
+          <li>
+            <a href="{{url}}/All_Servicios/">Servicios</a>
+          </li>
+          <li>
+            <a href="http://">Contactenos</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- Top Container -->
+      <section class="top-container">
+        <header class="showcase">
+          <h1>Cuida tu cuerpo</h1>
+          <p><span>Sandyvital Store.</span>Una experiencia en productos para el cuidado personal, nutrición y belleza.</p>
+          <a href="http://" class="btn">Leer Mas</a>
+        </header>
+        <div class="top-box top-box-a">
+          <h4>Membresia <span id="azul">Azul</span></h4>
+          <p class="price">100000$</p>
+          <a href="" class="btn">Más información</a>
+        </div>
+        <div class="top-box top-box-b">
+          <h4>Membresia <span id="verde">Verde</span></h4>
+          <p class="price">200000$</p>
+          <a href="" class="btn">Más información</a>
+        </div>
+      </section>
+
+      <!-- Boxes Section -->
+      <section class="boxes">
+          <div class="box">
+            <!-- Codigo color 9AFF42 imagen -->
+            <img src="{{ url_for('static', filename='imgs/car.png') }}">
+            <h3>Automóviles</h3>
+            <p>Servicios para automoviles</p>
+            <a href="{{url}}/Servicios/1/" class="btn">Ver servicios</a>
+          </div>
+          <div class="box">
+            <img src="{{ url_for('static', filename='imgs/moto.png') }}">
+            <h3>Motos</h3>
+            <p>Servicios para motos</p>
+            <a href="{{url}}/Servicios/3/" class="btn">Ver servicios</a>
+          </div>
+          <div class="box">
+            <img src="{{ url_for('static', filename='imgs/camion.png') }}">
+            <h3>Camionetas</h3>
+            <p>Servicios para camiones y camionetas</p>
+            <a href="{{url}}/Servicios/2/" class="btn">Ver servicios</a>
+          </div>
+          <div class="box">
+            <img src="{{ url_for('static', filename='imgs/user.png') }}">
+            <h3>Clientes</h3>
+            <p>Nuestros clientes</p>
+            <a href="{{url}}/Clientes" class="btn">Ver clientes</a>
+          </div>
+          <div class="box">
+            <img src="{{ url_for('static', filename='imgs/data.png') }}">
+            <h3>Estadisticas</h3>
+            <p>Datos de servicios.</p>
+            <a href="{{url}}/ProcesarServicios" class="btn">Ver estadisticas</a>
+          </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <div class="sociales">
+        <a href="https://twitter.com/CarlosM06905817"><i class="fab fa-twitter-square"></i></a>
+        <a href="https://www.facebook.com/cmrestrepo1"><i class="fab fa-facebook"></i></a>
+        <a href="https://github.com/Redoxfox"><i class="fab fa-github-square"></i></i></a>
+        <a href="https://www.linkedin.com/in/carlos-torres-b2446629/"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script>   
+  </body>
+</html>
