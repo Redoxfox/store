@@ -13,7 +13,7 @@ route_file_config = dir_act
 route_exist = route_file_config.find("store")
 if route_exist > 0:
     route_file_config = dir_act + "/app/config/config.json"
-    server = "local"
+    server = "server"
 else:
     route_file_config = dir_act + "/store/app/config/config.json"
     server = "server"
