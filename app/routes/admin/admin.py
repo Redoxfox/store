@@ -30,7 +30,7 @@ def admin():
     username = CONFIG['TYPE_USER']['ROOT']
     return render_template("/admin/principal.html")
 
-'''
+
 @app.route("/tablas/", methods=["GET", "POST"])
 def tablas():
     urlrev = URLBASE 
@@ -66,18 +66,18 @@ def validar():
          
     Data = (wid,)
     DatosUsers = connect.SW_TABLE(username, TSWusers, Data)
-    password_userbd = DatosUsers[0]['password']
-    salt_userbd = DatosUsers[0]['salt']
-    tipo_user = DatosUsers[0]['tipo_user']
-    hash = validaciones.Validar()
-    #myhash=[]
-    #myhash=hash.hash_password(password)
-    #salt=myhash[0]
-    #myhash1=myhash[1]
-    h2 = hash.check_password(password_userbd, password, salt_userbd)
-    
-    if h2 is True and tipo_user == "admin":
-        return redirect(url_for('admin'))
+    if DatosUsers:
+        password_userbd = DatosUsers[0]['password']
+        salt_userbd = DatosUsers[0]['salt']
+        tipo_user = DatosUsers[0]['tipo_user']
+        hash= validaciones.Validar()
+        h2=hash.check_password(password_userbd, password, salt_userbd)
+
+        if h2 == True and tipo_user=="admin":
+            #return render_template("/admin/principal.html")
+            return redirect(url_for('admin'))
+        else:
+            return render_template("/registro/login.html") 
     else:
         return render_template("/registro/login.html")
 
@@ -91,36 +91,51 @@ def Estructura_tabla():
     campos_tabla = connect.DESCRIBE_TABLES(username,  nombreTabla)
     print (nombreTabla)
     estructura = json.dumps(campos_tabla)
-    #print(type(result))
-    #res = make_response(jsonify({"message": "OK"}), 200) 
-    #result1 = "hola"
     
     return (estructura)
 
-@app.route("/add_topico/", methods=["POST"])
+@app.route("/AddCategory/", methods=["POST"])
 def add_topico():
     Urlbase = URLBASE
     username = CONFIG['TYPE_USER']['ROOT']
     connect = Model(username)   
     req = request.get_json()
     result = {}
-    wid = req["topico"]
-    topico = wid
+    wid = req["category"]
+    name = wid
     nombre_id = "id"
     nombre_tabla = "grupo"
     id = None
     Insert_ofgrupo = dict()
-    Insert_ofgrupo = {'TABLE':'grupo',
-            'Col1':'id',
-            'Col2':'topico',
+    Insert_ofgrupo = {'TABLE':'category',
+            'Col1':'id_category',
+            'Col2':'name',
             'Val3':'%s',
             'Val4':'%s'
     }
-    Data = [id, topico]
-    result["new_topico"] = wid 
+    Data = [id, name]
+    result["new_category"] = wid 
     res_insert = connect.IT_TABLE(username, Insert_ofgrupo , Data) 
     
     return result
+
+@app.route("/categories/")
+def categories():
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    
+    Tabla_All_Categories= dict()
+    Tabla_All_Categories = {'TABLE':'category',
+        'Col1':'id_category',
+        'Col2':'name'
+    }
+   
+    DatosAllCategories = connect.SSP_TABLE(username, Tabla_All_Categories)
+
+    DatosAllCategories_json = json.dumps(DatosAllCategories) 
+    
+    return (DatosAllCategories_json) 
 
 @app.route("/add_palabra/", methods=["POST"])
 def add_palabra():
@@ -166,27 +181,9 @@ def add_palabra():
         result["new_topico"] = "Registro exitoso"
         res_insert = connect.IT_TABLE(username,  Insert_ofvocabulary, Data) 
         
-        
-    
     return result
 
-@app.route("/grupos/")
-def grupos():
-    urlrev = URLBASE
-    username = CONFIG['TYPE_USER']['ROOT']
-    connect=Model(username) 
-    
-    Tabla_All_Grupos = dict()
-    Tabla_All_Grupos = {'TABLE':'grupo',
-        'Col1':'id',
-        'Col2':'topico'
-    }
-   
-    DatosAllGrupos = connect.SSP_TABLE(username, Tabla_All_Grupos)
 
-    DatosAllGrupos_json = json.dumps(DatosAllGrupos) 
-    
-    return (DatosAllGrupos_json) '''
 
 
  

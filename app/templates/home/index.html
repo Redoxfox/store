@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lavasplash</title>
+    <title>Sandyvital Store</title>
     <link href= "{{ url_for('static', filename='css/css_homels/indexls.css') }}" rel="stylesheet" type="text/css" media="screen" /> 
   </head>
   <body>
     <div class="head">
       <div class="logo">
-        <img class="img-log" src="{{ url_for('static', filename='imgs/logo.png') }}">
+        <img class="img-log" src="{{ url_for('static', filename='imgs/l2.png') }}">
       </div> 
       <div id="name_company" class="name_company">
         <h1>Bienvenidos a Sandyvital Store</h1>
@@ -20,17 +20,18 @@
       <!-- Navegacion -->
       <nav class="main-nav">
         <ul>
+         
           <li>
-            <a href="http://">Home</a>
+            <a href="{{url}}">Nosotros</a>
           </li>
           <li>
-            <a href="{{url}}/All_Servicios/">Nosotros</a>
-          </li>
-          <li>
-            <a href="{{url}}/All_Servicios/">Servicios</a>
+            <a href="{{url}}/All_Servicios/">Productos</a>
           </li>
           <li>
             <a href="http://">Contactenos</a>
+          </li>
+          <li>
+            <a href="{{url}}/login">Iniciar Sesión</a>
           </li>
         </ul>
       </nav>

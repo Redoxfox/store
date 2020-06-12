@@ -192,12 +192,12 @@ function ver_tablas(){
 }
 
 /*****************************************************************************************
- * Funciones para gestión de blog                                              *
+ * Funciones para gestión de tienda                                            *
  *****************************************************************************************/
 /*********************************** 
- *Formulario nueva palabra blog    *
+ *Formulario nueva categoria   *
  **********************************/
-function new_palabra(){
+function new_category(){
     let contenedor = document.getElementById("contenedor_principal");
     let listId_contenedor = document.createElement('div');
     listId_contenedor.setAttribute("id", "form");
@@ -210,55 +210,98 @@ function new_palabra(){
                 <div class="contenedor_info">
                     <h3>Registro palabras ingles</h3>
                     <ul>
-                        <li>Proyecto</li>
-                        <li>Sopa letras</li>
-                        <li>Insertar palabras</li>
+                        <li>Sandyvital Store</li>
+                        <li>Salud y belleza</li>
+                        <li>Productos de Calidad</li>
+                        </br>
                         <div class="caja">
                             <div class="box">
-                                <img src="/static/imgs/sopa.jpg" alt="">
+                                <img src="/static/imgs/logo3.png" alt="">
                             </div>
                         </div>    
                     </ul>
                 </div>
                 <div class="contenedor_form">
-                    <h3>Agregar palabra vocabulario</h3>
+                    <h3>Crear Nueva Categoria</h3>
                     <form id="form1">
-                        <p class="item_form">
-                            <label>Palabra ingles:</label>
-                            <input type="text"  name = "english" >
-                        </p>
+                      
                         <p>
-                            <label>Palabra español:</label>
-                            <input type="text"  name = "spanish" >
+                            <label>Nombre Categoria:</label>
+                            <input type="text"  name = "category" >
                         </p>
 
                         <p>
-                            <label>Grupo:</label>
-                            <select name="grupo" id="grupo">
+                            <label>Categorias:</label>
+                                <select name="category" id="categories">
                             </select>
                             <i></i>
                         </p>
-                        <p>
-                            <label >Ejemplos:</label>
-                            <textarea name="ejemplos" id="ejemplos" cols="30" rows="5"></textarea>
-                        </p>
 
                         <p>
-                        <button type="submit" onclick="stopDefAction(event);">Enviar Registro</button>
-                        </p>
-
+                            <button type="submit" onclick="AddCategory(event);">Agregar Nuevo</button>
+                        </p> 
                         <p class="item_form">
-                            <div id = "new_topico"></div>
+                            <div id = "new_category"></div>
                         </p>
-                        
                     </form>
                     
                 </div>
             </div>
         </div>
         `
-        grupos();
+        categories();
 }
+
+/*Formulario agregar nuevas categorias*/
+function AddCategory(evt) {
+    evt.preventDefault();
+    let category = evt.target.form[0].value
+    const url = window.origin + "/AddCategory/";
+
+    var entry = {
+        category : category 
+    };
+
+    fetch(url, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(entry),
+      cache: "no-cache",
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    })
+    .then(function (response) {
+        if (response.status !== 200) {
+            console.log(`Looks like there was a problem. Status code: ${response.status}`);
+            return;
+        }
+        response.json().then(function (data) {
+        console.log(data)
+        document.getElementById("new_category").innerHTML =`
+          ${data.new_category}
+        `
+        evt.target.form[0].value = ""
+        });
+    })
+    .catch(function (error) {
+        console.log("Fetch error: " + error);
+    });
+}
+
+/*Llenar select categories*/
+function categories(){
+    const url = window.origin + "/categories/" 
+    let select = document.getElementById("categories");
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+       for (const key in data) {
+          select.options[key] = new Option(data[key].name , data[key].id_category);
+        }
+    })
+}
+
 
 /*********************************** 
  *Formulario nuevo topico de palabras blog    *
@@ -271,10 +314,10 @@ function new_topic(){
     contenedor.appendChild(listId_contenedor);
     document.getElementById("form").innerHTML =`
         <div class="contenedor_primario_form">
-            <h2 class="item_titulo">Registrar palabras</h2>
+            <h2 class="item_titulo">Registrar Palabras</h2>
             <div class="contenedor_secundario">
                 <div class="contenedor_info">
-                    <h3>Registro palabras ingles</h3>
+                    <h3>Registro Palabras Ingles</h3>
                     <ul>
                         <li>Proyecto</li>
                         <li>Sopa letras</li>
@@ -294,7 +337,7 @@ function new_topic(){
                             <input type="text"  name = "topico" >
                         </p>
                         <p>
-                        <button type="submit" onclick="topicos(event);">Enviar Registro</button>
+                            <button type="submit" onclick="AddCategory(event);">Enviar Registro</button>
                         </p>
                         <p class="item_form">
                             <div id = "new_topico"></div>
@@ -306,21 +349,10 @@ function new_topic(){
           `
 }
 
-/*Llenar select grupos*/
-function grupos(){
-    const url = window.origin + "/grupos/" 
-    let select = document.getElementById("grupo");
-    fetch(url)
-    .then(res => res.json())
-    .then(data =>{ 
-       for (const key in data) {
-          select.options[key] = new Option(data[key].topico , data[key].id);
-        }
-    })
-}
 
 
-/*Formulario vocabulario*/ 
+
+//Formulario vocabulario
 function stopDefAction(evt) {
     evt.preventDefault();
     let english = evt.target.form[0].value
@@ -361,43 +393,8 @@ function stopDefAction(evt) {
       .catch(function (error) {
           console.log("Fetch error: " + error);
       });
-}
+} 
 
-/*Formulario topicos*/
-function topicos(evt) {
-    evt.preventDefault();
-    let topico = evt.target.form[0].value
-    const url = window.origin + "/add_topico/";
-
-    var entry = {
-      topico: topico
-    };
-
-    fetch(url, {
-      method: "POST",
-      credentials: "include",
-      body: JSON.stringify(entry),
-      cache: "no-cache",
-      headers: new Headers({
-        "content-type": "application/json"
-      })
-    })
-    .then(function (response) {
-        if (response.status !== 200) {
-            console.log(`Looks like there was a problem. Status code: ${response.status}`);
-            return;
-        }
-        response.json().then(function (data) {
-        console.log(data)
-        document.getElementById("new_topico").innerHTML =`
-          ${data.new_topico}
-        `
-        });
-    })
-    .catch(function (error) {
-        console.log("Fetch error: " + error);
-    });
-}
 
 
 
