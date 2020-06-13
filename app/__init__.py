@@ -9,4 +9,7 @@ from app.routes.admin import login
 from app.routes.admin import registro
 from app.routes.admin import validar
 
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
+
 
