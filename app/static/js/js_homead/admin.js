@@ -205,10 +205,10 @@ function new_category(){
     contenedor.appendChild(listId_contenedor);
     document.getElementById("form").innerHTML =`
         <div class="contenedor_primario_form">
-            <h2 class="item_titulo">Registrar palabras</h2>
+            <h2 class="item_titulo">Registrar Categorias</h2>
             <div class="contenedor_secundario">
                 <div class="contenedor_info">
-                    <h3>Registro palabras ingles</h3>
+                    <h3>Registro Categorias</h3>
                     <ul>
                         <li>Sandyvital Store</li>
                         <li>Salud y belleza</li>
@@ -232,7 +232,7 @@ function new_category(){
 
                         <p>
                             <label>Categorias:</label>
-                                <select name="category" id="categories">
+                            <select name="category" id="categories">
                             </select>
                             <i></i>
                         </p>
@@ -291,13 +291,301 @@ function AddCategory(evt) {
 
 /*Llenar select categories*/
 function categories(){
-    const url = window.origin + "/categories/" 
+    const url = window.origin + "/categories" 
     let select = document.getElementById("categories");
     fetch(url)
     .then(res => res.json())
     .then(data =>{ 
        for (const key in data) {
           select.options[key] = new Option(data[key].name , data[key].id_category);
+        }
+    })
+}
+
+/*********************************** 
+ *Formulario nuevo proveedor       *
+ **********************************/
+function new_proveedor(){
+    let contenedor = document.getElementById("contenedor_principal");
+    let listId_contenedor = document.createElement('div');
+    listId_contenedor.setAttribute("id", "form");
+    listId_contenedor.classList.add("body_form"); 
+    contenedor.appendChild(listId_contenedor);
+    document.getElementById("form").innerHTML =`
+        <div class="contenedor_primario_form">
+            <h2 class="item_titulo">Registrar Proveedor</h2>
+            <div class="contenedor_secundario">
+                <div class="contenedor_info">
+                    <h3>Registro Proveedor</h3>
+                    <ul>
+                        <li>Sandyvital Store</li>
+                        <li>Salud y belleza</li>
+                        <li>Productos de Calidad</li>
+                        </br>
+                        <div class="caja">
+                            <div class="box">
+                                <img src="/static/imgs/logo3.png" alt="">
+                            </div>
+                        </div>    
+                    </ul>
+                </div>
+                <div class="contenedor_form">
+                    <h3>Crear Nuevo Proveedor</h3>
+                    <form id="form1">
+                      
+                        <p>
+                            <label>Nombre Proveedor:</label>
+                            <input type="text"  name = "category" >
+                        </p>
+
+                        <p>
+                            <label>Direccion:</label>
+                            <input type="text"  name = "direccion" >
+                        </p>
+
+                        <p>
+                            <label>Telefono:</label>
+                            <input type="text"  name = "telefono" >
+                        </p>
+
+                        <p>
+                            <label>Web:</label>
+                            <input type="text"  name = "web" >
+                        </p>
+
+                        <p>
+                            <label>email:</label>
+                            <input type="text"  name = "email" >
+                        </p>
+
+
+                        <p>
+                            <label>Proveedores:</label>
+                                <select name="proveedor" id="proveedores">
+                                </select>
+                            <i></i>
+                        </p>
+
+                        <p>
+                            <button type="submit" onclick="AddProveedor(event);">Agregar Nuevo</button>
+                        </p> 
+                        <p class="item_form">
+                            <div id = "new_proveedor"></div>
+                        </p>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+        `
+        proveedores();
+}
+
+/*Formulario agregar nuevo proveedor*/
+function AddProveedor(evt) {
+    evt.preventDefault();
+    let name_proveedor = evt.target.form[0].value
+    let direccion = evt.target.form[1].value
+    let telefono = evt.target.form[2].value
+    let web = evt.target.form[3].value
+    let email = evt.target.form[4].value
+    const url = window.origin +  "/AddProveedor";
+
+
+  var entry = {
+        name : name_proveedor,
+        direccion: direccion,
+        telefono: telefono,
+        web: web,
+        email : email
+    }; 
+
+    fetch(url, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(entry),
+      cache: "no-cache",
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    })
+    .then(function (response) {
+        if (response.status !== 200) {
+            console.log(`Looks like there was a problem. Status code: ${response.status}`);
+            return;
+        }
+        response.json().then(function (data) {
+        console.log(data)
+        document.getElementById("new_proveedor").innerHTML =`
+          ${data.new_proveedor}
+        `
+        evt.target.form[0].value = ""
+        });
+    })
+    .catch(function (error) {
+        console.log("Fetch error: " + error);
+    }); 
+}
+
+/*Llenar select proveedores*/
+function proveedores(){
+    const url = window.origin + "/proveedores" 
+    let select = document.getElementById("proveedores");
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+       for (const key in data) {
+          select.options[key] = new Option(data[key].name , data[key].id_proveedor);
+        }
+    })
+}
+
+/*********************************** 
+ *Formulario nuevo producto         *
+ **********************************/
+function new_product(){
+    let contenedor = document.getElementById("contenedor_principal");
+    let listId_contenedor = document.createElement('div');
+    listId_contenedor.setAttribute("id", "form");
+    listId_contenedor.classList.add("body_form"); 
+    contenedor.appendChild(listId_contenedor);
+    document.getElementById("form").innerHTML =`
+        <div class="contenedor_primario_form">
+            <h2 class="item_titulo">Registrar Proveedor</h2>
+            <div class="contenedor_secundario">
+                <div class="contenedor_info">
+                    <h3>Registro Proveedor</h3>
+                    <ul>
+                        <li>Sandyvital Store</li>
+                        <li>Salud y belleza</li>
+                        <li>Productos de Calidad</li>
+                        </br>
+                        <div class="caja">
+                            <div class="box">
+                                <img src="/static/imgs/logo3.png" alt="">
+                            </div>
+                        </div>    
+                    </ul>
+                </div>
+                <div class="contenedor_form">
+                    <h3>Crear Nuevo Proveedor</h3>
+                    <form id="form1">
+                      
+                        <p>
+                            <label>Proveedor:</label>
+                            <select name="proveedor" id="proveedores">
+                            </select>
+                        </p>
+
+                        <p>
+                            <label>Categoria:</label>
+                            <select name="categoria" id="categories">
+                            </select>
+                        </p>
+
+                        <p>
+                            <label>Nombre Producto:</label>
+                            <input type="text"  name = "producto" >
+                        </p>
+
+                        <p>
+                            <label>Precio Producto:</label>
+                            <input type="text"  name = "Precio" >
+                        </p>
+
+                        <p>
+                            <label>Descricion Producto:</label>
+                            <textarea name="descricion" rows="5" cols="49">Write something here</textarea>
+                        </p>
+
+
+                        <p>
+                            <label>Productos:</label>
+                                <select name="productos" id="productos">
+                                </select>
+                            <i></i>
+                        </p>
+
+                        <p>
+                            <button type="submit" onclick="AddProduct(event);">Agregar Nuevo</button>
+                        </p> 
+                        <p class="item_form">
+                            <div id = "new_product"></div>
+                        </p>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+        `
+        proveedores();
+        categories();
+        productos();
+}
+
+/*Formulario agregar nuevas categorias*/
+function AddProduct(evt) {
+    evt.preventDefault();
+    let proveedor = evt.target.form[0].value
+    let categoria = evt.target.form[1].value
+    let producto = evt.target.form[2].value
+    let precio = evt.target.form[3].value
+    let descricion = evt.target.form[4].value
+    const url = window.origin +  "/AddProduct";
+    console.log(proveedor)
+    console.log(categoria)
+    console.log(producto)
+    console.log(precio)
+    console.log(descricion)
+
+   var entry = {
+        id_proveedor : proveedor,
+        id_categoria : categoria,
+        producto : producto,
+        precio : precio,
+        descricion : descricion
+    }; 
+
+    //console.log(entry)
+
+    fetch(url, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(entry),
+      cache: "no-cache",
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    })
+    .then(function (response) {
+        if (response.status !== 200) {
+            console.log(`Looks like there was a problem. Status code: ${response.status}`);
+            return;
+        }
+        response.json().then(function (data) {
+        console.log(data)
+        document.getElementById("new_product").innerHTML =`
+          ${data.new_proveedor}
+        `
+        evt.target.form[2].value = ""
+        evt.target.form[3].value = ""
+        evt.target.form[4].value = ""
+        });
+    })
+    .catch(function (error) {
+        console.log("Fetch error: " + error);
+    });   
+}
+
+/*Llenar select categories*/
+function productos(){
+    const url = window.origin + "/productos" 
+    let select = document.getElementById("productos");
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+       for (const key in data) {
+          select.options[key] = new Option(data[key].name , data[key].id_proveedor);
         }
     })
 }

@@ -38,7 +38,7 @@ def singup():
         telefono = request.form['telefono']
         direccion = request.form['direccion']
         password = request.form['password']
-        tipo_user = 'admin'
+        tipo_user = 'visitante'
         Insert_users = dict()
         Insert_users = {'TABLE': 'users',
                         'Col1': 'id',

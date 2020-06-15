@@ -173,7 +173,6 @@ class Model:
 
         result = Colunm + Values
         
-
         try:
             sql = result
             cursor = con.cursor()
@@ -185,7 +184,8 @@ class Model:
             create = False
 
         con.close()  
-
+        
+        
 
         return create 
 

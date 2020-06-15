@@ -94,8 +94,10 @@ def Estructura_tabla():
     
     return (estructura)
 
-@app.route("/AddCategory/", methods=["POST"])
-def add_topico():
+
+
+@app.route("/AddCategory", methods=["GET","POST"])
+def AddCategory():
     Urlbase = URLBASE
     username = CONFIG['TYPE_USER']['ROOT']
     connect = Model(username)   
@@ -119,7 +121,7 @@ def add_topico():
     
     return result
 
-@app.route("/categories/")
+@app.route("/categories")
 def categories():
     urlrev = URLBASE
     username = CONFIG['TYPE_USER']['ROOT']
@@ -136,6 +138,116 @@ def categories():
     DatosAllCategories_json = json.dumps(DatosAllCategories) 
     
     return (DatosAllCategories_json) 
+
+
+
+@app.route("/AddProveedor", methods=["POST"])
+def AddProveedor():
+    Urlbase = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect = Model(username)   
+    req = request.get_json()
+    result = {}
+    name = req["name"]
+    direccion = req["direccion"]
+    telefono = req["telefono"]
+    web = req["web"]
+    email = req["email"] 
+    id = None
+    Insert_ofProveedor = dict()
+    Insert_ofProveedor = {'TABLE':'proveedor',
+        'Col1':'id_proveedor',
+        'Col2':'name',
+        'Col3':'direccion',
+        'Col4':'telefono',
+        'Col5':'web',
+        'Col6':'email',
+        'Val7':'%s',
+        'Val8':'%s',
+        'Val9':'%s',
+        'Val10':'%s',
+        'Val11':'%s',
+        'Val12':'%s'
+    } 
+
+
+    Data = [id, name, direccion, telefono, web, email]
+    result["new_proveedor"] = name
+    res_insert = connect.IT_TABLE(username, Insert_ofProveedor, Data) 
+    
+    return result
+
+@app.route("/proveedores" , methods=["GET","POST"])
+def proveedores():
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    
+    Tabla_All_Proveedores= dict()
+    Tabla_All_Proveedores = {'TABLE':'proveedor',
+        'Col1':'id_proveedor',
+        'Col2':'name'
+    }
+   
+    DatosAllProveedores = connect.SSP_TABLE(username, Tabla_All_Proveedores)
+
+    DatosAllProveedores_json = json.dumps(DatosAllProveedores) 
+    
+    return (DatosAllProveedores_json) 
+
+@app.route("/AddProduct", methods=["POST"])
+def AddProduct():
+    Urlbase = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect = Model(username)   
+    req = request.get_json()
+    result = {}
+    id_proveedor = req["id_proveedor"]
+    id_categoria = req["id_categoria"] 
+    producto = req["producto"]
+    precio = req["precio"]
+    descricion = req["descricion"]
+    id = None
+    Insert_ofProduct = dict()
+    Insert_ofProduct = {'TABLE':'products',
+        'Col1':'id_product',
+        'Col2':'id_proveedor',
+        'Col3':'id_categoria',
+        'Col4':'name',
+        'Col5':'precio',
+        'Col6':'descripcion',
+        'Val7':'%s',
+        'Val8':'%s',
+        'Val9':'%s',
+        'Val10':'%s',
+        'Val11':'%s',
+        'Val12':'%s'
+    } 
+
+
+    Data = [id, id_proveedor, id_categoria, producto, precio, descricion]
+    result["new_proveedor"] = producto
+    res_insert = connect.IT_TABLE(username, Insert_ofProduct, Data) 
+    
+    return result
+
+@app.route("/productos" , methods=["GET","POST"])
+def productos():
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    
+    Tabla_All_Products = dict()
+    Tabla_All_Products = {'TABLE':'products',
+        'Col1':'id_product',
+        'Col2':'name'
+    }
+   
+    DatosAllProducts = connect.SSP_TABLE(username, Tabla_All_Products)
+
+    DatosAllProducts_json = json.dumps(DatosAllProducts) 
+    
+    return (DatosAllProducts_json) 
 
 @app.route("/add_palabra/", methods=["POST"])
 def add_palabra():
