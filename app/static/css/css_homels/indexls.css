@@ -99,16 +99,28 @@ img {
 .showcase {
   grid-area: showcase;
   min-height: 400px;
-  background: url(/static/imgs/cafe.jpg);
+  /* background: url(/static/imgs/DWPierna.mp4); */
   background-size: cover;
   background-position: center;
   padding: 3rem;
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow);
+ 
+}
+
+.video-header{
   align-items: start;
   justify-content: center;
-  box-shadow: var(--shadow);
+  display: flex;
 }
+
+.item-multimedia{
+  align-items: start;
+  justify-content: center;
+}
+
+
 
 .showcase h1 {
   font-size: 4rem;
