@@ -3,9 +3,9 @@
 let content_static = ['/static/video/DWPierna.mp4',
 '/static/video/DWBrazo.mp4',
 '/static/video/DWTodos.mp4',
-'/static/imgs/DWKits.jpg',
+'/static/imgs/DWKits1.jpg',
 '/static/imgs/DWPecho.jpeg',
-'/static/imgs/DWDorzo.jpeg',
+'/static/imgs/DWDorzo.jpeg'
 ];
 
 function aleatorio(a,b) {
@@ -38,8 +38,6 @@ var contador=0;
 
  */
 
-
-
 window.addEventListener('load', () => {
     let  idvideo = document.getElementById("item_multimedia");
     padre = idvideo.parentNode;
@@ -52,34 +50,69 @@ window.addEventListener('load', () => {
     listItem.setAttribute("id", id); 
     listItem.setAttribute("loop", "");
     listItem.setAttribute("autoplay", ""); 
-    listItem.style.width = '80%';
+    listItem.style.width = '90%';
     listItem.classList.add("item-multimedia");
     multimedia.appendChild(listItem);
     document.getElementById(id).src= content_static[num_diapositiva];
     setInterval(rotarImagenes,40000);
 });
 
-function MostrarKits (){
+function background_media (){
+    const url = window.origin + "/images" 
+    let select = document.getElementById("images");
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+        b = data.length - 1
+        a = 1
+        num_imagen1 = Math.round(Math.random()*(b-a)+parseInt(a))
+        num_imagen2 = Math.round(Math.random()*(b-a)+parseInt(a))
+        if (num_imagen1 == num_imagen2) {
+           if (num_imagen2 == b) {
+             num_imagen1 = b - 1
+           } 
+
+           if (num_imagen2 == a) {
+             num_imagen1 = a + 1
+           }  
+        } 
+        let media1 = data.filter((productos,index)=>{
+            if (index == num_imagen1){
+                return productos; 
+            }     
+        })
+        let boxa = document.getElementById("box_a");
+        let product = document.getElementById("product");
+        let price = document.getElementById("price");
+        let url_product = document.getElementById("url_product");
+        nom_imagen = media1[0].media;
+        product.textContent = media1[0].name;
+        price.textContent = media1[0].precio + "$";
+        url_img = window.location + "products" + "/" + media1[0].id_product
+        url_product.setAttribute("href", url_img);
+        ruta_img = "/static/imgs/" + nom_imagen
+        boxa.style.backgroundImage = "url("+ruta_img+")"; 
+        boxa.style.backgroundSize= "cover";
+        boxa.style.backgroundPosition="center";
+    })
+}
+
+
+function rotarImagenes(){
     let  idvideo = document.getElementById("item_multimedia");
     padre = idvideo.parentNode;
     padre.removeChild(idvideo);
+    num_items = 5;
+    num_diapositiva = aleatorio(3,num_items);
     id = "item_multimedia"
     let  multimedia = document.getElementById("multimedia");
     let listItem = document.createElement('img');
     listItem.setAttribute("id", id); 
-    listItem.style.width = '80%';
+    listItem.style.width = '90%';
     listItem.classList.add("item-multimedia");
     multimedia.appendChild(listItem);
-    document.getElementById(id).src= content_static[3]; 
-}
-
-
-
-function rotarImagenes(){
-    num_items = 2;
-    num_diapositiva = aleatorio(0,num_items);
-    id = "item_multimedia"
     document.getElementById(id).src= content_static[num_diapositiva];
+    background_media();
 } 
 /* function rotarImagenes()
 

@@ -9,6 +9,10 @@ from app.routes.admin import login
 from app.routes.admin import registro
 from app.routes.admin import validar
 
+#Rutas de ventas
+from app.routes.ventas import tienda
+
+
 
 
 

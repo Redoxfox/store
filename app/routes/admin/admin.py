@@ -195,6 +195,8 @@ def proveedores():
     
     return (DatosAllProveedores_json) 
 
+
+
 @app.route("/AddProduct", methods=["POST"])
 def AddProduct():
     Urlbase = URLBASE
