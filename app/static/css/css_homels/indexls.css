@@ -1,6 +1,7 @@
 /* CSS Variables */
 :root {
   --primary: rgba(214, 218, 216, 0.925);
+  --primary: rgba(239, 245, 242, 0.5);
   --dark: rgb(15, 15, 17);
   --light: #fff;
   --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
@@ -22,7 +23,15 @@ body {
 }
 
 .btn {
-  background: var(--dark);
+  background: rgb(110, 182, 2);
+  color: var(--light);
+  padding: 0.6rem 1.3rem;
+  text-decoration: none;
+  border: 0;
+}
+
+.btn1 {
+  background: rgb(78, 105, 226);
   color: var(--light);
   padding: 0.6rem 1.3rem;
   text-decoration: none;
@@ -47,6 +56,10 @@ img {
 .logo img{
   margin-top: 10px;
   margin-left: 10px;
+}
+
+.item_multimedia{
+  width: 80%;
 }
 
 #verde{
@@ -119,7 +132,6 @@ img {
 .item-multimedia{
   align-items: start;
   justify-content: center;
- 
 }
 
 
@@ -184,14 +196,27 @@ img {
 .boxes {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 .box {
   background: var(--primary);
-  text-align: center;
+  text-align: left;
   padding: 1.5rem 1.5rem;
   box-shadow: var(--shadow);
+}
+
+.zona1{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.container-redes{
+  width: 100%;
+  max-width: 55px;
+  position: fixed;
+  right: 0;
+  top: 25%;
 }
 
 
@@ -238,12 +263,14 @@ img {
   }
 
 /* Media Queries */
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
   .top-container {
     grid-template-areas:
       'showcase showcase'
       'top-box-a top-box-b';
   }
+
+ 
 
   .showcase h1 {
     font-size: 2.5rem;
@@ -270,11 +297,38 @@ img {
       'showcase'
       'top-box-a'
       'top-box-b';
+    padding: 2px;
+  }
+  
+  .video-header>video{
+    background: beige;
+    height: 450px;
+    box-shadow: var(--shadow);
+  }
+
+  .item-multimedia{
+    height: 450px;
+    width: 90%;
+  }
+  .showcase{
+    height: 450px;
+    background: var(--light);
   }
 
   .head{
     display: grid;
     grid-template-columns: 1fr;
     background: var(--dark); 
+  }
+
+  .item_multimedia{
+    width: 80%;
+    height: 400px;
+  }
+
+  .boxes {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
   }
 }

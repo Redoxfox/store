@@ -39,6 +39,7 @@ var contador=0;
  */
 
 window.addEventListener('load', () => {
+    background_media();
     let  idvideo = document.getElementById("item_multimedia");
     padre = idvideo.parentNode;
     padre.removeChild(idvideo);
@@ -76,24 +77,44 @@ function background_media (){
              num_imagen1 = a + 1
            }  
         } 
-        let media1 = data.filter((productos,index)=>{
+        let media1 = data.filter((productos, index)=>{
+            if (index == num_imagen1){
+                return productos; 
+            }     
+        })
+
+        let media2 = data.filter((productos, index)=>{
             if (index == num_imagen1){
                 return productos; 
             }     
         })
         let boxa = document.getElementById("box_a");
-        let product = document.getElementById("product");
-        let price = document.getElementById("price");
-        let url_product = document.getElementById("url_product");
-        nom_imagen = media1[0].media;
-        product.textContent = media1[0].name;
-        price.textContent = media1[0].precio + "$";
-        url_img = window.location + "products" + "/" + media1[0].id_product
-        url_product.setAttribute("href", url_img);
-        ruta_img = "/static/imgs/" + nom_imagen
-        boxa.style.backgroundImage = "url("+ruta_img+")"; 
+        let product_a = document.getElementById("product_a");
+        let price_a = document.getElementById("price_a");
+        let url_product_a = document.getElementById("url_product_a");
+        let boxb = document.getElementById("box_b");
+        let product_b = document.getElementById("product_b");
+        let price_b = document.getElementById("price_b");
+        let url_product_b = document.getElementById("url_product_b");
+        nom_imagen_a = media1[0].media;
+        product_a.textContent = media1[0].name;
+        price_a.textContent = media1[0].precio + "$";
+        url_img_a = window.location + "products" + "/" + media1[0].id_product
+        url_product_a.setAttribute("href", url_img_a);
+        ruta_img_a = "/static/imgs/" + nom_imagen_a
+        boxa.style.backgroundImage = "url("+ruta_img_a+")"; 
         boxa.style.backgroundSize= "cover";
         boxa.style.backgroundPosition="center";
+        
+        nom_imagen_b = media2[0].media;
+        product_b.textContent = media2[0].name;
+        price_b.textContent = media2[0].precio + "$";
+        url_img_b = window.location + "products" + "/" + media2[0].id_product
+        url_product_b.setAttribute("href", url_img_b);
+        ruta_img_b = "/static/imgs/" + nom_imagen_b
+        boxb.style.backgroundImage = "url("+ruta_img_b+")"; 
+        boxb.style.backgroundSize= "cover";
+        boxb.style.backgroundPosition="center";
     })
 }
 
