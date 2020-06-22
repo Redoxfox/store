@@ -215,8 +215,8 @@ img {
   width: 100%;
   max-width: 55px;
   position: fixed;
-  right: 0;
-  top: 75%;
+  right: 10px;
+  top: 70%;
 }
 
 
@@ -302,16 +302,16 @@ img {
   
   .video-header>video{
     background: beige;
-    height: 450px;
+    height: 350px;
     box-shadow: var(--shadow);
   }
 
   .item-multimedia{
-    height: 450px;
+    height: 350px;
     width: 90%;
   }
   .showcase{
-    height: 450px;
+    height: 350px;
     background: var(--light);
   }
 
@@ -319,11 +319,6 @@ img {
     display: grid;
     grid-template-columns: 1fr;
     background: var(--dark); 
-  }
-
-  .item_multimedia{
-    width: 80%;
-    height: 400px;
   }
 
   .boxes {
