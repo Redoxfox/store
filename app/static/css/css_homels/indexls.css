@@ -213,7 +213,7 @@ img {
 
 .container-redes{
   width: 100%;
-  max-width: 55px;
+  max-width: 64px;
   position: fixed;
   right: 30px;
   top: 70%;
@@ -321,6 +321,14 @@ img {
     background: var(--dark); 
   }
 
+  .container-redes{
+    width: 100%;
+    max-width: 64px;
+    position: fixed;
+    right: 30px;
+    top: 70%;
+  }
+  
   .boxes {
     display: grid;
     grid-gap: 20px;
