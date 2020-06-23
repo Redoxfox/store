@@ -12,31 +12,7 @@ function aleatorio(a,b) {
     return Math.round(Math.random()*(b-a)+parseInt(a));
 }
 
-/**
-
- * Array con las imagenes y enlaces que se iran mostrando en la web
-
- */
-
-/* var imagenes=new Array(
-
-    ['img/1.jpg','http://www.lawebdelprogramador.com/cursos/'],
-
-    ['img/2.jpg','http://www.lawebdelprogramador.com/foros/'],
-
-    ['img/3.jpg','http://www.lawebdelprogramador.com/pdf/'],
-
-    ['img/4.jpg','http://www.lawebdelprogramador.com/utilidades/']
-
-); */
-
 var contador=0;
-
-/**
-
- * Funcion para cambiar la imagen y link
-
- */
 
 window.addEventListener('load', () => {
     background_media();
@@ -84,7 +60,7 @@ function background_media (){
         })
 
         let media2 = data.filter((productos, index)=>{
-            if (index == num_imagen2){
+            if (index == num_imagen1){
                 return productos; 
             }     
         })
@@ -99,7 +75,10 @@ function background_media (){
         nom_imagen_a = media1[0].media;
         product_a.textContent = media1[0].name;
         price_a.textContent = media1[0].precio + "$";
-        url_img_a = window.origin +"/" + "ver_product" + "/" + media1[0].id_product
+        url_img_t1 = window.location
+        let url_img_s1 = url_img_t1.substring(0, url_img_t1.length - 1);
+        //url_img_s1 = url_img_t1.substring(0,url_img_t1.string-1);  
+        url_img_a = url_img_s1  + "/" + media1[0].id_product
         url_product_a.setAttribute("href", url_img_a);
         ruta_img_a = "/static/imgs/" + nom_imagen_a
         boxa.style.backgroundImage = "url("+ruta_img_a+")"; 
@@ -109,7 +88,10 @@ function background_media (){
         nom_imagen_b = media2[0].media;
         product_b.textContent = media2[0].name;
         price_b.textContent = media2[0].precio + "$";
-        url_img_b = window.origin + "/" + "ver_product" + "/" + media2[0].id_product
+        let url_img_t2 = window.location
+        url_img_s2 = url_img_t2.substring(0,url_img_t2.string-1);    
+        url_img_b = url_img_s2 +  "/" + media2[0].id_product
+
         url_product_b.setAttribute("href", url_img_b);
         ruta_img_b = "/static/imgs/" + nom_imagen_b
         boxb.style.backgroundImage = "url("+ruta_img_b+")"; 
@@ -135,140 +117,3 @@ function rotarImagenes(){
     document.getElementById(id).src= content_static[num_diapositiva];
     background_media();
 } 
-/* function rotarImagenes()
-
-{
-
-    // cambiamos la imagen y la url
-
-    contador++
-    id = "item_multimedia"
-    let  multimedia = document.getElementById("linkmultimedia");
-    let listItem = document.createElement('video');
-    listItem.setAttribute("id", id); 
-    listItem.classList.add("item-multimedia");
-    multimedia.appendChild(listItem);
-
-    document.getElementById(id).src= '/static/video/DWPierna.mp4';
-
-    /* document.getElementById("link").href=imagenes[contador%imagenes.length][1]; 
-
-} */
-
-
-
-/**
-
- * Función que se ejecuta una vez cargada la página
-
- */
-
-/* onload=function()
-
-{
-
-    // Cargamos una imagen aleatoria
-
-    rotarImagenes();
-
-
-
-    // Indicamos que cada 5 segundos cambie la imagen
-
-    setInterval(rotarImagenes,5000);
-
-} */
-
-/* //Elemento para cargar el slider
-
-let slider = document.getElementById("sliderJs");
-
-//Elemento general del slider
-
-let sliderContainer = document.getElementById('slider-container');
-
-
-
-slider.style.width = images.length * 100 + "%";
-
-
-
-//Elemento carga navegacion
-
-let sliderNav = document.getElementById("sliderNavigation");
-sliderNav.style.background = "rgb(27, 27, 27)";
-
-//Variable para saber si el slider esta activo
-let active = true;
-
-//Eventos 
-sliderNav.addEventListener("click",(e)=>slideImage(e.target.id.slice(-1)));
-
-
-//Eventos de rato
-sliderContainer.addEventListener("mouseover",()=>{
-    if(active){
-        active = false
-    }
-});
-
-//Eventos saber si el raton no esta dentro
-sliderContainer.addEventListener("mouseout",()=>{
-    if(!active ){
-        active = true
-    }
-});
-
-//Dibujar slider navegacion
-for (let img in images){
-    //console.log(img)
-    slider.innerHTML += `<img src="${images[img]}" class="sliderImages" style="width:${100/images.length}%">`;
-    sliderNav.innerHTML += `<span class="slider-nav" id="slider-nav-${img}">`;
-}
-
-//Variable contador de imagenes
-let cont = 0;
-
-//intervalos de tiempo
-
-const startInterval = () => setInterval(counter,2000);
-
-startInterval();
-
-function counter() {
-    if(active){
-        cont++;
-        if(cont>=images.length) cont=0;
-        setInterval(slideImage(cont),2000);
-        setInterval(setActivate(cont),2000);
-        //console.log(cont);
-    }
-}
-
-function slideImage(id) {
-    if (!active && !isNaN(id)) {
-        cont=id;
-        setActivate(id)
-    }
-    slider.style.left= '-'+ id + '00%';
-}
-
-let navIcons = [...document.getElementsByClassName("slider-nav")];
-//console.log(navIcons)
- function setActivate(id) {
-   for (let icons in navIcons) {
-       if (icons<navIcons.length) {
-           if (navIcons[icons].id==="slider-nav-" + id) {
-               document.getElementById(navIcons[icons].id).classList.add("slider-nav-active")
-           } else {
-               document.getElementById(navIcons[icons].id).classList.remove("slider-nav-active")
-           }
-           
-       }
-       
-       
-   }
-} 
- */
-
-
