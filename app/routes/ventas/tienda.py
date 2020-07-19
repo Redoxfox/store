@@ -49,4 +49,4 @@ def images():
 @app.route('/ver_product/<id>/', methods=['POST', 'GET'])
 def ver_product(id):
     urlrev = URLBASE
-    return render_template("/home/depilW.html", url = urlrev) 
+    return render_template("/home/index.html", url = urlrev) 

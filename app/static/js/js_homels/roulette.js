@@ -12,23 +12,6 @@ function aleatorio(a,b) {
     return Math.round(Math.random()*(b-a)+parseInt(a));
 }
 
-/**
-
- * Array con las imagenes y enlaces que se iran mostrando en la web
-
- */
-
-/* var imagenes=new Array(
-
-    ['img/1.jpg','http://www.lawebdelprogramador.com/cursos/'],
-
-    ['img/2.jpg','http://www.lawebdelprogramador.com/foros/'],
-
-    ['img/3.jpg','http://www.lawebdelprogramador.com/pdf/'],
-
-    ['img/4.jpg','http://www.lawebdelprogramador.com/utilidades/']
-
-); */
 
 var contador=0;
 

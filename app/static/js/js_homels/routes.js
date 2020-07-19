@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
     num_diapositiva = aleatorio(0,num_items);
     id = "item_multimedia"
     let  multimedia = document.getElementById("multimedia");
-    let listItem = document.createElement('video');
+    let listItem = document.createElement('iframe');
     listItem.setAttribute("id", id); 
     listItem.setAttribute("loop", "");
     listItem.setAttribute("autoplay", ""); 
