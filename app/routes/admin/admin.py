@@ -95,7 +95,6 @@ def Estructura_tabla():
     return (estructura)
 
 
-
 @app.route("/AddCategory", methods=["GET","POST"])
 def AddCategory():
     Urlbase = URLBASE
@@ -138,6 +137,80 @@ def categories():
     DatosAllCategories_json = json.dumps(DatosAllCategories) 
     
     return (DatosAllCategories_json) 
+
+
+@app.route("/AddMedia/", methods=["POST"])
+def AddMedia():
+    Urlbase = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect = Model(username)   
+    req = request.get_json()
+    result = {}
+    productos = req["productos"]
+    media = req["media"]
+    forma = req["forma"] 
+
+    if media == "1":
+        img = "1"
+        video = "0"
+        name = "img" + img
+    else:
+        img = "0"
+        video = "1"
+        name = "video" + video
+
+    if forma == "portada":
+        tipo = "portada"
+    else:
+        tipo = "miniatura"
+        
+    id = None
+    Insert_ofMedia = dict()
+    Insert_ofMedia = {'TABLE':'media',
+        'Col1':'id',
+        'Col2':'id_product',
+        'Col3':'img',
+        'Col4':'video',
+        'Col5':'tipo',
+        'Val6':'%s',
+        'Val7':'%s',
+        'Val8':'%s',
+        'Val9':'%s',
+        'Val10':'%s'
+    } 
+
+    Data = [id, productos, img, video, tipo]
+    result["new_proveedor"] = name
+    res_insert = connect.IT_TABLE(username, Insert_ofMedia, Data)  
+    print(productos, media, forma)
+    """ name = req["name"]
+    direccion = req["direccion"]
+    telefono = req["telefono"]
+    web = req["web"]
+    email = req["email"] 
+    id = None
+    Insert_ofProveedor = dict()
+    Insert_ofProveedor = {'TABLE':'proveedor',
+        'Col1':'id_proveedor',
+        'Col2':'name',
+        'Col3':'direccion',
+        'Col4':'telefono',
+        'Col5':'web',
+        'Col6':'email',
+        'Val7':'%s',
+        'Val8':'%s',
+        'Val9':'%s',
+        'Val10':'%s',
+        'Val11':'%s',
+        'Val12':'%s'
+    } 
+
+
+    Data = [id, name, direccion, telefono, web, email]
+    result["new_proveedor"] = name
+    res_insert = connect.IT_TABLE(username, Insert_ofProveedor, Data)  """
+    
+    return result
 
 
 

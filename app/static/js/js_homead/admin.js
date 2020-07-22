@@ -585,11 +585,146 @@ function productos(){
     .then(res => res.json())
     .then(data =>{ 
        for (const key in data) {
+          select.options[key] = new Option(data[key].name , data[key].id_product);
+        }
+    })
+}
+
+/*Llenar select categories*/
+function productosid(){
+    const url = window.origin + "/productosid" 
+    let select = document.getElementById("productos");
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+       for (const key in data) {
           select.options[key] = new Option(data[key].name , data[key].id_proveedor);
         }
     })
 }
 
+/*********************************** 
+ *Formulario nueva categoria   *
+ **********************************/
+function new_media(){
+    let contenedor = document.getElementById("contenedor_principal");
+    let listId_contenedor = document.createElement('div');
+    listId_contenedor.setAttribute("id", "form");
+    listId_contenedor.classList.add("body_form"); 
+    contenedor.appendChild(listId_contenedor);
+    document.getElementById("form").innerHTML =`
+        <div class="contenedor_primario_form">
+            <h2 class="item_titulo">Registrar Recursos Multimedia</h2>
+            <div class="contenedor_secundario">
+                <div class="contenedor_info">
+                    <h3>Registro Imagenes y video</h3>
+                    <ul>
+                        <li>Sandyvital Store</li>
+                        <li>Salud y belleza</li>
+                        <li>Productos de Calidad</li>
+                        </br>
+                        <div class="caja">
+                            <div class="box">
+                                <img src="/static/imgs/logo3.png" alt="">
+                            </div>
+                        </div>    
+                    </ul>
+                </div>
+                <div class="contenedor_form">
+                    <h3>Crear Nuevo Recurso</h3>
+                    <form id="form1">
+                        <p>
+                            <label>Producto:</label>
+                            <select name="productos" id="productos">
+                            </select>
+                            <i></i>
+                        </p>
+                        <p>
+                            <label>Tipo Media:</label>
+                            <select name="Media" id="Media">
+                                <option value="1">Imagen</option> 
+                                <option value="2">Video</option> 
+                            </select>
+                            <i></i>
+                        </p>
+                        <p>
+                            <label>Forma Media:</label>
+                            <select name="Forma" id="Forma">
+                                <option value="portada">Portada</option> 
+                                <option value="miniatura">Miniatura</option> 
+                            </select>
+                            <i></i>
+                        </p>
+
+                        <p>
+                            <button type="submit" onclick="AddMedia(event);">Agregar Nuevo</button>
+                        </p> 
+                        <p class="item_form">
+                            <div id = "new_category"></div>
+                        </p>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+        `
+        productos();
+}
+
+/*Formulario agregar nuevas categorias*/
+function AddMedia(evt) {
+    evt.preventDefault();
+    let producto = evt.target.form[0].value
+    let media = evt.target.form[1].value
+    let forma = evt.target.form[1].value
+    const url = window.origin+"/AddMedia/";
+    console.log(url);
+
+    var entry = {
+        productos : producto, 
+        media : media,
+        forma : forma
+    };
+
+    fetch(url, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(entry),
+      cache: "no-cache",
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    })
+    .then(function (response) {
+        if (response.status !== 200) {
+            console.log(`Looks like there was a problem. Status code: ${response.status}`);
+            return;
+        }
+        response.json().then(function (data) {
+        console.log(data)
+        document.getElementById("new_category").innerHTML =`
+          ${data.new_category}
+        `
+        evt.target.form[0].value = ""
+        });
+    })
+    .catch(function (error) {
+        console.log("Fetch error: " + error);
+    });
+}
+
+/*Llenar select categories*/
+function categories(){
+    const url = window.origin + "/categories" 
+    let select = document.getElementById("categories");
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+       for (const key in data) {
+          select.options[key] = new Option(data[key].name , data[key].id_category);
+        }
+    })
+}
 
 /*********************************** 
  *Formulario nuevo topico de palabras blog    *

@@ -50,3 +50,23 @@ def images():
 def ver_product(id):
     urlrev = URLBASE
     return render_template("/home/index.html", url = urlrev) 
+
+@app.route('/Productos/<id>/', methods=['POST', 'GET'])
+def Servicios(id):
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    wid = id
+    TablaServicioAutomotor = dict()
+    TablaServicioAutomotor = {'TABLE':'servicio',
+        'Col1':'id',
+        'Col2':'tipo',
+        'Col3':'costo',
+        'Col4':'detalles',
+        'Col5':'automotor',
+        'Whe6':'automotor=%s'
+        }
+    Data = (wid,)
+    DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
+    
+    return render_template("/lavasplash/Servicios.html", url = urlrev, Oferta_Servicio = DatosServicioV)

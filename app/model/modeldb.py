@@ -172,7 +172,7 @@ class Model:
            Values = Values + ");"
 
         result = Colunm + Values
-        
+        print(result);
         try:
             sql = result
             cursor = con.cursor()
