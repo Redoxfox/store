@@ -296,3 +296,9 @@ def IT_TABLE(self):
         INSERT INTO vocabulary (id, english, spanish, grupo, ejemplos) VALUES (13, "CHAIR", "SILLA", 1,""); 
         INSERT INTO vocabulary (id, english, spanish, grupo, ejemplos) VALUES (14, "STOOL", "BANCO", 1,""); 
         INSERT INTO vocabulary (id, english, spanish, grupo, ejemplos) VALUES (15, "BOWL", "TAZON", 1,""); 
+
+Media de proyecto 
+
+media + tipo + id + ubicación + ".formato"
+
+mediav1p.formato

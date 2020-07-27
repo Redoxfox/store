@@ -13,18 +13,20 @@
         {% for valor in Oferta_Servicio %}
         <div class="box">
           <!-- Codigo color 9AFF42 imagen -->
-          {% if valor.automotor == 1 %}
+         <!--  {% if valor.automotor == 1 %}
             <img src="{{ url_for('static', filename='imgs/car.png') }}">
           {% elif valor.automotor == 2 %}
             <img src="{{ url_for('static', filename='imgs/moto.png') }}">
           {% else %}
             <img src="{{ url_for('static', filename='imgs/camion.png') }}">
-          {% endif %}
+          {% endif %} -->
+          <div class="top-box top-box-a" id="box_a">
+            <h3 >{{ valor.name }}</h3>
+            <p class="price" id="price_a">$ {{ valor.precio }}</p>
+           <!--  <p>{{ valor.detalles }}</p> -->
+            <a href="{{url}}/Servicios/1" class="btn">Ver servicios</a>
+          </div>
           
-          <h3>{{ valor.tipo }}</h3>
-          <p>$ {{ valor.costo }}</p>
-          <p>{{ valor.detalles }}</p>
-          <a href="{{url}}/Servicios/1" class="btn">Ver servicios</a>
         </div>
         {% endfor %}
       </section>

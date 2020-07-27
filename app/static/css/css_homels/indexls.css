@@ -1,6 +1,6 @@
 /* CSS Variables */
 :root {
-  --primary: rgba(214, 218, 216, 0.925);
+ /*  --primary: rgba(214, 218, 216, 0.925); */
   --primary: rgba(239, 245, 242, 0.5);
   --dark: rgb(15, 15, 17);
   --light: #fff;

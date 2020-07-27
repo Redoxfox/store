@@ -8,6 +8,22 @@ let content_static = ['/static/video/DWPierna.mp4',
 '/static/imgs/DWDorzo.jpeg'
 ];
 
+function file_static(id) {
+    const url = window.origin + "/media/" + id
+    console.log( url)
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+        let media1 = data.filter((productos, index)=>{
+            console.log(productos["id"])
+            return productos;  
+        })  
+        console.log(media1)
+    })
+
+
+}
+
 function aleatorio(a,b) {
     return Math.round(Math.random()*(b-a)+parseInt(a));
 }
@@ -39,6 +55,7 @@ window.addEventListener('load', () => {
     multimedia.appendChild(listItem);
     document.getElementById(id).src= content_static[num_diapositiva];
     setInterval(rotarImagenes,40000);
+    file_static("1");
 });
 
 function background_media (){

@@ -70,3 +70,50 @@ def Servicios(id):
     DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
     
     return render_template("/lavasplash/Servicios.html", url = urlrev, Oferta_Servicio = DatosServicioV)
+
+@app.route('/media/<id>/', methods=['POST', 'GET'])
+def media(id):
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    wid = id
+    TablaMedia = dict()
+    TablaMedia = {'TABLE':'media',
+        'Col1':'id',
+        'Col2':'id_product',
+        'Col3':'img',
+        'Col4':'video',
+        'Col5':'tipo',
+        'Whe6':'id_product=%s'
+        }
+    Data = (wid,)
+
+   
+    DatosMedia = connect.SW_TABLE(username,TablaMedia, Data)
+
+    DatosAllMedia = json.dumps(DatosMedia) 
+
+    print(DatosMedia)
+    
+    return (DatosAllMedia) 
+
+@app.route('/Products/<id>/', methods=['POST', 'GET'])
+def Products(id):
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    wid = id
+    TablaServicioAutomotor = dict()
+    TablaServicioAutomotor = {'TABLE':'products',
+        'Col1':'id_product ',
+        'Col2':'id_proveedor',
+        'Col3':'id_categoria',
+        'Col4':'name',
+        'Col5':'precio',
+        'Col6':'descripcion',
+        'Whe7':'id_categoria=%s'
+        }
+    Data = (wid,)
+    DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
+
+    return render_template("/lavasplash/Servicios.html", url = urlrev, Oferta_Servicio = DatosServicioV)
