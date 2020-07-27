@@ -95,7 +95,9 @@ img {
   box-shadow: var(--shadow);
 }
 
-
+#bannerm{
+  display: none;
+}
 
 
 .main-nav a:hover {
@@ -280,7 +282,9 @@ img {
       'top-box-a top-box-b';
   }
 
- 
+  #bannerm{
+    display: none;
+  }
 
   .showcase h1 {
     font-size: 2.5rem;
@@ -309,7 +313,9 @@ img {
       'top-box-b';
     padding: 2px;
   }
-  
+  #banner{
+    display: none;
+  }
   .video-header>video{
     background: beige;
     height: 350px;
