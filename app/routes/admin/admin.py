@@ -150,7 +150,7 @@ def AddMedia():
     media = req["media"]
     forma = req["forma"] 
 
-    if media == "1":
+    ''' if media == "1":
         img = "1"
         video = "0"
         name = "img" + img
@@ -162,7 +162,7 @@ def AddMedia():
     if forma == "portada":
         tipo = "portada"
     else:
-        tipo = "miniatura"
+        tipo = "miniatura" '''
         
     id = None
     Insert_ofMedia = dict()
@@ -179,10 +179,38 @@ def AddMedia():
         'Val10':'%s'
     } 
 
-    Data = [id, productos, img, video, tipo]
-    result["new_proveedor"] = name
-    res_insert = connect.IT_TABLE(username, Insert_ofMedia, Data)  
-    print(productos, media, forma)
+    nombre_id = "id"
+    nombre_tabla = "media"
+    id_max = connect.MAX_ID_TABLE(username, nombre_tabla  , nombre_id) 
+    proximo_id = id_max[0]["max_id"] + 1
+    id_img = str(proximo_id)
+    video = "img"+id_img+"m"+productos+".jpg"
+    Data = [id, productos, media, video, forma]
+    ''' result["new_proveedor"] = name '''
+    #res_insert = connect.IT_TABLE(username, Insert_ofMedia, Data) 
+    Tabla_All_Images = dict()
+    Tabla_All_Images = {'TABLE':'media',
+        'Col1':'media.id',
+        'Col2':'products.name',
+        'Col3':'media.img',
+        'Col4':'media.video'
+    }
+
+
+    tables = dict()
+    tables = {
+        'table1':'media',
+        'id_t1':'id_product',
+        'table2':'products',
+        'id_t2':'id_product'
+    }
+    
+    #DatosAllProveedores = connect.SSP_TABLE(username, Tabla_All_Proveedores)
+    list_images = connect.SINJ_TABLE(username, Tabla_All_Images, tables) 
+    print(list_images)
+    result = json.dumps(list_images) 
+    ''' DatosAllProveedores_json = json.dumps(DatosAllProveedores) 
+    print(productos, media, forma) '''
     """ name = req["name"]
     direccion = req["direccion"]
     telefono = req["telefono"]

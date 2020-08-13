@@ -577,6 +577,34 @@ function AddProduct(evt) {
     });   
 }
 
+/*Tabla*/
+
+function tabla(){
+    // Ahora dibujamos la tabla
+const $cuerpoTabla = document.querySelector("#cuerpoTabla");
+// Recorrer todos los productos
+productos.forEach(producto => {
+    // Crear un <tr>
+    const $tr = document.createElement("tr");
+    // Creamos el <td> de nombre y lo adjuntamos a tr
+    let $tdNombre = document.createElement("td");
+    $tdNombre.textContent = producto.nombre; // el textContent del td es el nombre
+    $tr.appendChild($tdNombre);
+    // El td de precio
+    let $tdPrecio = document.createElement("td");
+    $tdPrecio.textContent = producto.precio;
+    $tr.appendChild($tdPrecio);
+    // El td del código
+    let $tdCodigo = document.createElement("td");
+    $tdCodigo.textContent = producto.codigo;
+    $tr.appendChild($tdCodigo);
+    // Finalmente agregamos el <tr> al cuerpo de la tabla
+    $cuerpoTabla.appendChild($tr);
+    // Y el ciclo se repite hasta que se termina de recorrer todo el arreglo
+});
+}
+
+
 /*Llenar select categories*/
 function productos(){
     const url = window.origin + "/productos" 
@@ -604,7 +632,7 @@ function productosid(){
 }
 
 /*********************************** 
- *Formulario nueva categoria   *
+ *Formulario nueva imagen producto  *
  **********************************/
 function new_media(){
     let contenedor = document.getElementById("contenedor_principal");
@@ -612,6 +640,11 @@ function new_media(){
     listId_contenedor.setAttribute("id", "form");
     listId_contenedor.classList.add("body_form"); 
     contenedor.appendChild(listId_contenedor);
+      /* <label>Tipo Media:</label>
+                            <select name="Media" id="Media">
+                                <option value="1">Imagen</option> 
+                                <option value="2">Video</option> 
+                            </select> */
     document.getElementById("form").innerHTML =`
         <div class="contenedor_primario_form">
             <h2 class="item_titulo">Registrar Recursos Multimedia</h2>
@@ -640,17 +673,12 @@ function new_media(){
                             <i></i>
                         </p>
                         <p>
-                            <label>Tipo Media:</label>
-                            <select name="Media" id="Media">
-                                <option value="1">Imagen</option> 
-                                <option value="2">Video</option> 
-                            </select>
-                            <i></i>
+                            <label>Nombre Imagen:</label>
+                            <input type="text"  name="Media" >
                         </p>
                         <p>
                             <label>Forma Media:</label>
                             <select name="Forma" id="Forma">
-                                <option value="portada">Portada</option> 
                                 <option value="miniatura">Miniatura</option> 
                             </select>
                             <i></i>
@@ -663,6 +691,24 @@ function new_media(){
                             <div id = "new_category"></div>
                         </p>
                     </form>
+                    <table id = "mytable">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Video</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTabla">
+                            <tr id = "campos" >
+                                <td>Id</td>
+                                <td>Imagen</td>
+                                <td>Nombre</td>
+                                <td>Video</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     
                 </div>
             </div>
@@ -676,7 +722,7 @@ function AddMedia(evt) {
     evt.preventDefault();
     let producto = evt.target.form[0].value
     let media = evt.target.form[1].value
-    let forma = evt.target.form[1].value
+    let forma = evt.target.form[2].value
     const url = window.origin+"/AddMedia/";
     console.log(url);
 
@@ -702,10 +748,39 @@ function AddMedia(evt) {
         }
         response.json().then(function (data) {
         console.log(data)
-        document.getElementById("new_category").innerHTML =`
-          ${data.new_category}
-        `
+        let contenedor = document.getElementById("cuerpoTabla");
+        contenedor.remove( );
+        
+        for (const key in data) {
+            let mytable = document.getElementById("mytable");
+            let tbody = document.createElement("tbody");
+            tbody.setAttribute("id", "cuerpoTabla");
+            mytable.appendChild(tbody);
+            const cuerpoTabla = document.querySelector("#cuerpoTabla");
+            const tr = document.createElement("tr");
+             // El td del código
+            let tdid = document.createElement("td");
+            tdid.textContent = data[key].id;
+            tr.appendChild(tdid);
+          
+            let tdNombre = document.createElement("td");
+            tdNombre.textContent = data[key].name; // el textContent del td es el nombre
+            tr.appendChild(tdNombre);
+
+            let tdimg = document.createElement("td");
+            tdimg.textContent = data[key].img;
+            tr.appendChild(tdimg);
+
+            let tdvideo = document.createElement("td");
+            tdvideo.textContent = data[key].video; // el textContent del td es el nombre
+            tr.appendChild(tdvideo);
+          
+            // Finalmente agregamos el <tr> al cuerpo de la tabla
+            cuerpoTabla.appendChild(tr);
+            // Y el ciclo se repite hasta que se termina de recorrer todo el arreglo
+          }
         evt.target.form[0].value = ""
+        
         });
     })
     .catch(function (error) {

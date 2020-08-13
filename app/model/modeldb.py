@@ -172,7 +172,7 @@ class Model:
            Values = Values + ");"
 
         result = Colunm + Values
-        print(result);
+        
         try:
             sql = result
             cursor = con.cursor()
@@ -229,6 +229,51 @@ class Model:
         con.close()
 
         return  Allresuls
+
+    #Consulta inner join simple
+    def SINJ_TABLE(self, type_user, datos_table, tables):
+       MyObjModel = Model(type_user)
+       con = MyObjModel.con();
+       list_column = []
+       list_table = []
+       cont = 0
+       list_column.append("SELECT ")
+       self.Datos_table = datos_table
+       for items in self.Datos_table:
+           valor = self.Datos_table[items]
+           if items == "TABLE":
+               Cadena = valor 
+               list_table.append(Cadena)
+           else:
+               cont+=1
+               num_col="Col" + str(cont)
+               if items == num_col:
+                   Cadena = valor + ","
+                   list_column.append(Cadena)
+       Colunm= ' '.join(list_column)
+       lenColunm = len(Colunm)
+       ultimaCol = Colunm[lenColunm-1]
+       if ultimaCol==",":
+          Colunm=Colunm[0:lenColunm-1]
+          Colunm = Colunm + " FROM "
+       else:
+          Colunm = Colunm + " FROM "
+
+       Values= ' '.join(list_table)
+       
+       table1 = tables["table1"]
+       id_tb1 = tables["id_t1"]
+       table2 = tables["table2"]
+       id_tb2 = tables["id_t2"]
+       relationt1 = table1 + "." + id_tb1
+       relationt2 = table2 + "." + id_tb2
+       result = Colunm + Values + " INNER JOIN " + table2 + " ON " + relationt1+ "=" + relationt2 + ";"
+       sql = result
+       cursor = con.cursor()
+       cursor.execute(sql)
+       Allresults = cursor.fetchall()
+       con.close() 
+       return  Allresults
 
     #Eliminar fila de tabla
     def DELWT_TABLE(self, type_user, datos_table):

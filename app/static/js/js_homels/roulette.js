@@ -1,27 +1,32 @@
 //Array imagenes 
 
-let content_static = ['/static/video/DWPierna.mp4',
+/* let content_static = ['/static/video/DWPierna.mp4',
 '/static/video/DWBrazo.mp4',
 '/static/video/DWTodos.mp4',
 '/static/imgs/DWKits1.jpg',
 '/static/imgs/DWPecho.jpeg',
 '/static/imgs/DWDorzo.jpeg'
-];
+]; */
 
 function file_static(id) {
     const url = window.origin + "/media/" + id
-    console.log( url)
+    // console.log( url)
     fetch(url)
     .then(res => res.json())
     .then(data =>{ 
         let media1 = data.filter((productos, index)=>{
-            console.log(productos["id"])
+            /* console.log(productos["id"]) */
             return productos;  
-        })  
-        console.log(media1)
+        }) 
+        console.log(media1[0]["video"])
+        console.log(media1.length)
+        id_ini = 0
+        id_end = media1.length - 1
+        index = aleatorio(id_ini, id_end)
+        nom_img = media1[index]["video"]
+        url_img  = "/static/imgs/" + nom_img
+        document.getElementById("img_product").src= url_img 
     })
-
-
 }
 
 function aleatorio(a,b) {
@@ -38,8 +43,15 @@ var contador=0;
  */
 
 window.addEventListener('load', () => {
+
+    /* alert("The URL of this page is: " + window.location.href); */
+    cadena = window.location.href
+    console.log(cadena)
+    var arrayDeCadenas = cadena.split("/");
+    console.log(arrayDeCadenas[4]);
+    console.log(typeof(arrayDeCadenas[4]))
     background_media();
-    let  idvideo = document.getElementById("item_multimedia");
+ /* let  idvideo = document.getElementById("item_multimedia");
     padre = idvideo.parentNode;
     padre.removeChild(idvideo);
     num_items = 2;
@@ -53,9 +65,9 @@ window.addEventListener('load', () => {
     listItem.style.width = '90%';
     listItem.classList.add("item-multimedia");
     multimedia.appendChild(listItem);
-    document.getElementById(id).src= content_static[num_diapositiva];
-    setInterval(rotarImagenes,40000);
-    file_static("1");
+    document.getElementById(id).src= content_static[num_diapositiva];*/
+    setInterval(rotarImagenes,40000); 
+    file_static(arrayDeCadenas[4]);
 });
 
 function background_media (){
@@ -88,6 +100,8 @@ function background_media (){
                 return productos; 
             }     
         })
+
+
         let boxa = document.getElementById("box_a");
         let product_a = document.getElementById("product_a");
         let price_a = document.getElementById("price_a");
@@ -105,6 +119,7 @@ function background_media (){
         boxa.style.backgroundImage = "url("+ruta_img_a+")"; 
         boxa.style.backgroundSize= "cover";
         boxa.style.backgroundPosition="center";
+        boxa.style.width = "400px"
         
         nom_imagen_b = media2[0].media;
         product_b.textContent = media2[0].name;
@@ -115,12 +130,13 @@ function background_media (){
         boxb.style.backgroundImage = "url("+ruta_img_b+")"; 
         boxb.style.backgroundSize= "cover";
         boxb.style.backgroundPosition="center";
+        boxb.style.width = "400px"
     })
 }
 
 
 function rotarImagenes(){
-    let  idvideo = document.getElementById("item_multimedia");
+    /* let  idvideo = document.getElementById("item_multimedia");
     padre = idvideo.parentNode;
     padre.removeChild(idvideo);
     num_items = 5;
@@ -132,8 +148,14 @@ function rotarImagenes(){
     listItem.style.width = '90%';
     listItem.classList.add("item-multimedia");
     multimedia.appendChild(listItem);
-    document.getElementById(id).src= content_static[num_diapositiva];
+    document.getElementById(id).src= content_static[num_diapositiva]; */
+    cadena = window.location.href
+    console.log(cadena)
+    var arrayDeCadenas = cadena.split("/");
+    console.log(arrayDeCadenas[4]);
+    console.log(typeof(arrayDeCadenas[4]))
     background_media();
+    file_static(arrayDeCadenas[4]);
 } 
 /* function rotarImagenes()
 

@@ -1,6 +1,5 @@
 /* CSS Variables */
 :root {
- /*  --primary: rgba(214, 218, 216, 0.925); */
   --primary: rgba(239, 245, 242, 0.5);
   --dark: rgb(15, 15, 17);
   --light: #fff;
@@ -9,12 +8,15 @@
   --green: blue;
 }
 
+/* Estilos generales pagina */
 html {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--dark);
 }
 
+
+/* Configuración cuerpo pagina*/
 body {
   background: white;
   margin-left: 30px;
@@ -109,23 +111,67 @@ img {
 .top-container {
   display: grid;
   grid-gap: 20px;
-  grid-template-areas:
-    'showcase showcase top-box-a'
-    'showcase showcase top-box-b';
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(400px, auto);
+  margin: 30px;
 }
 
 /* Showcase */
-.showcase {
-  grid-area: showcase;
-  min-height: 400px;
+.img_product{
+  display: grid;
+  align-items: center;
+  justify-items: center;
   /* background: url(/static/imgs/DWPierna.mp4); */
   background-size: cover;
   background-position: center;
-  padding: 3rem;
+  
+}
+
+.description{
+  font-family: 'Barlow Condensed', sans-serif;
+  padding: 1.5rem;
+  box-shadow: var(--shadow); 
+  font-size: 20px;
+}
+
+.description-product{
+  display: grid;
+}
+
+#title-product{
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 50px;
+}
+
+#price-product{
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 35px;
+}
+
+.container-anuncio{
   display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow);
- 
+  justify-content:center; 
+}
+
+.more-info{
+  display: flex;
+  justify-content:flex-end; 
+}
+
+#more-info{
+  margin: 30px;
+  padding: 30px;
+}
+
+.more-products{
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(400px, auto);
+  margin: 30px;
+
 }
 
 .video-header{
@@ -154,7 +200,7 @@ img {
 }
 
 
-/* Top Box */
+/* Top Box 
 .top-box {
   background: var(--primary);
   display: grid;
@@ -162,9 +208,9 @@ img {
   justify-items: center;
   box-shadow: var(--shadow);
   padding: 1.5rem;
-}
+}*/
 
-.top-box .price {
+ .price {
   z-index: 1;
   font-size: 2.5rem;
   background: rgba(223, 253, 178, 0.5);
@@ -176,7 +222,11 @@ img {
 
 
 .top-box-a {
-  grid-area: top-box-a;
+  display: grid;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 25px;
+  align-items: center;
+  justify-items: center;
 }
 
 .top-box-a h4{
@@ -194,7 +244,11 @@ img {
 }
 
 .top-box-b {
-  grid-area: top-box-b;
+  display: grid;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 25px;
+  align-items: center;
+  justify-items: center;
 }
 
 /* Boxes */
@@ -277,9 +331,12 @@ img {
 /* Media Queries */
 @media (max-width: 1000px) {
   .top-container {
-    grid-template-areas:
-      'showcase showcase'
-      'top-box-a top-box-b';
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(400px, auto);
+    margin: 30px;
   }
 
   #bannerm{
@@ -305,21 +362,47 @@ img {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .top-container {
-    grid-template-areas:
-      'showcase'
-      'top-box-a'
-      'top-box-b';
-    padding: 2px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(400px, auto);
+    margin: 30px;
   }
   #banner{
     display: none;
   }
+
+  .more-products{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(400px, auto);
+    margin: 10px;
+  }
+
+  .top-box-a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 25px;
+    justify-self: center;
+    margin: 10px;
+  }
+
+  .top-box-b {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 25px;
+    justify-self: center;
+    margin: 10px;
+  }
+
   .video-header>video{
     background: beige;
     height: 350px;
     box-shadow: var(--shadow);
+    margin: 30px;
   }
 
   .item-multimedia{
