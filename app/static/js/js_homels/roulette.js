@@ -45,11 +45,11 @@ var contador=0;
 window.addEventListener('load', () => {
 
     /* alert("The URL of this page is: " + window.location.href); */
-    cadena = window.location.href
+     /* cadena = window.location.href
     console.log(cadena)
     var arrayDeCadenas = cadena.split("/");
     console.log(arrayDeCadenas[4]);
-    console.log(typeof(arrayDeCadenas[4]))
+    console.log(typeof(arrayDeCadenas[4])) */
     background_media();
  /* let  idvideo = document.getElementById("item_multimedia");
     padre = idvideo.parentNode;
@@ -67,7 +67,7 @@ window.addEventListener('load', () => {
     multimedia.appendChild(listItem);
     document.getElementById(id).src= content_static[num_diapositiva];*/
     setInterval(rotarImagenes,40000); 
-    file_static(arrayDeCadenas[4]);
+    file_static("1");
 });
 
 function background_media (){
@@ -149,13 +149,8 @@ function rotarImagenes(){
     listItem.classList.add("item-multimedia");
     multimedia.appendChild(listItem);
     document.getElementById(id).src= content_static[num_diapositiva]; */
-    cadena = window.location.href
-    console.log(cadena)
-    var arrayDeCadenas = cadena.split("/");
-    console.log(arrayDeCadenas[4]);
-    console.log(typeof(arrayDeCadenas[4]))
     background_media();
-    file_static(arrayDeCadenas[4]);
+    file_static("1");
 } 
 /* function rotarImagenes()
 

@@ -49,7 +49,25 @@ def images():
 @app.route('/ver_product/<id>/', methods=['POST', 'GET'])
 def ver_product(id):
     urlrev = URLBASE
-    return render_template("/home/index.html", url = urlrev) 
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    wid = id
+    TablaServicioAutomotor = dict()
+    TablaServicioAutomotor = {'TABLE':'products',
+        'Col1':'id_product ',
+        'Col2':'id_proveedor',
+        'Col3':'id_categoria',
+        'Col4':'name',
+        'Col5':'precio',
+        'Col6':'descripcion',
+        'Whe7':'id_product=%s'
+        }
+    Data = (wid,)
+    prueba = "/home/depilW.html"
+    DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
+    print(DatosServicioV)
+
+    return render_template(prueba, url = urlrev, Oferta_Servicio = DatosServicioV) 
 
 @app.route('/Productos/<id>/', methods=['POST', 'GET'])
 def Servicios(id):
@@ -93,7 +111,7 @@ def media(id):
 
     DatosAllMedia = json.dumps(DatosMedia) 
 
-    print(DatosMedia)
+    #print(DatosMedia)
     
     return (DatosAllMedia) 
 
