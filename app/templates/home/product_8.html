@@ -46,13 +46,13 @@
       <nav class="main-nav">
         <ul>
           <li>
-            <a href="{{url}}/nosotros/">Nosotros</a>
+            <a href="{{url}}">Nosotros</a>
           </li>
           <li>
             <a href="{{url}}/All_Servicios/">Productos</a>
           </li>
           <li>
-            <a href="{{url}}/">Contactenos</a>
+            <a href="{{url}}">Contactenos</a>
           </li>
           <li>
             <a href="{{url}}/login">Iniciar Sesión</a>
@@ -70,13 +70,18 @@
       <!-- Descripcion de producto-->
       <div class="description">
         <div id="id_product" class="description-product">
-          <div id="title-product"> DEPILWONDER ESPUMA X 1 KIT</div>
-          <div id="price-product">$69900</div>
-          <p>Dile adios a la cera y cuchillas!!!..</p>
-          <p>Sabemos que quieres estar libre de vellos, sin gastar tiempo rasurandote o usando
-            cuchillas que te dañan la piel. Quieres evitar irritación una depilación sin dolor.
-            Aplicamos diciendo adios a la irritación y ardor de forma facil y rapida. Duración 
-            aproximada para aparición de vellos de 20 a 25 días.
+          <div id="title-product"> {{ Oferta_Servicio[0].name }}</div>
+          <div id="price-product">${{ Oferta_Servicio[0].precio }}</div>
+          <p>Pierde tallas de forma rapida y natural!!!...</p>
+          <p>El ácido clorogénico presente en Café Verde baja los niveles de azúcar
+             en la sangre y los picos de insulina, además mejora las funciones de la 
+             hormona quema grasa adiponectina. Convierte las grasas en energía para 
+             finalmente eliminarla por medio de las heces, la orina y el sudor.
+          </p>
+          <p>Oferta Incluye:</p>
+
+          <p>
+            {{ Oferta_Servicio[0].descripcion }}
           </p>
           <div class="more-info"><a href="#" id="more-info">Saber mas ...</a></div>
         </div> 
@@ -114,24 +119,14 @@
           <h3>INSTRUCCONES DE USO:</h3>
           <div class="instrucciones">
             <ul>
-              <li>Leer hoja adjunta  <strong>!MUY IMPORTANTE!!!</strong></li>
-              <li>Hacer una prueba de sensibilidad en la zona a depilar. 
-                Recuerde que es un producto masivo y no todas las personas 
-                reaccionan igual a los productos cosméticos. 
-                El olor es característico de todo producto depilador.</li>
-              <li>Limpiar muy bien el área a depilar, la piel no debe tener residuos o estar 
-                impregnada de perfumes, aceites, cremas, desodorantes ni similares. 
-                Al estar en contacto con el Depilwonder puede reaccionar y causar irritación 
-                por lo tanto debe lavar muy bien la zona antes de depilar.</li>
-              <li>Agitar el producto, hacer una aplicación generosa y uniforme, esparcir con 
-                ayuda de los dedos, no realizar esta acción muy fuerte para no causar daños en 
-                la piel. procure de dejar bien empapada el área a depilar.</li>
-              <li>Espere 60 segundos hasta que el vello este oscuro y con textura chicluda limpiar con una 
-                toallita húmeda el exceso del producto y los vellos.
+              <li>Sacar una cucharada pequeña en  de cafe verde.</li>
+              <li>Disolver cucharada en una taza con agua caliente(hirviendo) durante 3 minutos.</li>
+              <li>Dejar reposar durante 3 minutos colar y eliminar el residuo del colador.</li>
+              <li>Comsumir el producto colado.</li>
+              <li>Para darle otro tono de sabor a la bebida puede agregar clavitos, canela, limón, curcuma, 
+                  jengibre, cardamomom, aceite de coco, leche de almendras, leche de coco, etc...
               </li>
-              <li>Después que el área este totalmente limpia, aplicar suficiente crema 
-                hidratante en la zona depilada.</li> 
-              <li>Repetir estos pasos hasta terminar la depilación</li>
+              <li>Tomar diariamente 30 minutos antes del desayuno, almuerzo y cena.</li> 
             </ul>
           </div>
         </div>
@@ -139,96 +134,84 @@
           <h3>PRECAUCIONES DE USO:</h3>
           <div class="instrucciones">
             <ul>
-              <li>Cuando desee hacer la aplicación en áreas muy amplias como el pecho o la espalda,
-                por favor divida la zona. No haga una sola aplicación en áreas tan extensas.
+                
+- 
+              <li>El producto no es apto para personas con arritmia cardiaca.
              </li>   
-             <li>No aplique dos veces el producto en la misma zona inmediatamente, 
-               esto puede causar irritación.
+             <li>El producto no pueden ser consumido por personas con úlceras.
              </li>
-             <li>Después de realizar la depilación lavar inmediatamente las manos, no dejar 
-               impregnada las manos o cualquier otra área del cuerpo con el producto.
+             <li>El producto no pueden ser consumido por mujeres en estado de lactancia.
              </li>
-             <li>Uso no apto para menores de 16 años, mujeres embarazadas, personas con piel sensible, 
-               personas con heridas, quemaduras o barros</li>
-             <li> No usar en tatuajes recién hechos.</li>
+             <li>El producto no pueden ser consumido por mujeres en embarazo.</li>
             </ul>
           </div>
         </div>
         <div class="box">
-          <h3>DATOS ADICIONALES:</h3>
-          <div class="instrucciones">
-            <h5>SE PUEDE APLICAR EN:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Axilas</li>   
-                <li>Bikini</li>
-                <li>Espalda</li>
-              </ul>
-              <ul>
-                <li>Pecho</li>   
-                <li>Brazos</li>
-                <li>Piernas</li>
-              </ul>
+            <h3>DATOS APORTES A LA SALUD:</h3>
+            <div class="instrucciones">
+              <h5>BENEFICIOS POR CONSUMO:</h5>
+              <div class="zona1">
+                <ul>
+                  <li>Ayuda a perder peso rápidamente</li>   
+                  <li>Elimina grasa localizada</li>
+                  <li>Ayuda a la diabetes tipo 2</li>
+                  <li>Elimina la ansiedad</li>
+                  <li>Es antioxidante</li>
+                </ul>
+                <ul>
+                  <li>Elimina la celulitis</li>   
+                  <li>Produce energía extra</li>
+                  <li>Refuerza la memoria</li>
+                  <li>Es saciante</li>
+                  <li>Reduce la sensación de cansancio y fatiga</li>
+                </ul>
+              </div>
+  
+              <h5>PUEDE TOMARLO PERSONAS CON:</h5>
+              <div class="zona1">
+                <ul>
+                  <li>Helicobacter</li>   
+                  <li>Gastritis</li>
+                  <li>Problemas de Colón</li>
+                </ul>
+                <ul>
+                  <li>Presión alta</li>   
+                  <li>Hipotiroidismo</li>
+                  <li>Problemas de hígado graso</li>
+                </ul>
+              </div>
             </div>
-
-            <h5>NO SE PUEDE APLICAR EN:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Cabeza</li>   
-                <li>Barba</li>
-                <li>Bozo</li>
-              </ul>
-              <ul>
-                <li>Rostro</li>   
-                <li>Pene</li>
-                <li>Testículos</li>
-                <li>Labios Vaginales</li>
-              </ul>
-            </div>
-          </div>
         </div>
         <div class="box">
           <h3>DATOS TECNICOS DEL PRODUCTO:</h3>
           <div class="instrucciones">
             <h5>COMPONENTES:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Aqua</li>   
-                <li>Sucrose</li>
-                <li>Zea May Starch</li>
-                <li>Propylene glycol</li>
-                <li>Sodium Laureth Sulfate</li>
-                <li>Tocopheryl Acetate (Vitamina E)</li>
+            <div class="zona1"> 
+              <ul> 
+                <li>Café Verde Molido sin tostar</li>
+                <li>Vitamina A, B, C</li>
+                <li>Calcio</li>
               </ul>
               <ul>
-                <li>Parfum</li>   
-                <li>Collagen</li>
-                <li>Mentha Piperita Extract</li>
-                <li>Camellia Sinensis Leaf Extract</li>
-                <li>Aloe barbadensis Leaf Extract, </li>
+                <li>Magnesio</li>   
+                <li>Fósforo</li>
+                <li>Potasio</li>
+                <li>Sodio</li>
               </ul>
             </div>
 
             <h5>TAMAÑOS:</h5>
             <div class="zona1">
               <ul>
-                <li>Espuma Depilwonder </li>   
-                <li>150 ml</li>
-              </ul>
-              <ul>
-                <li>Hidratante </li>   
-                <li>120 ml</li>
+                <li>Café verde</li>   
+                <li>180 gr</li>
               </ul>
             </div>
             <h5>REGISTROS INVIMA:</h5>
             <div class="zona1">
               <ul>
-                <li>Espuma Depilwonder </li>   
-                <li>NSOC84490-18CO</li>
-              </ul>
-              <ul>
-                <li>Hidratante </li>   
-                <li>NSOC93885-19CO</li>
+                <li>Café verde</li>   
+                <li>NSA 0008349-2020</li>
               </ul>
             </div>
           </div>
@@ -236,22 +219,53 @@
         <div class="box">
           <h3>PREGUNTAS FRECUENTRES:</h3>
           <div class="instrucciones">
-            <ul>
-              <li> <strong>¿Desaparece el vello?</strong> 
+            <ul>      
+              <li> <strong>¿Cuánto peso puedo perder por cada bolsa de café?</strong> 
                 <br>
-                Con el USO PROLONGADO de la espuma depiladora, el vello se va adelgazando y 
-                apareciendo nuevamente en espacios más prolongados de tiempo.
+                2 A 4 kilos promedio en un mes, pero todos los organismos son diferentes,
+                por lo general el producto mas que bajar de peso ayuda muchísimo para disminuir
+                depósitos grasos, viendo asi primero resultados bajando tallas 
+                y posteriormente peso.
              </li>   
-             <li><strong>¿Cuánto se demora el vello en volver a salir?</strong>
+             <li><strong>¿Cuánto puede durar el sobre?</strong>
               <br> 
-              Es diferente de cada persona, lo importante es que su uso prolongado ayuda a que 
-              la aparición del vello sea más espaciado en tiempo
+                Con 2 tomas al día (desayuno y cena) 30 días
+                Con 3 tomas al día (antes de cada comida) 20-25 días
              </li>
-             <li><strong>¿Es normal el olor?</strong> 
-              <br>   
-              Si, todas las depiladoras tienen ese olor característico por su componente activo SULFURO, 
-              no queda impregnado en la piel y también se dispersa rápidamente del ambiente.
+             <li><strong>¿Qué color tiene el café al prepararlo?</strong> 
+                <br>   
+                Es como verdoso claro
+             </li>   
+             <li><strong>¿Se debe hacer dieta?</strong> 
+                <br>   
+                Es muy recomendado purgarse antes de iniciar las tomas de café verde.
+                Los 3 primeros días evitar los lácteos
+                Evitar los carbohidratos en la noche
              </li>
+             
+            </ul>
+          </div>
+        </div>
+        <div class="box">
+          <h3>PREGUNTAS FRECUENTRES:</h3>
+          <div class="instrucciones">
+            <ul>      
+              <li><strong>¿Es recomendable hacer ejercicio o actividad fisica?</strong> 
+                <br>   
+                Tendrías mejores y más rápidos resultados.
+              </li>
+              <li><strong>¿Como es el sabor del café?</strong> 
+                  <br>   
+                  El sabor es amargo, por eso se sugiere para darle otro tono de sabor 
+                  a la bebida puede agregar cualquiera de las siguientes: trozos de piña, 
+                  cascos de limón, clavitos, canela, limón, curcuma, jengibre, cardamomom, 
+                  aceite de coco, leche de almendras, leche de coco.
+              </li>
+              <li><strong>¿El producto producto tiene efecto rebote?</strong> 
+                  <br>   
+                  No. Pero recomendamos que al llegar a tu peso sigas tomando esporádicamente 
+                  una taza de café verde para mantener el peso.
+              </li>
             </ul>
           </div>
         </div>
@@ -283,7 +297,6 @@
         <p>Accesorios de moda y belleza.</p>
         <a href="{{url}}/Products/2/" class="btn">Ver productos</a>
       </div> -->
-    
     </section>
     
     <!-- Sección contacto atraves de redes sociales-->
@@ -338,7 +351,7 @@
         </div>
       </div>
     </footer>
-    <script src="{{ url_for('static', filename='js/js_homels/roulette.js') }}"></script> 
-    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script>  
+    <script src="{{ url_for('static', filename='js/js_homels/products.js') }}"></script> 
+    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script> 
   </body>
 </html>

@@ -46,13 +46,13 @@
       <nav class="main-nav">
         <ul>
           <li>
-            <a href="{{url}}/nosotros/">Nosotros</a>
+            <a href="{{url}}">Nosotros</a>
           </li>
           <li>
             <a href="{{url}}/All_Servicios/">Productos</a>
           </li>
           <li>
-            <a href="{{url}}/">Contactenos</a>
+            <a href="{{url}}">Contactenos</a>
           </li>
           <li>
             <a href="{{url}}/login">Iniciar Sesión</a>
@@ -70,13 +70,18 @@
       <!-- Descripcion de producto-->
       <div class="description">
         <div id="id_product" class="description-product">
-          <div id="title-product"> DEPILWONDER ESPUMA X 1 KIT</div>
-          <div id="price-product">$69900</div>
+          <div id="title-product"> {{ Oferta_Servicio[0].name }}</div>
+          <div id="price-product">${{ Oferta_Servicio[0].precio }}</div>
           <p>Dile adios a la cera y cuchillas!!!..</p>
           <p>Sabemos que quieres estar libre de vellos, sin gastar tiempo rasurandote o usando
             cuchillas que te dañan la piel. Quieres evitar irritación una depilación sin dolor.
             Aplicamos diciendo adios a la irritación y ardor de forma facil y rapida. Duración 
             aproximada para aparición de vellos de 20 a 25 días.
+          </p>
+          <p>Oferta Incluye:</p>
+
+          <p>
+            {{ Oferta_Servicio[0].descripcion }}
           </p>
           <div class="more-info"><a href="#" id="more-info">Saber mas ...</a></div>
         </div> 
@@ -271,19 +276,18 @@
         <p>Productos para nutrición y salud.</p>
         <a href="{{url}}/Products/2/" class="btn">Ver productos</a>
       </div>
-      <!--<div class="box_item">
+      <!-- <div class="box_item">
         <img src="{{ url_for('static', filename='imgs/dryer.png') }}">
         <h3>Equipos Belleza</h3>
         <p>Equpos liporeductores.</p>
         <a href="{{url}}/Products/2/" class="btn">Ver productos</a>
       </div>
-       <div class="box_item">
+      <div class="box_item">
         <img src="{{ url_for('static', filename='imgs/earrings.png') }}">
         <h3>Accesorios</h3>
         <p>Accesorios de moda y belleza.</p>
         <a href="{{url}}/Products/2/" class="btn">Ver productos</a>
       </div> -->
-    
     </section>
     
     <!-- Sección contacto atraves de redes sociales-->
@@ -338,7 +342,7 @@
         </div>
       </div>
     </footer>
-    <script src="{{ url_for('static', filename='js/js_homels/roulette.js') }}"></script> 
-    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script>  
+    <script src="{{ url_for('static', filename='js/js_homels/products.js') }}"></script> 
+    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script> 
   </body>
 </html>

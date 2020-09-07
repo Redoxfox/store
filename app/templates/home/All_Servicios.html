@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros productos</title>
+    <link href= "{{ url_for('static', filename='css/css_homels/indexls.css') }}" rel="stylesheet" type="text/css" media="screen" /> 
+    <link href= "{{ url_for('static', filename='css/font.css') }}" rel="stylesheet" type="text/css" media="screen" />   
+    <link href="https://fonts.googleapis.com/css?family=Baskervville&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet"> 
+    <link href= "{{ url_for('static', filename='css/css_homels/Servicios.css') }}" rel="stylesheet" type="text/css" media="screen" /> 
+</head>
+<body>
+   <!-- Load Facebook SDK for JavaScript -->
+   <div id="fb-root"></div>
+   <script>
+     window.fbAsyncInit = function() {
+       FB.init({
+         xfbml            : true,
+         version          : 'v7.0'
+       });
+     };
+
+     (function(d, s, id) {
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) return;
+     js = d.createElement(s); js.id = id;
+     js.src = 'https://connect.facebook.net/es_ES/sdk/xfbml.customerchat.js';
+     fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+   </script>
+
+   <!-- Logotipo de la empresa -->
+   <div class="head">
+     <div class="logo">
+       <img class="img-log" src="{{ url_for('static', filename='imgs/l2.png') }}">
+     </div> 
+     <div id="name_company" class="name_company">
+       <h1>Bienvenidos a Sandyvital Store</h1>
+     </div>
+   </div>
+
+   <!-- Contenedor menú navegación -->
+   <div class="wrapper">
+     <!-- Menu de Navegación -->
+     <nav class="main-nav">
+       <ul>
+         <li>
+           <a href="{{url}}/nosotros/">Nosotros</a>
+         </li>
+         <li>
+           <a href="{{url}}/All_Servicios/">Productos</a>
+         </li>
+         <li>
+           <a href="{{url}}/">Contactenos</a>
+         </li>
+         <li>
+           <a href="{{url}}/login">Iniciar Sesión</a>
+         </li>
+       </ul>
+     </nav>
+   </div>
+    <div class="container">
+      <!-- Boxes Section -->
+      <section class="boxes" id="box">
+        <!-- {% for valor in Oferta_Servicio %} -->
+        
+          <!-- Codigo color 9AFF42 imagen -->
+         <!--  <img src="{{ url_for('static', filename='imgs/l2.png') }}">
+          <h3>{{ valor}}</h3>
+          <p>$ {{ valor }}</p>
+          <p>{{ valor }}</p>
+          <a href="{{url}}/Servicios/1" class="btn">Ver servicios</a>
+        </div> -->
+        <!-- {% endfor %} -->
+      </section>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/js_homels/catalogo.js') }}"></script> 
+</body>
+</html>

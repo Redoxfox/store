@@ -46,13 +46,13 @@
       <nav class="main-nav">
         <ul>
           <li>
-            <a href="{{url}}/nosotros/">Nosotros</a>
+            <a href="{{url}}">Nosotros</a>
           </li>
           <li>
             <a href="{{url}}/All_Servicios/">Productos</a>
           </li>
           <li>
-            <a href="{{url}}/">Contactenos</a>
+            <a href="{{url}}">Contactenos</a>
           </li>
           <li>
             <a href="{{url}}/login">Iniciar Sesión</a>
@@ -70,13 +70,18 @@
       <!-- Descripcion de producto-->
       <div class="description">
         <div id="id_product" class="description-product">
-          <div id="title-product"> DEPILWONDER ESPUMA X 1 KIT</div>
-          <div id="price-product">$69900</div>
-          <p>Dile adios a la cera y cuchillas!!!..</p>
-          <p>Sabemos que quieres estar libre de vellos, sin gastar tiempo rasurandote o usando
-            cuchillas que te dañan la piel. Quieres evitar irritación una depilación sin dolor.
-            Aplicamos diciendo adios a la irritación y ardor de forma facil y rapida. Duración 
-            aproximada para aparición de vellos de 20 a 25 días.
+          <div id="title-product"> {{ Oferta_Servicio[0].name }}</div>
+          <div id="price-product">${{ Oferta_Servicio[0].precio }}</div>
+          <p>Luce tus Shorts y Faldas con tus hermosas piernas bronceadas!!!..</p>
+          <p>Convierte tus piernas en la envidía de todos con un expectacular bronceado,
+             luce un hermoso color canelita sin necesidad de ir a la playa y exponer tu piel 
+             a los rayos del sol. Presume tus piernas como si acabaras de llegar de unas deliciosas
+             vacaciones en la playa.
+          </p>
+          <p>Oferta Incluye:</p>
+
+          <p>
+            {{ Oferta_Servicio[0].descripcion }}
           </p>
           <div class="more-info"><a href="#" id="more-info">Saber mas ...</a></div>
         </div> 
@@ -115,23 +120,22 @@
           <div class="instrucciones">
             <ul>
               <li>Leer hoja adjunta  <strong>!MUY IMPORTANTE!!!</strong></li>
-              <li>Hacer una prueba de sensibilidad en la zona a depilar. 
-                Recuerde que es un producto masivo y no todas las personas 
-                reaccionan igual a los productos cosméticos. 
-                El olor es característico de todo producto depilador.</li>
-              <li>Limpiar muy bien el área a depilar, la piel no debe tener residuos o estar 
-                impregnada de perfumes, aceites, cremas, desodorantes ni similares. 
-                Al estar en contacto con el Depilwonder puede reaccionar y causar irritación 
-                por lo tanto debe lavar muy bien la zona antes de depilar.</li>
-              <li>Agitar el producto, hacer una aplicación generosa y uniforme, esparcir con 
-                ayuda de los dedos, no realizar esta acción muy fuerte para no causar daños en 
-                la piel. procure de dejar bien empapada el área a depilar.</li>
-              <li>Espere 60 segundos hasta que el vello este oscuro y con textura chicluda limpiar con una 
-                toallita húmeda el exceso del producto y los vellos.
+              <li>Limpiar muy bien el área a broncear, con agua y jabón.</li>
+              <li>Exfoliar con azúcar y agua solamente(no usar aceites, ni cremas). 
+                  Al exfoliar la piel, limpia las células muertas, retira excesos de cremas, 
+                  splash, lociones y aceites o cualquier otro producto que se haya aplicado antes. 
+                  La exfoliación empareja la piel y la prepara para el proceso de autobronceado.</li>
+              <li>Enjuagar y secar muy bien después de exfoliar, que no quede ningun tipo de residuos.</li>
+              <li>Utilizamos el guante y aplicamos un poco de la crema autobronceadora.
               </li>
-              <li>Después que el área este totalmente limpia, aplicar suficiente crema 
-                hidratante en la zona depilada.</li> 
-              <li>Repetir estos pasos hasta terminar la depilación</li>
+              <li>Hacer una aplicación uniforme del producto en el área que deseamos autobroncear.
+                   El éxito del bronceado está en su aplicación uniforme y pareja y esto depende de usted.</li> 
+              <li>Si va a realizar el bronceado en las piernas recuerde hacer la aplicación hasta los dedos 
+                  y hasta el talón, si llega solo hasta el tobillo ahi puede quedar muy oscuro, 
+                  por eso procure que sea parejo todo el pie.</li>
+              <li>Dejar secar el producto entre 15 - 20 minutos.</li>
+              <li></li>
+   
             </ul>
           </div>
         </div>
@@ -139,17 +143,18 @@
           <h3>PRECAUCIONES DE USO:</h3>
           <div class="instrucciones">
             <ul>
-              <li>Cuando desee hacer la aplicación en áreas muy amplias como el pecho o la espalda,
-                por favor divida la zona. No haga una sola aplicación en áreas tan extensas.
+              <li>Se recomienda hacer el proceso de bronceado un día que pueda disponer de buen 
+                tiempo para que el producto actúe en la piel. Si se viste inmediatamente el 
+                roce de la ropa con la piel afectará el bronceado y puede quedar la piel manchada.
              </li>   
              <li>No aplique dos veces el producto en la misma zona inmediatamente, 
                esto puede causar irritación.
              </li>
-             <li>Después de realizar la depilación lavar inmediatamente las manos, no dejar 
-               impregnada las manos o cualquier otra área del cuerpo con el producto.
+             <li>Recuerde que es un autobronceado progresivo (por eso dura aplicado 8-10 días) 
+                 y el tono irá apareciendo después de 2 horas y hasta 24 horas después.
              </li>
              <li>Uso no apto para menores de 16 años, mujeres embarazadas, personas con piel sensible, 
-               personas con heridas, quemaduras o barros</li>
+               personas con heridas, quemaduras irritación en la piel</li>
              <li> No usar en tatuajes recién hechos.</li>
             </ul>
           </div>
@@ -160,13 +165,12 @@
             <h5>SE PUEDE APLICAR EN:</h5>
             <div class="zona1">
               <ul>
-                <li>Axilas</li>   
-                <li>Bikini</li>
-                <li>Espalda</li>
+                <li>Cuello</li>   
+                <li>Brazos</li>
+                <li>Hombros </li>
               </ul>
               <ul>
-                <li>Pecho</li>   
-                <li>Brazos</li>
+                <li>Torso</li>   
                 <li>Piernas</li>
               </ul>
             </div>
@@ -174,15 +178,12 @@
             <h5>NO SE PUEDE APLICAR EN:</h5>
             <div class="zona1">
               <ul>
-                <li>Cabeza</li>   
-                <li>Barba</li>
-                <li>Bozo</li>
+                <li>Rostro</li>   
+                <li>Piel irritada</li>
               </ul>
               <ul>
-                <li>Rostro</li>   
-                <li>Pene</li>
-                <li>Testículos</li>
-                <li>Labios Vaginales</li>
+                <li>Piel con quemaduras</li>   
+                <li>Piel con heridas</li>
               </ul>
             </div>
           </div>
@@ -193,42 +194,42 @@
             <h5>COMPONENTES:</h5>
             <div class="zona1">
               <ul>
-                <li>Aqua</li>   
-                <li>Sucrose</li>
-                <li>Zea May Starch</li>
+                <li>Water</li>   
+                <li>Dihydroxyacetone</li>
+                <li>Polyquaternium-37</li>
+                <li>Dicapryly Carbonate</li>
+                <li>Lauryl Glucoside</li>
+                <li>Steareth-2</li>
+                <li>Ceteareth-20</li>
                 <li>Propylene glycol</li>
-                <li>Sodium Laureth Sulfate</li>
-                <li>Tocopheryl Acetate (Vitamina E)</li>
+                <li>Ladopropynyl butylcarbanate</li>
               </ul>
               <ul>
-                <li>Parfum</li>   
-                <li>Collagen</li>
+                <li>Distearyl ether</li>   
+                <li>Glyceryl Stearate</li>
                 <li>Mentha Piperita Extract</li>
-                <li>Camellia Sinensis Leaf Extract</li>
-                <li>Aloe barbadensis Leaf Extract, </li>
+                <li>Tocopheryl acetate (Vitamina E)</li>
+                <li>Cocos nucifera oil</li>
+                <li>Glycerin Fragance</li>
+                <li>Caramel</li>
+                <li>Diazolidinyl</li>
+                <li>Diazolidinyl</li>
+                <li>Urea</li>
               </ul>
             </div>
 
             <h5>TAMAÑOS:</h5>
             <div class="zona1">
               <ul>
-                <li>Espuma Depilwonder </li>   
+                <li>Easy Shine Autobronceado</li>   
                 <li>150 ml</li>
-              </ul>
-              <ul>
-                <li>Hidratante </li>   
-                <li>120 ml</li>
               </ul>
             </div>
             <h5>REGISTROS INVIMA:</h5>
             <div class="zona1">
               <ul>
-                <li>Espuma Depilwonder </li>   
-                <li>NSOC84490-18CO</li>
-              </ul>
-              <ul>
-                <li>Hidratante </li>   
-                <li>NSOC93885-19CO</li>
+                <li>Easy Shine Autobronceado</li>   
+                <li>NSOC89126-18CO</li>
               </ul>
             </div>
           </div>
@@ -236,22 +237,77 @@
         <div class="box">
           <h3>PREGUNTAS FRECUENTRES:</h3>
           <div class="instrucciones">
-            <ul>
-              <li> <strong>¿Desaparece el vello?</strong> 
+            <ul>      
+              <li> <strong>¿Quienes pueden usarlo?</strong> 
                 <br>
-                Con el USO PROLONGADO de la espuma depiladora, el vello se va adelgazando y 
-                apareciendo nuevamente en espacios más prolongados de tiempo.
+                Mujeres y Hombres.
              </li>   
-             <li><strong>¿Cuánto se demora el vello en volver a salir?</strong>
+             <li><strong>¿Se necesita sol para broncear la piel?</strong>
               <br> 
-              Es diferente de cada persona, lo importante es que su uso prolongado ayuda a que 
-              la aparición del vello sea más espaciado en tiempo
+              No, los autobronceadores no necesitan del sol, es un maquillante de larga duración, 
+              aparte ultrahidrata la piel, a diferencia de los otros autobronceadores tiene un 
+              agradable aroma inspirado en la fragancia de PINK de Victoria Secret y No mancha la ropa.
              </li>
-             <li><strong>¿Es normal el olor?</strong> 
+             <li><strong>¿Si lo aplico y me expongo al sol pasa algo?</strong> 
               <br>   
-              Si, todas las depiladoras tienen ese olor característico por su componente activo SULFURO, 
-              no queda impregnado en la piel y también se dispersa rápidamente del ambiente.
+              No pasa nada, no altera el resultado ni lo optimiza y tampoco broncea o da alergia.
+             </li>   
+             <li><strong>¿Cuanto dura aplicado?</strong> 
+                <br>   
+                El autobronceador puede durar de 8 – 10 dias aplicado en la piel, 
+                el se va desvaneciendo con los días.
+            </li>
+            <li><strong>¿El producto es resistente al agua?</strong> 
+                <br>   
+                Si es resistente al agua, al baño normal; por eso dura aplicado de 8-10 dias. 
+                Con el agua del mar o la piscina la duración no es óptima.
+            </li>
+            <li><strong>¿El producto producto produce alergía?</strong> 
+                <br>   
+                Es hipoalergénico, por eso no causa alergia o irritación.
+            </li>
+            <li><strong>¿El producto producto deja la piel de color naranja?</strong> 
+                <br>   
+                No, el tono es canela.
+            </li>
+            </ul>
+          </div>
+        </div>
+        <div class="box">
+          <h3>PREGUNTAS FRECUENTRES:</h3>
+          <div class="instrucciones">
+            <ul>      
+              <li> <strong>¿Que componente activo es el que autobroncea?</strong> 
+                <br>
+                Su principal componente es el DHA .
+             </li>   
+             <li><strong>¿Que tonos tiene?</strong>
+              <br> 
+              Solo un tono, color canela.
              </li>
+             <li><strong>¿En cuanto tiempo se empieza a ver resultado?</strong> 
+              <br>   
+              Es un autobronceado progresivo, después de la aplicación el tono va cogiendo después de las 3 
+              horas y hasta 24 horas después queda el tono final, si la persona lo quiere mas oscuro debe 
+              hacer una nueva aplicación a las 24 horas después pero sin exfoliarse en esta segunda aplicación. 
+              No se sugiere usarse diariamente porque se oscurecería muchísimo.
+             </li>   
+             <li><strong>¿El producto mancha la piel?</strong> 
+                <br>   
+                Es un maquillaje que cambia el tono de la piel, no es un proceso natural, 
+                depende de una buena aplicación resultados óptimos y bonitos, por eso 
+                sugerimos el guante aplicador, porque ayuda a dar un tono muy parejo aparte que 
+                hace rendir el producto.
+            </li>
+            
+            <li><strong>¿Oscurece los codos y tobillos?</strong> 
+                <br>   
+                Para obtener un óptimo resultado debes hacer una aplicación pareja 
+                y uniforme en las áreas que desee autobroncear, es decir que si usted 
+                llega hasta el tobillo únicamente, entonces hasta ahí le cambia el tono, 
+                por eso se sugiere hacer una aplicación hasta los dedos y el talón completamente. 
+                El guante es un gran aliado para óptimos resultados.
+            </li>
             </ul>
           </div>
         </div>
@@ -283,7 +339,6 @@
         <p>Accesorios de moda y belleza.</p>
         <a href="{{url}}/Products/2/" class="btn">Ver productos</a>
       </div> -->
-    
     </section>
     
     <!-- Sección contacto atraves de redes sociales-->
@@ -338,7 +393,7 @@
         </div>
       </div>
     </footer>
-    <script src="{{ url_for('static', filename='js/js_homels/roulette.js') }}"></script> 
-    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script>  
+    <script src="{{ url_for('static', filename='js/js_homels/products.js') }}"></script> 
+    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script> 
   </body>
 </html>

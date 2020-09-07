@@ -30,17 +30,19 @@ def images():
     urlrev = URLBASE
     username = CONFIG['TYPE_USER']['ROOT']
     connect=Model(username) 
-    
+    wid = "11"
     Tabla_All_Images= dict()
     Tabla_All_Images = {'TABLE':'products',
         'Col1':'id_product',
         'Col2':'name',
         'Col3':'media',
-        'Col4':'precio'
+        'Col4':'precio',
+        'Whe5':'id_product<%s'
     }
-   
-    DatosAllImages = connect.SSP_TABLE(username, Tabla_All_Images)
-
+    Data = (wid,)
+    # SW_TABLE(username,TablaServicioAutomotor, Data)
+    DatosAllImages = connect.SW_TABLE(username, Tabla_All_Images, Data)
+    
     DatosAllImages_json = json.dumps(DatosAllImages) 
     
     return (DatosAllImages_json) 
@@ -63,11 +65,87 @@ def ver_product(id):
         'Whe7':'id_product=%s'
         }
     Data = (wid,)
-    prueba = "/home/depilW.html"
+   
+    url_product = "/home/product" + "_" + id + ".html"
     DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
     print(DatosServicioV)
 
-    return render_template(prueba, url = urlrev, Oferta_Servicio = DatosServicioV) 
+    return render_template(url_product, url = urlrev, Oferta_Servicio = DatosServicioV) 
+
+#Consultar servicios prestados
+
+@app.route('/Products/<id>/', methods=['POST', 'GET'])
+def Products(id):
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    wid = id
+    TablaServicioAutomotor = dict()
+    TablaServicioAutomotor = {'TABLE':'products',
+        'Col1':'id_product ',
+        'Col2':'id_proveedor',
+        'Col3':'id_categoria',
+        'Col4':'name',
+        'Col5':'precio',
+        'Col6':'descripcion',
+        'Whe7':'id_categoria=%s'
+        }
+    Data = (wid,)
+   
+    url_product = "/home/product" + "_" + id + ".html"
+    DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
+    print(DatosServicioV)
+
+    return render_template(url_product, url = urlrev, Oferta_Servicio = DatosServicioV)
+
+
+
+
+@app.route('/All_Servicios/', methods=['POST', 'GET'])
+def All_Servicios():
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    
+    Tabla_All_Servicios = dict()
+    Tabla_All_Servicios = {'TABLE':'products',
+        'Col1':'id_product ',
+        'Col2':'id_proveedor',
+        'Col3':'id_categoria',
+        'Col4':'name',
+        'Col5':'precio',
+        'Col6':'descripcion',
+        'Col7':'media'
+    }
+   
+    DatosAllServicios = connect.SSP_TABLE(username, Tabla_All_Servicios)
+
+    print(DatosAllServicios)
+    
+    return render_template("/home/All_Servicios.html", url = urlrev, Oferta_Servicio = DatosAllServicios)
+
+@app.route("/all_products" , methods=["GET","POST"])
+def all_products():
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    
+    Tabla_All_Products = dict()
+    Tabla_All_Products = {'TABLE':'products',
+        'Col1':'id_product ',
+        'Col2':'id_proveedor',
+        'Col3':'id_categoria',
+        'Col4':'name',
+        'Col5':'precio',
+        'Col6':'descripcion',
+        'Col7':'media'
+    }
+   
+    DatosAllProducts = connect.SSP_TABLE(username, Tabla_All_Products)
+
+    DatosAllProducts_json = json.dumps(DatosAllProducts) 
+    
+    return (DatosAllProducts_json) 
 
 @app.route('/Productos/<id>/', methods=['POST', 'GET'])
 def Servicios(id):
@@ -115,23 +193,11 @@ def media(id):
     
     return (DatosAllMedia) 
 
-@app.route('/Products/<id>/', methods=['POST', 'GET'])
-def Products(id):
+@app.route('/nosotros/', methods=['POST', 'GET'])
+def nosotros():
     urlrev = URLBASE
     username = CONFIG['TYPE_USER']['ROOT']
     connect=Model(username) 
-    wid = id
-    TablaServicioAutomotor = dict()
-    TablaServicioAutomotor = {'TABLE':'products',
-        'Col1':'id_product ',
-        'Col2':'id_proveedor',
-        'Col3':'id_categoria',
-        'Col4':'name',
-        'Col5':'precio',
-        'Col6':'descripcion',
-        'Whe7':'id_categoria=%s'
-        }
-    Data = (wid,)
-    DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
+ 
 
-    return render_template("/lavasplash/Servicios.html", url = urlrev, Oferta_Servicio = DatosServicioV)
+    return render_template("/home/nosotros.html", url = urlrev)

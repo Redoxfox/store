@@ -46,13 +46,13 @@
       <nav class="main-nav">
         <ul>
           <li>
-            <a href="{{url}}/nosotros/">Nosotros</a>
+            <a href="{{url}}">Nosotros</a>
           </li>
           <li>
             <a href="{{url}}/All_Servicios/">Productos</a>
           </li>
           <li>
-            <a href="{{url}}/">Contactenos</a>
+            <a href="{{url}}">Contactenos</a>
           </li>
           <li>
             <a href="{{url}}/login">Iniciar Sesión</a>
@@ -70,13 +70,17 @@
       <!-- Descripcion de producto-->
       <div class="description">
         <div id="id_product" class="description-product">
-          <div id="title-product"> DEPILWONDER ESPUMA X 1 KIT</div>
-          <div id="price-product">$69900</div>
-          <p>Dile adios a la cera y cuchillas!!!..</p>
-          <p>Sabemos que quieres estar libre de vellos, sin gastar tiempo rasurandote o usando
-            cuchillas que te dañan la piel. Quieres evitar irritación una depilación sin dolor.
-            Aplicamos diciendo adios a la irritación y ardor de forma facil y rapida. Duración 
-            aproximada para aparición de vellos de 20 a 25 días.
+          <div id="title-product"> {{ Oferta_Servicio[0].name }}</div>
+          <div id="price-product">${{ Oferta_Servicio[0].precio }}</div>
+          <p>¡Deseas experimentar un cambio Extremo por dentro y fuera!!!!...</p>
+          <p>Fib Pluss Es un alimento rico en fibras solubles e insolubles: 
+            complementado con vitaminas, proteínas y minerales que dan un valioso 
+            aporte a la reducción de la obesidad y control de peso.
+          </p>
+          <p>Oferta Incluye:</p>
+
+          <p>
+            {{ Oferta_Servicio[0].descripcion }}
           </p>
           <div class="more-info"><a href="#" id="more-info">Saber mas ...</a></div>
         </div> 
@@ -109,153 +113,52 @@
     </section>
 
        <!-- Sección de boxes de información del producto -->
-       <section class="boxes" id="boxes">
+      <section class="boxes" id="boxes">
         <div class="box">
           <h3>INSTRUCCONES DE USO:</h3>
           <div class="instrucciones">
             <ul>
-              <li>Leer hoja adjunta  <strong>!MUY IMPORTANTE!!!</strong></li>
-              <li>Hacer una prueba de sensibilidad en la zona a depilar. 
-                Recuerde que es un producto masivo y no todas las personas 
-                reaccionan igual a los productos cosméticos. 
-                El olor es característico de todo producto depilador.</li>
-              <li>Limpiar muy bien el área a depilar, la piel no debe tener residuos o estar 
-                impregnada de perfumes, aceites, cremas, desodorantes ni similares. 
-                Al estar en contacto con el Depilwonder puede reaccionar y causar irritación 
-                por lo tanto debe lavar muy bien la zona antes de depilar.</li>
-              <li>Agitar el producto, hacer una aplicación generosa y uniforme, esparcir con 
-                ayuda de los dedos, no realizar esta acción muy fuerte para no causar daños en 
-                la piel. procure de dejar bien empapada el área a depilar.</li>
-              <li>Espere 60 segundos hasta que el vello este oscuro y con textura chicluda limpiar con una 
-                toallita húmeda el exceso del producto y los vellos.
+              <li>
+                Tomar 1 cucharada en un vaso con agua en ayunas y 1/2 cucharada en la noche (si estas alternando el tratamiento de perdida de peso con el VIT GO entonces en la noche también 1/2 cucharadita - juntos los dos)
+              </li>   
+              <li>
+                En la noche, en el último cepillado, usar la crema dental de carbón activado 
+                para cepillarse preferiblemente por 3 a 4 minutos y luego enjuagar. 
               </li>
-              <li>Después que el área este totalmente limpia, aplicar suficiente crema 
-                hidratante en la zona depilada.</li> 
-              <li>Repetir estos pasos hasta terminar la depilación</li>
+              <li>
+                El resto de los cepillados del día lo haces con tu crema dental tradicional. 
+              </li>
+              <li>
+                Para óptimos resultados se recomienda usar el kit diariamente 2 veces al día como se 
+                indicó anteriormente
+              </li>
             </ul>
           </div>
         </div>
         <div class="box">
-          <h3>PRECAUCIONES DE USO:</h3>
-          <div class="instrucciones">
-            <ul>
-              <li>Cuando desee hacer la aplicación en áreas muy amplias como el pecho o la espalda,
-                por favor divida la zona. No haga una sola aplicación en áreas tan extensas.
-             </li>   
-             <li>No aplique dos veces el producto en la misma zona inmediatamente, 
-               esto puede causar irritación.
-             </li>
-             <li>Después de realizar la depilación lavar inmediatamente las manos, no dejar 
-               impregnada las manos o cualquier otra área del cuerpo con el producto.
-             </li>
-             <li>Uso no apto para menores de 16 años, mujeres embarazadas, personas con piel sensible, 
-               personas con heridas, quemaduras o barros</li>
-             <li> No usar en tatuajes recién hechos.</li>
-            </ul>
-          </div>
+            <h3>APORTES A LA SALUD ORAL:</h3>
+            <div class="instrucciones">
+              <h5>ELIMINA MANCHAS DE:</h5>
+              <div class="zona1">
+                <ul>
+                  <li>Café</li>   
+                  <li>Cigarrillo</li>
+                  <li>Vino</li>
+                </ul>
+              </div>
+  
+              <h5>BENEFICIOS:</h5>
+              <div class="instrucciones">
+                <ul>
+                  <li>No causa sensibilidad</li>   
+                  <li>Hasta 3 tonos más de blanco</li>
+                  <li>Seguro con el esmalte</li>
+                  <li>Resultados en primera semana de uso</li>
+                </ul>
+              </div>
+            </div>
         </div>
-        <div class="box">
-          <h3>DATOS ADICIONALES:</h3>
-          <div class="instrucciones">
-            <h5>SE PUEDE APLICAR EN:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Axilas</li>   
-                <li>Bikini</li>
-                <li>Espalda</li>
-              </ul>
-              <ul>
-                <li>Pecho</li>   
-                <li>Brazos</li>
-                <li>Piernas</li>
-              </ul>
-            </div>
-
-            <h5>NO SE PUEDE APLICAR EN:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Cabeza</li>   
-                <li>Barba</li>
-                <li>Bozo</li>
-              </ul>
-              <ul>
-                <li>Rostro</li>   
-                <li>Pene</li>
-                <li>Testículos</li>
-                <li>Labios Vaginales</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="box">
-          <h3>DATOS TECNICOS DEL PRODUCTO:</h3>
-          <div class="instrucciones">
-            <h5>COMPONENTES:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Aqua</li>   
-                <li>Sucrose</li>
-                <li>Zea May Starch</li>
-                <li>Propylene glycol</li>
-                <li>Sodium Laureth Sulfate</li>
-                <li>Tocopheryl Acetate (Vitamina E)</li>
-              </ul>
-              <ul>
-                <li>Parfum</li>   
-                <li>Collagen</li>
-                <li>Mentha Piperita Extract</li>
-                <li>Camellia Sinensis Leaf Extract</li>
-                <li>Aloe barbadensis Leaf Extract, </li>
-              </ul>
-            </div>
-
-            <h5>TAMAÑOS:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Espuma Depilwonder </li>   
-                <li>150 ml</li>
-              </ul>
-              <ul>
-                <li>Hidratante </li>   
-                <li>120 ml</li>
-              </ul>
-            </div>
-            <h5>REGISTROS INVIMA:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Espuma Depilwonder </li>   
-                <li>NSOC84490-18CO</li>
-              </ul>
-              <ul>
-                <li>Hidratante </li>   
-                <li>NSOC93885-19CO</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="box">
-          <h3>PREGUNTAS FRECUENTRES:</h3>
-          <div class="instrucciones">
-            <ul>
-              <li> <strong>¿Desaparece el vello?</strong> 
-                <br>
-                Con el USO PROLONGADO de la espuma depiladora, el vello se va adelgazando y 
-                apareciendo nuevamente en espacios más prolongados de tiempo.
-             </li>   
-             <li><strong>¿Cuánto se demora el vello en volver a salir?</strong>
-              <br> 
-              Es diferente de cada persona, lo importante es que su uso prolongado ayuda a que 
-              la aparición del vello sea más espaciado en tiempo
-             </li>
-             <li><strong>¿Es normal el olor?</strong> 
-              <br>   
-              Si, todas las depiladoras tienen ese olor característico por su componente activo SULFURO, 
-              no queda impregnado en la piel y también se dispersa rápidamente del ambiente.
-             </li>
-            </ul>
-          </div>
-        </div>
-    </section>
+      </section>
 
     <!-- Sección de boxes de información de categorias de producto-->
     <section class="boxes">
@@ -283,7 +186,6 @@
         <p>Accesorios de moda y belleza.</p>
         <a href="{{url}}/Products/2/" class="btn">Ver productos</a>
       </div> -->
-    
     </section>
     
     <!-- Sección contacto atraves de redes sociales-->
@@ -338,7 +240,7 @@
         </div>
       </div>
     </footer>
-    <script src="{{ url_for('static', filename='js/js_homels/roulette.js') }}"></script> 
-    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script>  
+    <script src="{{ url_for('static', filename='js/js_homels/products.js') }}"></script> 
+    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script> 
   </body>
 </html>
