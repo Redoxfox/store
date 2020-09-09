@@ -338,6 +338,20 @@ img {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.categories{
+  background:#fff;
+  height: 80px;
+  color: black;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.item-category{
+  align-items: center;
+  justify-content: right;
+  display: flex;
+}
+
 .item-contact{
   list-style:none;
 }
@@ -398,7 +412,25 @@ img {
   margin: 20px;
 }
 
+select{
+  width: 100%;
+  border: 0;
+  background: white;
+  padding: 6px;
+  border-bottom: 1px solid rgb(230, 223, 223);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
 
+.title_ategory{
+  padding-right: 15px;
+
+}
+
+.id{
+  color: #fff;
+}
 
 .form-footer{
   display: grid;

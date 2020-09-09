@@ -60,9 +60,24 @@
        </ul>
      </nav>
    </div>
-    <div class="container">
+    <div class="container" id="container">
+      <div class="categories">
+        <div></div>
+        <div class="item-category">
+          <div class="id" id="id">{{id}}</div>
+          <div class="title_ategory">Categorias:</div>
+          <select name="category" id="category">
+            {% for valor in Oferta_Servicio %}
+              {% if valor.id_category <= 2 %}
+                <option value={{valor.id_category }} onclick="category('{{valor.id_category }}')">{{ valor.name }}</option>
+              {% endif %}  
+            {% endfor %}
+          </select>
+        </div>
+      </div>
       <!-- Boxes Section -->
       <section class="boxes" id="box">
+       
         <!-- {% for valor in Oferta_Servicio %} -->
         
           <!-- Codigo color 9AFF42 imagen -->
@@ -76,6 +91,6 @@
       </section>
     </div>
     
-    <script src="{{ url_for('static', filename='js/js_homels/catalogo.js') }}"></script> 
+    <script src="{{ url_for('static', filename='js/js_homels/Prod_category.js') }}"></script> 
 </body>
 </html>

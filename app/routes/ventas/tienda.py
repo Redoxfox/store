@@ -80,25 +80,16 @@ def Products(id):
     username = CONFIG['TYPE_USER']['ROOT']
     connect=Model(username) 
     wid = id
-    TablaServicioAutomotor = dict()
-    TablaServicioAutomotor = {'TABLE':'products',
-        'Col1':'id_product ',
-        'Col2':'id_proveedor',
-        'Col3':'id_categoria',
-        'Col4':'name',
-        'Col5':'precio',
-        'Col6':'descripcion',
-        'Whe7':'id_categoria=%s'
+    Table_All_Categories = dict()
+    Table_All_Categories = {'TABLE':'category',
+        'Col1':'id_category ',
+        'Col2':'name'
         }
-    Data = (wid,)
-   
-    url_product = "/home/product" + "_" + id + ".html"
-    DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
-    print(DatosServicioV)
+    # url_product = "/home/product" + "_" + id + ".html"
+    DatosAllCategories = connect.SSP_TABLE(username, Table_All_Categories)
+    print(DatosAllCategories)
 
-    return render_template(url_product, url = urlrev, Oferta_Servicio = DatosServicioV)
-
-
+    return render_template("/home/products_catg.html", url = urlrev, Oferta_Servicio = DatosAllCategories, id = wid)
 
 
 @app.route('/All_Servicios/', methods=['POST', 'GET'])
@@ -201,3 +192,30 @@ def nosotros():
  
 
     return render_template("/home/nosotros.html", url = urlrev)
+
+@app.route("/Category_id", methods=["POST"])
+def Category_id():
+    Urlbase = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect = Model(username)   
+    req = request.get_json()
+    id_categoria = req["id_categoria"] 
+    wid = id_categoria 
+    TablaServicioAutomotor = dict()
+    TablaServicioAutomotor = {'TABLE':'products',
+        'Col1':'id_product ',
+        'Col2':'id_proveedor',
+        'Col3':'id_categoria',
+        'Col4':'name',
+        'Col5':'precio',
+        'Col6':'descripcion',
+        'Col7':'media',
+        'Whe8':'id_categoria=%s'
+        }
+    Data = (wid,)
+
+    DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
+    print(DatosServicioV)
+    DatosAllMedia = json.dumps(DatosServicioV) 
+
+    return (DatosAllMedia) 
