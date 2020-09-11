@@ -147,7 +147,7 @@ img {
 
 #price-product{
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 35px;
+  font-size: 15px;
 }
 
 .container-anuncio{
@@ -186,7 +186,9 @@ img {
   justify-content: center;
 }
 
-
+.form-footer{
+  padding: 20px;
+}
 
 .showcase h1 {
   font-size: 4rem;
@@ -211,7 +213,7 @@ img {
   padding: 1.5rem;
 }*/
 
- .price {
+.price {
   z-index: 1;
   font-size: 2.5rem;
   background: rgba(223, 253, 178, 0.5);
@@ -220,12 +222,10 @@ img {
   border: 0;
 }
 
-
-
 .top-box-a {
   display: grid;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 25px;
+  font-size: 15px;
   align-items: center;
   justify-items: center;
 }
@@ -234,6 +234,7 @@ img {
   background: rgb(110, 182, 2);
   color: var(--light);
   padding: 0.6rem 1.3rem;
+  font-size: 20px;
   border: 0;
 }
 
@@ -241,13 +242,13 @@ img {
   background: rgb(78, 105, 226);
   color: var(--light);
   padding: 0.6rem 1.3rem;
+  font-size: 20px;
   border: 0;
 }
 
 .top-box-b {
   display: grid;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 25px;
   align-items: center;
   justify-items: center;
 }
@@ -564,5 +565,10 @@ select{
     grid-template-columns: repeat(1, 1fr);
     margin: 0%;
     margin-top: 20px;
+  }
+
+  #price-product{
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
   }
 }

@@ -303,3 +303,61 @@ media + tipo + id + ubicación + ".formato"
 
 mediav1p.formato
 https://www.sandyvitalstore.com/
+
+
+UPDATE media SET media  = "img3m7.jpg"  WHERE id_product>=7 and id_product<10;
+
+id | id_product | img      | video        | tipo      |
+
+ UPDATE media SET id_product= 1, img ="spa", video="img1m1.jpg",   tipo="miniatura"  WHERE id=1;
+ UPDATE media SET id_product= 4, img ="1 " , video="img2m4.jpg",   tipo="miniatura"  WHERE id=2;
+ UPDATE media SET id_product= 7, img ="1 " , video="img3m7.jpg",   tipo="miniatura"  WHERE id=3;
+ UPDATE media SET id_product=11, img ="1 " , video="img4m11.jpg",  tipo="miniatura"  WHERE id=4;
+ UPDATE media SET id_product=10, img ="1 " , video="img5m10.jpg",  tipo="miniatura"  WHERE id=5;
+ UPDATE media SET id_product=14, img ="1 " , video="img6m14.jpg",  tipo="miniatura"  WHERE id=6;
+ UPDATE media SET id_product=17, img ="1 " , video="img7m17.jpg",  tipo="miniatura"  WHERE id=7;
+ UPDATE media SET id_product=21, img ="1 " , video="img8m21.jpg",  tipo="miniatura"  WHERE id=8;
+ UPDATE media SET id_product=13, img ="1 " , video="img9m13.jpg",  tipo="miniatura"  WHERE id=9;
+10   1 img ="Dorzo"   , video="img10m1.jpg",  tipo="miniatura"
+11   1 img ="Pecho"   , video="img11m1.jpg",  tipo="miniatura"
+12   1 img ="Precios" , video="img12m1.jpg",  tipo="miniatura"
+13   1 img ="spa"     , video="img13m1.jpg",  tipo="miniatura"
+14   2 img ="spa"     , video="img14m2.jpg",  tipo="miniatura"
+15   2 img ="Dorzo"   , video="img15m2.jpg",  tipo="miniatura"
+16   2 img ="Pecho"   , video="img16m2.jpg",  tipo="miniatura"
+17   2 img ="Precios" , video="img17m2.jpg",  tipo="miniatura"
+18   2 img ="Oficina" , video="img18m2.jpg",  tipo="miniatura"
+19   3 img ="spa"     , video="img19m3.jpg",  tipo="miniatura"
+20   3 img ="Dorzo"   , video="img20m3.jpg",  tipo="miniatura"
+21   3 img ="Pecho"   , video="img21m3.jpg",  tipo="miniatura"
+22   3 img ="Precios" , video="img22m3.jpg",  tipo="miniatura"
+23   3 img ="Oficina" , video="img23m3.jpg",  tipo="miniatura"
+24   4 img ="Precios" , video="img24m4.jpg",  tipo="miniatura"
+25   5 img ="Precios" , video="img25m5.jpg",  tipo="miniatura"
+26   6 img ="Precios" , video="img26m6.jpg",  tipo="miniatura"
+27   7 img ="cuerpo"  , video="img27m7.jpg",  tipo="miniatura"
+28   7 img ="Taza"    , video="img28m7.jpg",  tipo="miniatura"
+29   7 img ="Precios" , video="img29m7.jpg",  tipo="miniatura"
+30   8 img ="cuerpo"  , video="img30m8.jpg",  tipo="miniatura"
+31   8 img ="Taza"    , video="img31m8.jpg",  tipo="miniatura"
+32   8 img ="Precios" , video="img32m8.jpg",  tipo="miniatura"
+33   9 img ="cuerpo"  , video="img33m9.jpg",  tipo="miniatura"
+34   9 img ="Taza"    , video="img34m9.jpg",  tipo="miniatura"
+35   9 img ="Precios" , video="img35m9.jpg",  tipo="miniatura"
+36  10 img ="products", video="img36m10.jpg", tipo="miniatura"
+37  10 img ="chica"   , video="img37m10.jpg", tipo="miniatura"
+38  11 img ="cuerpo"  , video="img38m11.jpg", tipo="miniatura"
+39  11 img ="precios" , video="img39m11.jpg", tipo="miniatura"
+40  12 img ="cuerpo"  , video="img40m12.jpg", tipo="miniatura"
+41  12 img ="precios" , video="img41m12.jpg", tipo="miniatura"
+42  13 img ="precio"  , video="img42m13.jpg", tipo="miniatura"
+43  14 img ="precio"  , video="img43m14.jpg", tipo="miniatura"
+44  15 img ="precio"  , video="img44m15.jpg", tipo="miniatura"
+45  16 img ="precio"  , video="img45m16.jpg", tipo="miniatura"
+46  17 img ="Kit"     , video="img46m17.jpg", tipo="miniatura"
+47  18 img ="Kit"     , video="img47m18.jpg", tipo="miniatura"
+48  19 img ="Kit"     , video="img48m19.jpg", tipo="miniatura"
+49  20 img ="Kit"     , video="img49m20.jpg", tipo="miniatura"
+50  21 img ="Manos"   , video="img50m21.jpg", tipo="miniatura"
+51  22 img ="Manos"   , video="img51m22.jpg", tipo="miniatura"
+52  23 img ="Manos"   , video="img52m23.jpg", tipo="miniatura"

@@ -70,7 +70,8 @@ function background_media (){
             }     
         })
 
-
+        let more_product = document.getElementById("more_product");
+        more_product.classList.add("boxes");
         let boxa = document.getElementById("box_a");
         let product_a = document.getElementById("product_a");
         let price_a = document.getElementById("price_a");
@@ -85,20 +86,20 @@ function background_media (){
         url_img_a = window.origin +"/" + "ver_product" + "/" + media1[0].id_product
         url_product_a.setAttribute("href", url_img_a);
         ruta_img_a = "/static/imgs/" + nom_imagen_a
+        boxa.classList.add("box");
         boxa.style.backgroundImage = "url("+ruta_img_a+")"; 
-        boxa.style.backgroundSize= "cover";
         boxa.style.backgroundPosition="center";
-        boxa.style.width = "400px"
+       
         nom_imagen_b = media2[0].media;
         product_b.textContent = media2[0].name;
         price_b.textContent = media2[0].precio + "$";
         url_img_b = window.origin + "/" + "ver_product" + "/" + media2[0].id_product
         url_product_b.setAttribute("href", url_img_b);
-        ruta_img_b = "/static/imgs/" + nom_imagen_b
+        ruta_img_b = "/static/imgs/" + nom_imagen_b;
+        boxb.classList.add("box");
         boxb.style.backgroundImage = "url("+ruta_img_b+")"; 
-        boxb.style.backgroundSize= "cover";
         boxb.style.backgroundPosition="center";
-        boxb.style.width = "400px"
+       
     })
 }
 
