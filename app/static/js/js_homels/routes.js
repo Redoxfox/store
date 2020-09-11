@@ -64,8 +64,7 @@ function background_media (){
                 return productos; 
             }     
         })
-        let more_product = document.getElementById("more_product");
-        more_product.classList.add("boxes");
+    
         let boxa = document.getElementById("box_a");
         let product_a = document.getElementById("product_a");
         let price_a = document.getElementById("price_a");
