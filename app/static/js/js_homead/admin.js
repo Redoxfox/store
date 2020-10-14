@@ -6,19 +6,46 @@
  **********************************/
 function describir(id) {
     let contenedor = document.getElementById(id);
-    let listId_contenedor = document.createElement('div');
-    var id_tabla = "tabla" + id
-    listId_contenedor.setAttribute("id", id_tabla);
-    listId_contenedor.classList.add("estructura_tabla"); 
-    contenedor.appendChild(listId_contenedor);
-    document.getElementById(id_tabla).innerHTML =`
-        <div class="cabecera">Campo</div>
-        <div class="cabecera">Tipo</div> 
-        <div class="cabecera">Nulo</div>
-        <div class="cabecera">Clave</div>  
-        <div class="cabecera">Defecto</div>   
-        <div class="cabecera">Extra</div>
-    ` 
+    
+    /*contenedor.appendChild(listId_contenedor);
+     document.getElementById(id_tabla).innerHTML =`
+      <table class = "center">
+      <thead>
+        <tr>
+            <th>Campo</th>
+            <th>Tipo</th>
+            <th>Nulo</th>
+            <th>Clave</th>
+            <th>Defecto</th>
+            <th>Extra</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Alvin</td>
+          <td>Eclair</td>
+          <td>$0.87</td>
+          <td>Jonathan</td>
+          <td>Lollipop</td>
+        </tr>
+        <tr>
+          <td>Alan</td>
+          <td>Jellybean</td>
+          <td>$3.76</td>
+          <td>Jonathan</td>
+          <td>Lollipop</td>
+        </tr>
+        <tr>
+          <td>Jonathan</td>
+          <td>Lollipop</td>
+          <td>$7.00</td>
+          <td>Jonathan</td>
+          <td>Lollipop</td>
+        </tr>
+      </tbody>
+    </table>
+    `  */
     const url = window.origin + "/Estructura_tabla/";
     var entry = {
         nombreTabla: id
@@ -38,117 +65,66 @@ function describir(id) {
             return;
           }
         response.json().then(function (data) {
-            cont = 0 
-            let contenedor_t = document.getElementById(id_tabla);
+            id_tabla = "tabla" + id
             pintado = contenedor.childElementCount
-            if (pintado == 2) {
+            if (pintado == 2) { 
+                let $table = document.createElement('table');
+                let $thead_tb = document.createElement('thead');
+                let $tr_tb_enc = document.createElement('tr');
+                let $tbody = document.createElement('tbody');
+                $tr_tb_enc.innerHTML =`
+                <th>Campo</th>
+                <th>Tipo</th>
+                <th>Nulo</th>
+                <th>Clave</th>
+                <th>Defecto</th>
+                <th>Extra</th>` 
+                $table.appendChild($thead_tb);
+                $thead_tb.appendChild($tr_tb_enc);
+                var id_tabla = "tabla" + id
+                $table.setAttribute("id", id_tabla);
+                $table.classList.add("center"); 
+                contenedor.appendChild($table);
                 for (const key in data) {
                     if (data.hasOwnProperty(key)) {
                        /*console.log(key)*/
+                       const elements = [];
                        if (key != 0) {
-                        let Campo = document.createElement('div');
-                        let id_Campo = "Campo" + key
-                        Campo.setAttribute("id", id_Campo);
-                        Campo.classList.add("estructura_tabla"); 
-                        Campo.textContent = data[key].Field
-                        contenedor_t.appendChild(Campo);
-                        let Tipo = document.createElement('div');
-                        let id_Tipo  = "Tipo" + key
-                        Tipo.setAttribute("id", id_Tipo);
-                        Tipo.classList.add("estructura_tabla"); 
-                        Tipo.textContent = data[key].Type
-                        contenedor_t.appendChild(Tipo);
-                        let Nulo = document.createElement('div');
-                        let id_Nulo  = "Nulo" + key
-                        Nulo.setAttribute("id", id_Nulo);
-                        Nulo.classList.add("estructura_tabla"); 
-                        Nulo.textContent = data[key].Null
-                        contenedor_t.appendChild(Nulo);
-                        let Clave = document.createElement('div');
-                        let id_Clave  = "Clave" + key
-                        Clave.setAttribute("id", id_Clave);
-                        Clave.classList.add("estructura_tabla"); 
-                        Clave.textContent = data[key].Key
-                        contenedor_t.appendChild(Clave);
-                        
-                        let Defecto = document.createElement('div');
-                        let id_Defecto  = "Defecto" + key
-                        Defecto.setAttribute("id", id_Defecto);
-                        Defecto.classList.add("estructura_tabla"); 
-                        Defecto.textContent = data[key].Default
-                        contenedor_t.appendChild(Defecto);
-                        let Extra = document.createElement('div');
-                        let id_Extra  = "Extra" + key
-                        Extra.setAttribute("id", id_Extra);
-                        Extra.classList.add("estructura_tabla"); 
-                        Extra.textContent = data[key].Extra
-                        contenedor_t.appendChild(Extra);
+                        let $fragment_tr = document.createElement('tr');
+                        let Campo = document.createElement('td');
+                        let Tipo = document.createElement('td');
+                        let Nulo = document.createElement('td');
+                        let Clave = document.createElement('td');
+                        let Defecto = document.createElement('td');
+                        let Extra = document.createElement('td');
+                        Campo.textContent = data[key].Field;
+                        Tipo.textContent = data[key].Type;
+                        Nulo.textContent = data[key].Null;
+                        Clave.textContent = data[key].Key;
+                        Defecto.textContent = data[key].Default;
+                        Extra.textContent = data[key].Extra;
+                        elements.push(Campo)
+                        elements.push(Tipo)
+                        elements.push(Nulo)
+                        elements.push(Clave)
+                        elements.push(Defecto)
+                        elements.push(Extra)
+
+                        elements.forEach(function(el){
+                            $fragment_tr.appendChild(el)
+                        })
+
+                        $tbody.appendChild($fragment_tr);
                        } 
-                    }  
-                 }
-            } else {
-                contenedor = document.getElementById(id);
-                id_tabla = "tabla" + id
-                contenedor_t = document.getElementById(id_tabla);
-                contenedor.removeChild(contenedor_t);
-                listId_contenedor.setAttribute("id", id_tabla);
-                listId_contenedor.classList.add("estructura_tabla"); 
-                contenedor.appendChild(listId_contenedor);
-                document.getElementById(id_tabla).innerHTML =`
-                    <div class="cabecera">Campo</div>
-                    <div class="cabecera">Tipo</div> 
-                    <div class="cabecera">Nulo</div>
-                    <div class="cabecera">Clave</div>  
-                    <div class="cabecera">Defecto</div>   
-                    <div class="cabecera">Extra</div>
-                ` 
-                contenedor_t = document.getElementById(id_tabla);
-                for (const key in data) {
-                    if (data.hasOwnProperty(key)) {
-                       /*console.log(key)*/
-                       if (key != 0) {
-                        let Campo = document.createElement('div');
-                        let id_Campo = "Campo" + key
-                        Campo.setAttribute("id", id_Campo);
-                        Campo.classList.add("estructura_tabla"); 
-                        Campo.textContent = data[key].Field
-                        contenedor_t.appendChild(Campo);
-                        let Tipo = document.createElement('div');
-                        let id_Tipo  = "Tipo" + key
-                        Tipo.setAttribute("id", id_Tipo);
-                        Tipo.classList.add("estructura_tabla"); 
-                        Tipo.textContent = data[key].Type
-                        contenedor_t.appendChild(Tipo);
-                        let Nulo = document.createElement('div');
-                        let id_Nulo  = "Nulo" + key
-                        Nulo.setAttribute("id", id_Nulo);
-                        Nulo.classList.add("estructura_tabla"); 
-                        Nulo.textContent = data[key].Null
-                        contenedor_t.appendChild(Nulo);
-                        let Clave = document.createElement('div');
-                        let id_Clave  = "Clave" + key
-                        Clave.setAttribute("id", id_Clave);
-                        Clave.classList.add("estructura_tabla"); 
-                        Clave.textContent = data[key].Key
-                        contenedor_t.appendChild(Clave);
-                        
-                        let Defecto = document.createElement('div');
-                        let id_Defecto  = "Defecto" + key
-                        Defecto.setAttribute("id", id_Defecto);
-                        Defecto.classList.add("estructura_tabla"); 
-                        Defecto.textContent = data[key].Default
-                        contenedor_t.appendChild(Defecto);
-                        let Extra = document.createElement('div');
-                        let id_Extra  = "Extra" + key
-                        Extra.setAttribute("id", id_Extra);
-                        Extra.classList.add("estructura_tabla"); 
-                        Extra.textContent = data[key].Extra
-                        contenedor_t.appendChild(Extra);
-                       } 
-                    }  
-                 }
+                    } 
+                }
+                $table.appendChild($tbody); 
+            }else { 
+                    id_tabla = "tabla" + id
+                    let eliminarUltimo = document.querySelector(`#${id_tabla}`)
+                    contenedor.removeChild(eliminarUltimo)
             }
-          
+            
         });
     })
     .catch(function (error) {
@@ -165,29 +141,85 @@ function ver_tablas(){
     fetch(tablas)
     .then(res => res.json())
     .then(data => {
-       for (const key in data) {
+        let contenedor = document.getElementById("contenedor_principal");
+        let contenedorSecond = document.getElementById("nodoSecond");
+        contenedor.removeChild(contenedorSecond);
+        contenedorSecond = document.createElement('div');
+        contenedorSecond.setAttribute("id","nodoSecond");
+        contenedor.appendChild(contenedorSecond); 
+        let $collapsible = document.createElement('ul');
+        $collapsible.setAttribute("class","collapsible")
+        let $fragment = document.createDocumentFragment();
+        for (const key in data) {
            if (data.hasOwnProperty(key)) {
               let key_table = Object.keys(data[key])
               value_key_table = key_table[0]
               let nombre_tabla = data[key][value_key_table]
-              let contenedor = document.getElementById("contenedor_principal");
-              let listId_contenedor = document.createElement('div');
+              let $licollapsible = document.createElement('li');
+              let $div1collapsible = document.createElement('div');
+              let $div2collapsible = document.createElement('div');
+              let $div3collapsible = document.createElement('div');
+              let $icon1collapsible = document.createElement('i');
+              let $icon2collapsible = document.createElement('i');
+              let nombre_tabla1 = "describir('"+nombre_tabla+"')";
+              $licollapsible.setAttribute("onclick",nombre_tabla1);
+              $licollapsible.setAttribute("id",nombre_tabla);
+              $div1collapsible.setAttribute("class","collapsible-header");
+              $div3collapsible.textContent = nombre_tabla;
+              $div2collapsible.setAttribute("class", "collapsible-body");
+              $div2collapsible.textContent = nombre_tabla;
+              $icon1collapsible.setAttribute("class", "material-icons");
+              $icon1collapsible.textContent = "storage";
+              $icon2collapsible.setAttribute("class", "right material-icons");
+              $icon2collapsible.textContent = "expand_more";
+              $div1collapsible.appendChild($icon1collapsible);
+              $div1collapsible.appendChild($div3collapsible);
+              $div1collapsible.appendChild($icon2collapsible);
+              $licollapsible.appendChild($div1collapsible);
+              $licollapsible.appendChild($div2collapsible);
+              $fragment.appendChild($licollapsible);
+              
+              
+              /* let listId_contenedor = document.createElement('div');
               listId_contenedor.setAttribute("id", nombre_tabla);
               listId_contenedor.classList.add("contenedor_tabla"); 
-              contenedor.appendChild(listId_contenedor);
+              contenedorSecond.appendChild(listId_contenedor);
               document.getElementById(nombre_tabla).innerHTML =`
-              <div class="nombre_tabla">
-                  <div>Nombre Tabla: </div>
-                  <div>${nombre_tabla}</div>
-                  <div></div>
-                  <div class="icon">
-                      <img class="img_icon" onclick="describir('${nombre_tabla}')" src="${window.origin}/static/imgs/edit.png">
-                      <img class="img_icon" onclick="cerrar('${nombre_tabla}')"  src="${window.origin}/static/imgs/error.png">   
-                  </div>
-              </div>
-              `
+                <ul id = "collap${key}" class="collapsible">
+                <li>
+                <div class="collapsible-header" onclick="describir('${nombre_tabla}')">
+                <i class="material-icons">filter_drama</i>
+                First
+                <i class="right material-icons">expand_more</i>
+                </div>
+                <div class="nombre_tabla">
+                <div>Nombre Tabla: </div>
+                <div>${nombre_tabla}</div>
+                <div></div>
+                <div class="icon">
+                    <img class="img_icon" onclick="describir('${nombre_tabla}')" src="${window.origin}/static/imgs/edit.png">
+                    <img class="img_icon" onclick="cerrar('${nombre_tabla}')"  src="${window.origin}/static/imgs/error.png">   
+                </div>
+                </div>
+
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+              </li>
+             </ul>
+      
+              ` */
             }  
         }
+        
+        $collapsible.appendChild($fragment);
+        contenedorSecond.appendChild($collapsible);
+
     })
 }
 
@@ -199,11 +231,16 @@ function ver_tablas(){
  **********************************/
 function new_category(){
     let contenedor = document.getElementById("contenedor_principal");
+    let contenedorSecond = document.getElementById("nodoSecond");
+    contenedor.removeChild(contenedorSecond);
+    contenedorSecond = document.createElement('div');
+    contenedorSecond.setAttribute("id","nodoSecond");
+    contenedor.appendChild(contenedorSecond); 
     let listId_contenedor = document.createElement('div');
     listId_contenedor.setAttribute("id", "form");
     listId_contenedor.classList.add("body_form"); 
-    contenedor.appendChild(listId_contenedor);
-    document.getElementById("form").innerHTML =`
+    contenedorSecond.appendChild(listId_contenedor);
+    document.getElementById("nodoSecond").innerHTML =`
         <div class="contenedor_primario_form">
             <h2 class="item_titulo">Registrar Categorias</h2>
             <div class="contenedor_secundario">
@@ -249,6 +286,8 @@ function new_category(){
             </div>
         </div>
         `
+        
+        
         categories();
 }
 
@@ -306,11 +345,17 @@ function categories(){
  *Formulario nuevo proveedor       *
  **********************************/
 function new_proveedor(){
+   
     let contenedor = document.getElementById("contenedor_principal");
+    let contenedorSecond = document.getElementById("nodoSecond");
+    contenedor.removeChild(contenedorSecond);
+    contenedorSecond = document.createElement('div');
+    contenedorSecond.setAttribute("id","nodoSecond");
+    contenedor.appendChild(contenedorSecond); 
     let listId_contenedor = document.createElement('div');
     listId_contenedor.setAttribute("id", "form");
     listId_contenedor.classList.add("body_form"); 
-    contenedor.appendChild(listId_contenedor);
+    contenedorSecond.appendChild(listId_contenedor);
     document.getElementById("form").innerHTML =`
         <div class="contenedor_primario_form">
             <h2 class="item_titulo">Registrar Proveedor</h2>
@@ -445,10 +490,15 @@ function proveedores(){
  **********************************/
 function new_product(){
     let contenedor = document.getElementById("contenedor_principal");
+    let contenedorSecond = document.getElementById("nodoSecond");
+    contenedor.removeChild(contenedorSecond);
+    contenedorSecond = document.createElement('div');
+    contenedorSecond.setAttribute("id","nodoSecond");
+    contenedor.appendChild(contenedorSecond);
     let listId_contenedor = document.createElement('div');
     listId_contenedor.setAttribute("id", "form");
     listId_contenedor.classList.add("body_form"); 
-    contenedor.appendChild(listId_contenedor);
+    contenedorSecond.appendChild(listId_contenedor);
     document.getElementById("form").innerHTML =`
         <div class="contenedor_primario_form">
             <h2 class="item_titulo">Registrar Proveedor</h2>
@@ -636,10 +686,15 @@ function productosid(){
  **********************************/
 function new_media(){
     let contenedor = document.getElementById("contenedor_principal");
+    let contenedorSecond = document.getElementById("nodoSecond");
+    contenedor.removeChild(contenedorSecond);
+    contenedorSecond = document.createElement('div');
+    contenedorSecond.setAttribute("id","nodoSecond");
+    contenedor.appendChild(contenedorSecond);
     let listId_contenedor = document.createElement('div');
     listId_contenedor.setAttribute("id", "form");
     listId_contenedor.classList.add("body_form"); 
-    contenedor.appendChild(listId_contenedor);
+    contenedorSecond.appendChild(listId_contenedor);
       /* <label>Tipo Media:</label>
                             <select name="Media" id="Media">
                                 <option value="1">Imagen</option> 
@@ -915,3 +970,4 @@ function cerrar(id){
     let contenedor_t = document.getElementById(id_tabla);
     contenedor.removeChild(contenedor_t);
 }
+
