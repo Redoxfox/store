@@ -95,7 +95,7 @@ def Estructura_tabla():
     return (estructura)
 
 
-@app.route("/AddCategory", methods=["GET","POST"])
+@app.route("/AddCategory/", methods=["GET","POST"])
 def AddCategory():
     Urlbase = URLBASE
     username = CONFIG['TYPE_USER']['ROOT']

@@ -6,46 +6,6 @@
  **********************************/
 function describir(id) {
     let contenedor = document.getElementById(id);
-    
-    /*contenedor.appendChild(listId_contenedor);
-     document.getElementById(id_tabla).innerHTML =`
-      <table class = "center">
-      <thead>
-        <tr>
-            <th>Campo</th>
-            <th>Tipo</th>
-            <th>Nulo</th>
-            <th>Clave</th>
-            <th>Defecto</th>
-            <th>Extra</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>Alvin</td>
-          <td>Eclair</td>
-          <td>$0.87</td>
-          <td>Jonathan</td>
-          <td>Lollipop</td>
-        </tr>
-        <tr>
-          <td>Alan</td>
-          <td>Jellybean</td>
-          <td>$3.76</td>
-          <td>Jonathan</td>
-          <td>Lollipop</td>
-        </tr>
-        <tr>
-          <td>Jonathan</td>
-          <td>Lollipop</td>
-          <td>$7.00</td>
-          <td>Jonathan</td>
-          <td>Lollipop</td>
-        </tr>
-      </tbody>
-    </table>
-    `  */
     const url = window.origin + "/Estructura_tabla/";
     var entry = {
         nombreTabla: id
@@ -178,42 +138,6 @@ function ver_tablas(){
               $licollapsible.appendChild($div1collapsible);
               $licollapsible.appendChild($div2collapsible);
               $fragment.appendChild($licollapsible);
-              
-              
-              /* let listId_contenedor = document.createElement('div');
-              listId_contenedor.setAttribute("id", nombre_tabla);
-              listId_contenedor.classList.add("contenedor_tabla"); 
-              contenedorSecond.appendChild(listId_contenedor);
-              document.getElementById(nombre_tabla).innerHTML =`
-                <ul id = "collap${key}" class="collapsible">
-                <li>
-                <div class="collapsible-header" onclick="describir('${nombre_tabla}')">
-                <i class="material-icons">filter_drama</i>
-                First
-                <i class="right material-icons">expand_more</i>
-                </div>
-                <div class="nombre_tabla">
-                <div>Nombre Tabla: </div>
-                <div>${nombre_tabla}</div>
-                <div></div>
-                <div class="icon">
-                    <img class="img_icon" onclick="describir('${nombre_tabla}')" src="${window.origin}/static/imgs/edit.png">
-                    <img class="img_icon" onclick="cerrar('${nombre_tabla}')"  src="${window.origin}/static/imgs/error.png">   
-                </div>
-                </div>
-
-              </li>
-              <li>
-                <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-              </li>
-              <li>
-                <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-              </li>
-             </ul>
-      
-              ` */
             }  
         }
         
@@ -241,54 +165,32 @@ function new_category(){
     listId_contenedor.classList.add("body_form"); 
     contenedorSecond.appendChild(listId_contenedor);
     document.getElementById("nodoSecond").innerHTML =`
-        <div class="contenedor_primario_form">
-            <h2 class="item_titulo">Registrar Categorias</h2>
-            <div class="contenedor_secundario">
-                <div class="contenedor_info">
-                    <h3>Registro Categorias</h3>
-                    <ul>
-                        <li>Sandyvital Store</li>
-                        <li>Salud y belleza</li>
-                        <li>Productos de Calidad</li>
-                        </br>
-                        <div class="caja">
-                            <div class="box">
-                                <img src="/static/imgs/logo3.png" alt="">
-                            </div>
-                        </div>    
-                    </ul>
-                </div>
-                <div class="contenedor_form">
-                    <h3>Crear Nueva Categoria</h3>
-                    <form id="form1">
-                      
-                        <p>
-                            <label>Nombre Categoria:</label>
-                            <input type="text"  name = "category" >
-                        </p>
-
-                        <p>
-                            <label>Categorias:</label>
-                            <select name="category" id="categories">
-                            </select>
-                            <i></i>
-                        </p>
-
-                        <p>
-                            <button type="submit" onclick="AddCategory(event);">Agregar Nuevo</button>
-                        </p> 
-                        <p class="item_form">
-                            <div id = "new_category"></div>
-                        </p>
-                    </form>
-                    
-                </div>
+    <h4 class="item_titulo">Registrar Categorias</h4>
+    <div class="row">
+        <form id="form1" class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+                <label>Nombre Categoria:</label>
+                <input type="text"  name = "category" >
             </div>
-        </div>
-        `
-        
-        
-        categories();
+          
+          </div>
+          
+          <select name="category" id="categories" class = "stlselect">
+            
+          </select>
+          <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddCategory(event);">Add New
+            <i class="material-icons right">send</i>
+          </button>
+         
+        </form>
+        <p class="item_form">
+            <div id = "new_category">
+            </div>
+        </p>
+    </div>`
+
+    categories();
 }
 
 /*Formulario agregar nuevas categorias*/
@@ -354,75 +256,53 @@ function new_proveedor(){
     contenedor.appendChild(contenedorSecond); 
     let listId_contenedor = document.createElement('div');
     listId_contenedor.setAttribute("id", "form");
-    listId_contenedor.classList.add("body_form"); 
     contenedorSecond.appendChild(listId_contenedor);
     document.getElementById("form").innerHTML =`
-        <div class="contenedor_primario_form">
-            <h2 class="item_titulo">Registrar Proveedor</h2>
-            <div class="contenedor_secundario">
-                <div class="contenedor_info">
-                    <h3>Registro Proveedor</h3>
-                    <ul>
-                        <li>Sandyvital Store</li>
-                        <li>Salud y belleza</li>
-                        <li>Productos de Calidad</li>
-                        </br>
-                        <div class="caja">
-                            <div class="box">
-                                <img src="/static/imgs/logo3.png" alt="">
-                            </div>
-                        </div>    
-                    </ul>
-                </div>
-                <div class="contenedor_form">
-                    <h3>Crear Nuevo Proveedor</h3>
-                    <form id="form1">
-                      
-                        <p>
-                            <label>Nombre Proveedor:</label>
-                            <input type="text"  name = "category" >
-                        </p>
-
-                        <p>
-                            <label>Direccion:</label>
-                            <input type="text"  name = "direccion" >
-                        </p>
-
-                        <p>
-                            <label>Telefono:</label>
-                            <input type="text"  name = "telefono" >
-                        </p>
-
-                        <p>
-                            <label>Web:</label>
-                            <input type="text"  name = "web" >
-                        </p>
-
-                        <p>
-                            <label>email:</label>
-                            <input type="text"  name = "email" >
-                        </p>
-
-
-                        <p>
-                            <label>Proveedores:</label>
-                                <select name="proveedor" id="proveedores">
-                                </select>
-                            <i></i>
-                        </p>
-
-                        <p>
-                            <button type="submit" onclick="AddProveedor(event);">Agregar Nuevo</button>
-                        </p> 
-                        <p class="item_form">
-                            <div id = "new_proveedor"></div>
-                        </p>
-                    </form>
-                    
+    <h4 class="item_titulo">Registrar Proveedores</h4>
+    <div class="row">
+        <form id="form1" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <label>Nombre Proveedor:</label>
+                    <input type="text"  name = "category" >
                 </div>
             </div>
-        </div>
-        `
+            <div class="row">
+                <div class="input-field col s12">
+                    <label>Direccion:</label>
+                    <input type="text"  name = "direccion" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label>Telefono:</label>
+                    <input type="text"  name = "telefono" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label>Web:</label>
+                    <input type="text"  name = "web" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label>email:</label>
+                    <input type="text"  name = "email" >
+                </div>
+            </div>
+            <label>Proveedores:</label>
+            <select name="proveedor" id="proveedores" class = "stlselect">
+
+            </select>
+            <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddProveedor(event);">Add New
+                <i class="material-icons right">send</i>
+            </button>     
+        </form> 
+        <p class="item_form">
+        <div id = "new_proveedor"></div>
+    </p>               
+    </div>`
         proveedores();
 }
 
@@ -497,77 +377,53 @@ function new_product(){
     contenedor.appendChild(contenedorSecond);
     let listId_contenedor = document.createElement('div');
     listId_contenedor.setAttribute("id", "form");
-    listId_contenedor.classList.add("body_form"); 
     contenedorSecond.appendChild(listId_contenedor);
     document.getElementById("form").innerHTML =`
-        <div class="contenedor_primario_form">
-            <h2 class="item_titulo">Registrar Proveedor</h2>
-            <div class="contenedor_secundario">
-                <div class="contenedor_info">
-                    <h3>Registro Proveedor</h3>
-                    <ul>
-                        <li>Sandyvital Store</li>
-                        <li>Salud y belleza</li>
-                        <li>Productos de Calidad</li>
-                        </br>
-                        <div class="caja">
-                            <div class="box">
-                                <img src="/static/imgs/logo3.png" alt="">
-                            </div>
-                        </div>    
-                    </ul>
-                </div>
-                <div class="contenedor_form">
-                    <h3>Crear Nuevo Proveedor</h3>
-                    <form id="form1">
-                      
-                        <p>
-                            <label>Proveedor:</label>
-                            <select name="proveedor" id="proveedores">
-                            </select>
-                        </p>
+    <h4>Registrar Producto</h4>
+    <div class="row">
+        <form id="form1" class="col s12">
+            <label>Proveedor:</label>
+            <select name="proveedor" id="proveedores" class = "stlselect">
+            </select>
 
-                        <p>
-                            <label>Categoria:</label>
-                            <select name="categoria" id="categories">
-                            </select>
-                        </p>
+            <label>Categoria:</label>
+            <select name="categoria" id="categories" class = "stlselect">
+            </select>
 
-                        <p>
-                            <label>Nombre Producto:</label>
-                            <input type="text"  name = "producto" >
-                        </p>
-
-                        <p>
-                            <label>Precio Producto:</label>
-                            <input type="text"  name = "Precio" >
-                        </p>
-
-                        <p>
-                            <label>Descricion Producto:</label>
-                            <textarea name="descricion" rows="5" cols="49">Write something here</textarea>
-                        </p>
-
-
-                        <p>
-                            <label>Productos:</label>
-                                <select name="productos" id="productos">
-                                </select>
-                            <i></i>
-                        </p>
-
-                        <p>
-                            <button type="submit" onclick="AddProduct(event);">Agregar Nuevo</button>
-                        </p> 
-                        <p class="item_form">
-                            <div id = "new_product"></div>
-                        </p>
-                    </form>
-                    
+            <div class="row">
+                <div class="input-field col s12">
+                    <label>Nombre Producto:</label>
+                    <input type="text"  name = "producto" >
                 </div>
             </div>
-        </div>
-        `
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label>Precio Producto:</label>
+                    <input type="text"  name = "Precio" >
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label>Descricion Producto:</label>
+                    <textarea name="descricion" rows="5" cols="49">Write something here</textarea>
+                </div>
+            </div>
+
+            <label>Productos:</label>
+            <select name="productos" id="productos" class = "stlselect">
+            </select>
+
+            <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddProduct(event);">Add New
+                <i class="material-icons right">send</i>
+            </button> 
+        </form>
+        <p class="item_form">
+            <div id = "new_product"></div>
+        </p>
+    </div>`
+
         proveedores();
         categories();
         productos();
@@ -576,6 +432,7 @@ function new_product(){
 /*Formulario agregar nuevas categorias*/
 function AddProduct(evt) {
     evt.preventDefault();
+    console.log(evt.preventDefault())
     let proveedor = evt.target.form[0].value
     let categoria = evt.target.form[1].value
     let producto = evt.target.form[2].value
@@ -693,7 +550,6 @@ function new_media(){
     contenedor.appendChild(contenedorSecond);
     let listId_contenedor = document.createElement('div');
     listId_contenedor.setAttribute("id", "form");
-    listId_contenedor.classList.add("body_form"); 
     contenedorSecond.appendChild(listId_contenedor);
       /* <label>Tipo Media:</label>
                             <select name="Media" id="Media">
@@ -701,6 +557,30 @@ function new_media(){
                                 <option value="2">Video</option> 
                             </select> */
     document.getElementById("form").innerHTML =`
+    <h4 class="item_titulo">Registrar Categorias</h4>
+    <div class="row">
+        <form id="form1" class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+                <label>Nombre Categoria:</label>
+                <input type="text"  name = "category" >
+            </div>
+          </div>
+          
+          <select name="category" id="categories" class = "stlselect">
+            
+          </select>
+          <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddCategory(event);">Add New
+            <i class="material-icons right">send</i>
+          </button>
+         
+        </form>
+        <p class="item_form">
+            <div id = "new_category">
+            </div>
+        </p>
+    </div>
+
         <div class="contenedor_primario_form">
             <h2 class="item_titulo">Registrar Recursos Multimedia</h2>
             <div class="contenedor_secundario">

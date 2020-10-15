@@ -50,7 +50,7 @@ ul{
 }
 
 /*Estilos formulario */
-.contenedor_form form{
+.contenedor_form{
     display: grid;
     grid-template-columns: 1fr;   
 }
@@ -63,7 +63,7 @@ ul{
     margin-bottom: 5px;
 }
 
-.contenedor_form form select{
+.stlselect{
     width: 100%;
     border: 0;
     background: white;
@@ -71,7 +71,10 @@ ul{
     border-bottom: 1px solid rgb(230, 223, 223);
     appearance: none;
 	-webkit-appearance: none;
-	-moz-appearance: none;
+    -moz-appearance: none;
+    margin-bottom: 10px;
+    display: block;
+
 }
 
 .contenedor_form form textarea{
