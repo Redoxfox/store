@@ -82,6 +82,15 @@ ul{
     
 }
 
+#btn_subir{
+    background: #0fac7d;
+    padding: 2px;
+}
+
+.separador{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 
 
 @media(min-width:700px){

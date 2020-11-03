@@ -5,8 +5,9 @@ from app.static.lib import validaciones
 import os
 import json
 from datetime import datetime, date
-import re
+import re, shutil
 from flask import jsonify
+from werkzeug.utils import secure_filename
 
 dir_act = os.getcwd()
 route_file_config = dir_act 
@@ -23,6 +24,7 @@ file = f.read()
 CONFIG = json.loads(file)
 MODODESARROLLO = 'DEFAULT'
 URLBASE = CONFIG['DEFAULT']['URLBASE']
+ROOT_FILE = CONFIG['DEFAULT']['ROOT_FILE']
 
 @app.route("/admin/", methods=["GET", "POST"])
 def admin():
@@ -305,6 +307,21 @@ def AddProduct():
     connect = Model(username)   
     req = request.get_json()
     result = {}
+    
+    nombre_tabla = "products"
+    nombre_id = "id_product"
+    id_max = connect.MAX_ID_TABLE(username, nombre_tabla  , nombre_id) 
+    proximo_id = id_max[0]["max_id"] + 1
+    name_img_default = "img_default_" + str(proximo_id)
+    if route_exist > 0:
+        route_dir_files = dir_act + "/app/static/upload/"
+        route_dir_imgs = dir_act + "/app/static/imgs/"
+    else:
+       route_dir_files = dir_act + "/app/static/upload/"
+
+    shutil.copy(os.path.join(route_dir_files, "default.jpg"), route_dir_imgs)
+    os.rename(os.path.join(route_dir_imgs, "default.jpg"), os.path.join(route_dir_imgs, name_img_default))
+    
     id_proveedor = req["id_proveedor"]
     id_categoria = req["id_categoria"] 
     producto = req["producto"]
@@ -317,18 +334,20 @@ def AddProduct():
         'Col2':'id_proveedor',
         'Col3':'id_categoria',
         'Col4':'name',
-        'Col5':'precio',
-        'Col6':'descripcion',
-        'Val7':'%s',
+        'Col5':'media',
+        'Col6':'precio',
+        'Col7':'descripcion',
         'Val8':'%s',
         'Val9':'%s',
         'Val10':'%s',
         'Val11':'%s',
-        'Val12':'%s'
+        'Val12':'%s',
+        'Val13':'%s',
+        'Val14':'%s'
     } 
 
 
-    Data = [id, id_proveedor, id_categoria, producto, precio, descricion]
+    Data = [id, id_proveedor, id_categoria, producto, name_img_default, precio, descricion]
     result["new_proveedor"] = producto
     res_insert = connect.IT_TABLE(username, Insert_ofProduct, Data) 
     

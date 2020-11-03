@@ -180,7 +180,6 @@ function new_category(){
             
           </select>
           <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddCategory(event);">Add New
-            <i class="material-icons right">send</i>
           </button>
          
         </form>
@@ -196,6 +195,7 @@ function new_category(){
 /*Formulario agregar nuevas categorias*/
 function AddCategory(evt) {
     evt.preventDefault();
+    console.log(evt)
     let category = evt.target.form[0].value
     const url = window.origin + "/AddCategory/";
 
@@ -296,7 +296,6 @@ function new_proveedor(){
 
             </select>
             <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddProveedor(event);">Add New
-                <i class="material-icons right">send</i>
             </button>     
         </form> 
         <p class="item_form">
@@ -309,6 +308,7 @@ function new_proveedor(){
 /*Formulario agregar nuevo proveedor*/
 function AddProveedor(evt) {
     evt.preventDefault();
+   
     let name_proveedor = evt.target.form[0].value
     let direccion = evt.target.form[1].value
     let telefono = evt.target.form[2].value
@@ -378,7 +378,7 @@ function new_product(){
     let listId_contenedor = document.createElement('div');
     listId_contenedor.setAttribute("id", "form");
     contenedorSecond.appendChild(listId_contenedor);
-    document.getElementById("form").innerHTML =`
+    document.getElementById("nodoSecond").innerHTML =`
     <h4>Registrar Producto</h4>
     <div class="row">
         <form id="form1" class="col s12">
@@ -414,10 +414,10 @@ function new_product(){
             <label>Productos:</label>
             <select name="productos" id="productos" class = "stlselect">
             </select>
-
+            
             <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddProduct(event);">Add New
-                <i class="material-icons right">send</i>
-            </button> 
+            </button>
+           
         </form>
         <p class="item_form">
             <div id = "new_product"></div>
@@ -432,7 +432,7 @@ function new_product(){
 /*Formulario agregar nuevas categorias*/
 function AddProduct(evt) {
     evt.preventDefault();
-    console.log(evt.preventDefault())
+    console.log(evt)
     let proveedor = evt.target.form[0].value
     let categoria = evt.target.form[1].value
     let producto = evt.target.form[2].value
@@ -551,103 +551,54 @@ function new_media(){
     let listId_contenedor = document.createElement('div');
     listId_contenedor.setAttribute("id", "form");
     contenedorSecond.appendChild(listId_contenedor);
-      /* <label>Tipo Media:</label>
-                            <select name="Media" id="Media">
-                                <option value="1">Imagen</option> 
-                                <option value="2">Video</option> 
-                            </select> */
-    document.getElementById("form").innerHTML =`
-    <h4 class="item_titulo">Registrar Categorias</h4>
+    document.getElementById("nodoSecond").innerHTML =`
+    <h4 class="item_titulo">Registrar Media</h4>
     <div class="row">
         <form id="form1" class="col s12">
-          <div class="row">
-            <div class="input-field col s12">
-                <label>Nombre Categoria:</label>
-                <input type="text"  name = "category" >
-            </div>
-          </div>
-          
-          <select name="category" id="categories" class = "stlselect">
+      
+            <label>Producto:</label>
+            <select name="productos" id="productos" class = "stlselect">
+            </select>
             
-          </select>
-          <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddCategory(event);">Add New
-            <i class="material-icons right">send</i>
-          </button>
-         
+            <div class="row">
+                <div class="input-field col s12">
+                    <label>Nombre Imagen:</label>
+                    <input type="text"  name="Media" >
+                </div>
+            </div>
+          
+            <label>Forma Media:</label>
+            <select name="Forma" id="Forma" class = "stlselect">
+                <option value="miniatura">Miniatura</option> 
+            </select>
+               
+            <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddMedia(event);">Add New
+            </button>
+             
+            
         </form>
         <p class="item_form">
-            <div id = "new_category">
-            </div>
+            <div id = "new_category"></div>
         </p>
     </div>
-
-        <div class="contenedor_primario_form">
-            <h2 class="item_titulo">Registrar Recursos Multimedia</h2>
-            <div class="contenedor_secundario">
-                <div class="contenedor_info">
-                    <h3>Registro Imagenes y video</h3>
-                    <ul>
-                        <li>Sandyvital Store</li>
-                        <li>Salud y belleza</li>
-                        <li>Productos de Calidad</li>
-                        </br>
-                        <div class="caja">
-                            <div class="box">
-                                <img src="/static/imgs/logo3.png" alt="">
-                            </div>
-                        </div>    
-                    </ul>
-                </div>
-                <div class="contenedor_form">
-                    <h3>Crear Nuevo Recurso</h3>
-                    <form id="form1">
-                        <p>
-                            <label>Producto:</label>
-                            <select name="productos" id="productos">
-                            </select>
-                            <i></i>
-                        </p>
-                        <p>
-                            <label>Nombre Imagen:</label>
-                            <input type="text"  name="Media" >
-                        </p>
-                        <p>
-                            <label>Forma Media:</label>
-                            <select name="Forma" id="Forma">
-                                <option value="miniatura">Miniatura</option> 
-                            </select>
-                            <i></i>
-                        </p>
-
-                        <p>
-                            <button type="submit" onclick="AddMedia(event);">Agregar Nuevo</button>
-                        </p> 
-                        <p class="item_form">
-                            <div id = "new_category"></div>
-                        </p>
-                    </form>
-                    <table id = "mytable">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Imagen</th>
-                                <th>Nombre</th>
-                                <th>Video</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cuerpoTabla">
-                            <tr id = "campos" >
-                                <td>Id</td>
-                                <td>Imagen</td>
-                                <td>Nombre</td>
-                                <td>Video</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                </div>
-            </div>
-        </div>
+    <table id = "mytable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Video</th>
+        </tr>
+    </thead>
+    <tbody id="cuerpoTabla">
+        <tr id = "campos" >
+            <td>Id</td>
+            <td>Imagen</td>
+            <td>Nombre</td>
+            <td>Video</td>
+        </tr>
+    </tbody>
+    </table>
         `
         productos();
 }
