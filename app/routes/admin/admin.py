@@ -148,6 +148,17 @@ def AddMedia():
     connect = Model(username)   
     req = request.get_json()
     result = {}
+    dir_act = os.getcwd()
+    route_file_config = dir_act
+    route_exist = route_file_config.find(ROOT_FILE)
+    print(route_exist)
+    if route_exist > 0:
+        route_dir_files = dir_act + "/app/static/upload/"
+        route_dir_imgs = dir_act + "/app/static/imgs/"
+        print(route_dir_files)
+    else:
+       route_dir_files = dir_act + "/app/static/upload/"
+       #print(route_dir_files) 
     productos = req["productos"]
     media = req["media"]
     forma = req["forma"] 
@@ -189,7 +200,9 @@ def AddMedia():
     video = "img"+id_img+"m"+productos+".jpg"
     Data = [id, productos, media, video, forma]
     ''' result["new_proveedor"] = name '''
-    #res_insert = connect.IT_TABLE(username, Insert_ofMedia, Data) 
+    res_insert = connect.IT_TABLE(username, Insert_ofMedia, Data) 
+    shutil.copy(os.path.join(route_dir_files, "default.jpg"), route_dir_imgs)
+    os.rename(os.path.join(route_dir_imgs, "default.jpg"), os.path.join(route_dir_imgs, video))
     Tabla_All_Images = dict()
     Tabla_All_Images = {'TABLE':'media',
         'Col1':'media.id',
@@ -312,7 +325,7 @@ def AddProduct():
     nombre_id = "id_product"
     id_max = connect.MAX_ID_TABLE(username, nombre_tabla  , nombre_id) 
     proximo_id = id_max[0]["max_id"] + 1
-    name_img_default = "img_default_" + str(proximo_id)
+    name_img_default = "img_product_" + str(proximo_id)
     if route_exist > 0:
         route_dir_files = dir_act + "/app/static/upload/"
         route_dir_imgs = dir_act + "/app/static/imgs/"

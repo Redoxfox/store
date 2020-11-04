@@ -439,6 +439,27 @@ def all_media():
 
     return (DatosAllMedia_json) 
 
+
+
+@app.route("/all_media_products/", methods=["GET", "POST"])
+def all_media_products():
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    
+    Tabla_All_Products = dict()
+    Tabla_All_Products = {'TABLE':'products',
+        'Col1':'id_product',
+        'Col2':'name',
+        'Col3':'media'
+    }
+   
+    DatosAllProducts = connect.SSP_TABLE(username, Tabla_All_Products)
+
+    DatosAllProducts_json = json.dumps(DatosAllProducts) 
+    
+    return (DatosAllProducts_json) 
+
 @app.route("/media_server/", methods=["GET", "POST"])
 def media_server():
     urlrev = URLBASE

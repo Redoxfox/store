@@ -515,7 +515,101 @@ function Change_img_blg() {
         $divcard1.appendChild($fragment_card);
         contenedorSecond.appendChild($divcard1);
         //contenedorSecond.appendChild($collapsible);
+    })
+}
 
+function Change_img_prod() {
+    let contenedor = document.getElementById("contenedor_principal");
+    let contenedorSecond = document.getElementById("nodoSecond");
+    const url = window.origin + "/upload/" 
+    contenedor.removeChild(contenedorSecond);
+    contenedorSecond = document.createElement('div');
+    contenedorSecond.setAttribute("id","nodoSecond");
+    contenedor.appendChild(contenedorSecond);
+    const url_medias = window.origin + "/all_media_products/" 
+
+    fetch(url_medias)
+    .then(res => res.json())
+    .then(data => {
+        let contenedor = document.getElementById("contenedor_principal");
+        let contenedorSecond = document.getElementById("nodoSecond");
+        contenedor.removeChild(contenedorSecond);
+        contenedorSecond = document.createElement('div');
+        contenedorSecond.setAttribute("id","nodoSecond");
+        contenedor.appendChild(contenedorSecond); 
+        contenedorSecond.setAttribute("class","container")
+        let $divcard1 = document.createElement('form');
+        $divcard1.setAttribute("class", "row");
+        $divcard1.setAttribute("id", "formfile");
+        let $fragment_card = document.createDocumentFragment();
+        let cont = 0
+        for (const key in data) {
+           if (data.hasOwnProperty(key)) {
+              cont += 1 
+              let key_table = Object.keys(data[key])
+              let value_key_table3 = key_table[2]
+              let value_key_table1 = key_table[1]
+              let nombre_img = data[key][value_key_table3]
+              let nombre_product = data[key][value_key_table1]
+              let $imgcard1 = document.createElement('img');
+              let $spancard1 = document.createElement('span');
+              let num_card_img = "card_img_" + String(cont)
+              let $divcard2 = document.createElement('div');
+              let $divcard3 = document.createElement('div');
+              let $divcard4 = document.createElement('div');
+              let $divcard5 = document.createElement('div');
+              let $divcard6 = document.createElement('div');
+              let $divcard7 = document.createElement('div');
+              let $icard1 = document.createElement('i');
+              let $acard1 = document.createElement('a');
+              let $acard2 = document.createElement('a');
+              let $ipcard2 = document.createElement('input');
+              let $pcard1 = document.createElement('p');
+              let func_addfile = "AddFileServer('"+nombre_img+"')";
+              let func_show_images = "media_server('"+num_card_img+"','"+nombre_img+"')"
+              url_img = "/static/imgs/" + nombre_img 
+              $imgcard1.setAttribute("src",url_img);
+              $imgcard1.setAttribute("id",nombre_img);
+              $ipcard2.setAttribute("type","file");
+              $ipcard2.setAttribute("name",nombre_img);
+              $ipcard2.setAttribute("enctype" ,"multipart/form-data");
+              $ipcard2.textContent = "Change imagen ...";
+              $ipcard2.setAttribute("id","change_imagen");
+              $acard1.setAttribute("class","btn red btn-floating halfway-fab pulse activator");
+              $acard1.textContent = "+";
+              $acard1.setAttribute("onclick",func_show_images);
+              $acard2.setAttribute("class","waves-effect waves-light btn-small");
+              $acard2.textContent = "Upload file";
+              $acard2.setAttribute("onclick",func_addfile);
+              $spancard1.setAttribute("class","card-title");
+              $spancard1.textContent = "Nuevo post.";
+              $pcard1.textContent = nombre_product;
+              $icard1.setAttribute("class","right");
+              $divcard2.setAttribute("class", "col l4 m4 s12");
+              $divcard3.setAttribute("class", "card sticky-action");
+              $divcard4.setAttribute("class", "card-image");
+              $divcard5.setAttribute("class", "card-content");
+              $divcard6.setAttribute("id", num_card_img);
+              $divcard6.setAttribute("class", "card-reveal");
+              $divcard7.setAttribute("class", "card-action");
+              $divcard2.appendChild($divcard3);
+              $divcard3.appendChild($divcard4);
+              $divcard4.appendChild($imgcard1);
+              $divcard4.appendChild($acard1);
+              $divcard3.appendChild($divcard5);
+              $divcard5.appendChild($pcard1);
+              $divcard3.appendChild($divcard6);
+              $divcard6.appendChild($spancard1);
+              $spancard1.appendChild($icard1);
+              $divcard3.appendChild($divcard7);
+              $divcard7.appendChild($ipcard2);
+              $divcard7.appendChild($acard2);
+              $fragment_card.appendChild($divcard2);
+            }  
+        }
+        $divcard1.appendChild($fragment_card);
+        contenedorSecond.appendChild($divcard1);
+        //contenedorSecond.appendChild($collapsible);
     })
 }
 
