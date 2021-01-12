@@ -275,6 +275,67 @@ class Model:
        con.close() 
        return  Allresults
 
+    #Consulta con combinacion de SELECT and WHERE############################################ 
+    def SINJ_SW_TABLE(self, type_user, datos_table, tables, *args):
+       MyObjModel = Model(type_user)
+       con = MyObjModel.con();
+       list_column = []
+       list_table = []
+       list_where = []
+       cont = 0
+       list_column.append("SELECT ")
+       self.Datos_table = datos_table
+       for items in self.Datos_table:
+           valor = self.Datos_table[items]
+           if items == "TABLE":
+               Cadena = valor 
+               list_table.append(Cadena)
+           else:
+               cont+=1
+               num_col="Col" + str(cont)
+               num_whe="Whe" + str(cont)
+               if items == num_col:
+                   Cadena = valor + ","
+                   list_column.append(Cadena)
+               if items == num_whe:
+                   Cadena = valor
+                   list_where.append(Cadena)
+
+       Colunm= ' '.join(list_column)
+       lenColunm = len(Colunm)
+       ultimaCol = Colunm[lenColunm-1]
+       if ultimaCol==",":
+          Colunm=Colunm[0:lenColunm-1]
+          Colunm = Colunm + " FROM "
+       else:
+          Colunm = Colunm + " FROM "
+
+       Values= ' '.join(list_table)
+
+       Wheres= ' '.join(list_where)
+       lenWheres= len(Wheres)
+       ultimaVal = Wheres[lenWheres-1]
+       if ultimaVal == ",":
+          Wheres=Wheres[0:lenWheres-1]
+          Wheres= Wheres + ";"
+       else:
+          Wheres = Wheres + ";"
+
+       table1 = tables["table1"]
+       id_tb1 = tables["id_t1"]
+       table2 = tables["table2"]
+       id_tb2 = tables["id_t2"]
+       relationt1 = table1 + "." + id_tb1
+       relationt2 = table2 + "." + id_tb2
+       result = Colunm + Values + " INNER JOIN " + table2 + " ON " + relationt1+ "=" + relationt2 + " WHERE " + Wheres 
+       sql = result
+       cursor = con.cursor()
+       cursor.execute(sql, (args))
+       Allresults = cursor.fetchall()
+       con.close() 
+
+       return  Allresults 
+
     #Eliminar fila de tabla
     def DELWT_TABLE(self, type_user, datos_table):
         MyObjModel = Model(type_user)

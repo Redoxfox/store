@@ -239,6 +239,12 @@ function new_post_blg(){
                     <input type="date"  name = "date" >
                 </div>
             </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea name="textarea" rows="10" cols="50">Write something here</textarea>
+                </div>
+            </div>
             
             <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddPostBlg(event);">Add New
             </button>
@@ -392,42 +398,6 @@ function Change_img_blg() {
     contenedorSecond = document.createElement('div');
     contenedorSecond.setAttribute("id","nodoSecond");
     contenedor.appendChild(contenedorSecond);
-  /*   document.getElementById("nodoSecond").innerHTML =`
-    <h4>Subir archivo a servidor</h4>
-    <div class="container">
-        <div class="row">
-            <div class="col l4 m4 s12">
-                <div class="card sticky-action">
-                    <div class="card-image">
-                        <img src="/static/imgs/imgbg/img_2.jpg">
-                        <a class="btn red btn-floating halfway-fab pulse activator">
-                            +
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <p>
-                            Creando tarjeta para galeria.
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title">
-                          Nuevo post.
-                          <i class="right">X</i>
-                        </span>
-                        <p>
-                            Creando tarjeta para galeria.
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a>
-                            Ver articulo completo.
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>   
-    </div>` */
-
     const tablas = window.origin + "/all_media/" 
 
     fetch(tablas)
@@ -613,6 +583,111 @@ function Change_img_prod() {
     })
 }
 
+
+function Show_Post(id) {
+    let contenedor = document.getElementById("contenedor_principal");
+    let contenedorSecond = document.getElementById("all_posts");
+    //const url = window.origin + "/single/" + id + "/"
+    contenedor.removeChild(contenedorSecond);
+    
+    const url_post = window.origin + "/single/" + id + "/"
+
+    fetch(url_post)
+    .then(res => res.json())
+    .then(data => {
+        let slider_right = document.getElementById("slider_right");
+        let contenedorPost = document.createElement('article');
+        contenedorSecond = document.createElement('section');
+        contenedorSecond.setAttribute("id","all_posts");
+        contenedorSecond.setAttribute("class","max-w-full flex-row justify-center mb-8 md:mr-2");
+        contenedor.insertBefore(contenedorSecond,slider_right);
+        contenedorSecond.appendChild(contenedorPost);
+        contenedorPost.setAttribute("id","post");
+        contenedorPost.setAttribute("class","bg-white border_art shadow-md mb-4");
+        contenedorPost.innerHTML = data.content
+        /* let contenedor = document.getElementById("post");
+        let contenedorSecond = document.getElementById("all_posts");
+        contenedorSecond.innerHTML = data.content */
+        /*contenedor.removeChild(contenedorSecond);
+        contenedorSecond = document.createElement('div');
+        contenedorSecond.setAttribute("id","nodoSecond");
+        contenedor.appendChild(contenedorSecond); 
+        contenedorSecond.setAttribute("class","container")
+        let $divcard1 = document.createElement('form');
+        $divcard1.setAttribute("class", "row");
+        $divcard1.setAttribute("id", "formfile");
+        let $fragment_card = document.createDocumentFragment();
+        let cont = 0
+        for (const key in data) {
+           if (data.hasOwnProperty(key)) {
+              cont += 1 
+              let key_table = Object.keys(data[key])
+              let value_key_table3 = key_table[2]
+              let value_key_table1 = key_table[1]
+              let nombre_img = data[key][value_key_table3]
+              let nombre_product = data[key][value_key_table1]
+              let $imgcard1 = document.createElement('img');
+              let $spancard1 = document.createElement('span');
+              let num_card_img = "card_img_" + String(cont)
+              let $divcard2 = document.createElement('div');
+              let $divcard3 = document.createElement('div');
+              let $divcard4 = document.createElement('div');
+              let $divcard5 = document.createElement('div');
+              let $divcard6 = document.createElement('div');
+              let $divcard7 = document.createElement('div');
+              let $icard1 = document.createElement('i');
+              let $acard1 = document.createElement('a');
+              let $acard2 = document.createElement('a');
+              let $ipcard2 = document.createElement('input');
+              let $pcard1 = document.createElement('p');
+              let func_addfile = "AddFileServer('"+nombre_img+"')";
+              let func_show_images = "media_server('"+num_card_img+"','"+nombre_img+"')"
+              url_img = "/static/imgs/" + nombre_img 
+              $imgcard1.setAttribute("src",url_img);
+              $imgcard1.setAttribute("id",nombre_img);
+              $ipcard2.setAttribute("type","file");
+              $ipcard2.setAttribute("name",nombre_img);
+              $ipcard2.setAttribute("enctype" ,"multipart/form-data");
+              $ipcard2.textContent = "Change imagen ...";
+              $ipcard2.setAttribute("id","change_imagen");
+              $acard1.setAttribute("class","btn red btn-floating halfway-fab pulse activator");
+              $acard1.textContent = "+";
+              $acard1.setAttribute("onclick",func_show_images);
+              $acard2.setAttribute("class","waves-effect waves-light btn-small");
+              $acard2.textContent = "Upload file";
+              $acard2.setAttribute("onclick",func_addfile);
+              $spancard1.setAttribute("class","card-title");
+              $spancard1.textContent = "Nuevo post.";
+              $pcard1.textContent = nombre_product;
+              $icard1.setAttribute("class","right");
+              $divcard2.setAttribute("class", "col l4 m4 s12");
+              $divcard3.setAttribute("class", "card sticky-action");
+              $divcard4.setAttribute("class", "card-image");
+              $divcard5.setAttribute("class", "card-content");
+              $divcard6.setAttribute("id", num_card_img);
+              $divcard6.setAttribute("class", "card-reveal");
+              $divcard7.setAttribute("class", "card-action");
+              $divcard2.appendChild($divcard3);
+              $divcard3.appendChild($divcard4);
+              $divcard4.appendChild($imgcard1);
+              $divcard4.appendChild($acard1);
+              $divcard3.appendChild($divcard5);
+              $divcard5.appendChild($pcard1);
+              $divcard3.appendChild($divcard6);
+              $divcard6.appendChild($spancard1);
+              $spancard1.appendChild($icard1);
+              $divcard3.appendChild($divcard7);
+              $divcard7.appendChild($ipcard2);
+              $divcard7.appendChild($acard2);
+              $fragment_card.appendChild($divcard2);
+            }  
+        }
+        $divcard1.appendChild($fragment_card);
+        contenedorSecond.appendChild($divcard1); */
+        //contenedorSecond.appendChild($collapsible);
+    })
+}
+
 async function media_server(id,id2){
     try {
         let $contenedor = document.getElementById(id);
@@ -631,8 +706,8 @@ async function media_server(id,id2){
                     let change_media_server = "change_media_server('"+element+"','"+id2+"')" 
                     let $divimagex = document.createElement('div');
                     let $imagexserver = document.createElement('img');
+                    let url_img_file = "/static/upload/" + element;
                     $divimagex.setAttribute("class","col s6 m6")
-                    url_img_file = "/static/upload/" + element 
                     $imagexserver.setAttribute("src",url_img_file)
                     $imagexserver.setAttribute("onclick",change_media_server);
                     $imagexserver.setAttribute("class","materialboxed responsive-img separador")
@@ -665,10 +740,8 @@ async function change_media_server(name_media_server,name_media_bd){
             })
           });
         const data = await media_server.json();
+
     } catch (error) {
         console.log(error);
     }
-  }
-
-
-
+}

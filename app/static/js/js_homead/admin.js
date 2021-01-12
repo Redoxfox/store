@@ -779,7 +779,268 @@ function stopDefAction(evt) {
       });
 } 
 
+/****************************************** 
+*Funcion para mostrar elementos de tablas
+*******************************************/
 
+async function show_lists(){
+    let contenedor = document.getElementById("contenedor_principal");
+    let contenedorSecond = document.getElementById("nodoSecond");
+    const url = window.origin + "/upload/" 
+    contenedor.removeChild(contenedorSecond);
+    contenedorSecond = document.createElement('div');
+    contenedorSecond.setAttribute("id","nodoSecond");
+    contenedor.appendChild(contenedorSecond);
+  
+    try {
+        let entry = {
+            name_media_server:'hola'
+        }; 
+        const url_media_server = window.origin + "/all_productos_store";
+        const media_server = await fetch(url_media_server,{
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(entry),
+            cache: "no-cache",
+            headers: new Headers({
+              "content-type": "application/json"
+            })
+          });
+        const data = await media_server.json();
+        console.log(data)
+        let contenedor = document.getElementById("contenedor_principal");
+        let contenedorSecond = document.getElementById("nodoSecond");
+        let $fragment_tbody = document.createDocumentFragment();
+        contenedor.removeChild(contenedorSecond);
+        contenedorSecond = document.createElement('div');
+        contenedorSecond.setAttribute("id","nodoSecond");
+        contenedor.appendChild(contenedorSecond); 
+        contenedorSecond.setAttribute("class","container")
+        let $table = document.createElement('table');
+        let $thead = document.createElement('thead');
+        let $tr = document.createElement('tr');
+        let $th_id = document.createElement('th');
+        let $th_name = document.createElement('th');
+        let $th_precio = document.createElement('th');
+        let $tbody = document.createElement('tbody');
+        $th_id.textContent = "id";
+        $th_name.textContent = "name";
+        $th_precio.textContent = "precio";
+        contenedorSecond.appendChild($table);
+        $table.appendChild($thead);
+        $thead.appendChild($tr);
+        $tr.appendChild($th_id);
+        $tr.appendChild($th_name);
+        $tr.appendChild($th_precio);
+        console.log(data)
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+               let key_table = Object.keys(data[key])
+               let value_key_id = data[key]['id_product'];
+               let value_key_name = data[key]['name'];
+               let value_key_precio = data[key]['precio'];
+               let $tr_fill = document.createElement('tr');
+               let $td_id = document.createElement('td');
+               let $td_name = document.createElement('td');
+               let $td_price = document.createElement('td');
+               let $td_edit = document.createElement('td');
+               let $a_boton = document.createElement('a');
+               let $i_boton = document.createElement('i');
+               let func_edit_product = "edit_product('"+value_key_id+"')";
+               $a_boton.setAttribute("class","btn-floating btn-large cyan pulse");
+               $i_boton.setAttribute("class","material-icons");
+               $i_boton.textContent = "edit"
+            //    <a class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
+               $a_boton.appendChild($i_boton);
+               $td_edit.appendChild($a_boton);
+               $a_boton.setAttribute("onclick",func_edit_product);
+               $td_id.textContent = value_key_id;
+               $td_name.textContent = value_key_name;
+               $td_price.textContent = value_key_precio;
+               $tr_fill.appendChild($td_id);
+               $tr_fill.appendChild($td_name);
+               $tr_fill.appendChild($td_price);
+               $tr_fill.appendChild($td_edit);
+               $fragment_tbody.appendChild($tr_fill);
+             }  
+
+         } 
+         $table.appendChild($tbody);
+         $tbody.appendChild($fragment_tbody);
+        /* let cont = 0
+        <table>
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Item Name</th>
+              <th>Item Price</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Alvin</td>
+            <td>Eclair</td>
+            <td>$0.87</td>
+          </tr>
+          <tr>
+            <td>Alan</td>
+            <td>Jellybean</td>
+            <td>$3.76</td>
+          </tr>
+          <tr>
+            <td>Jonathan</td>
+            <td>Lollipop</td>
+            <td>$7.00</td>
+          </tr>
+        </tbody>
+      </table>
+      
+     */
+        //contenedorSecond.appendChild($collapsible);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function edit_product(id){
+    let contenedor = document.getElementById("contenedor_principal");
+    let contenedorSecond = document.getElementById("nodoSecond");
+    contenedor.removeChild(contenedorSecond);
+    contenedorSecond = document.createElement('div');
+    contenedorSecond.setAttribute("id","nodoSecond");
+    contenedor.appendChild(contenedorSecond);
+    let listId_contenedor = document.createElement('div');
+    listId_contenedor.setAttribute("id", "form");
+    contenedorSecond.appendChild(listId_contenedor);
+    document.getElementById("nodoSecond").innerHTML =`
+    <h4>Registrar Producto</h4>
+    <div class="row">
+        <form id="form1" class="col s12">
+            <label>Proveedor:</label>
+            <select name="proveedor" id="proveedores" class = "stlselect">
+            </select>
+
+            <label>Categoria:</label>
+            <select name="categoria" id="categories" class = "stlselect">
+            </select>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="text" id="name" name = "producto" >
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input type="text"  name = "Precio" id = "precio" >
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea name="descricion" id="descricion" rows="5" cols="49">Write something here</textarea>
+                </div>
+            </div>
+
+            <label>Productos:</label>
+            <select name="productos" id="productos" class = "stlselect">
+            </select>
+            
+            <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddProduct(event);">Add New
+            </button>
+           
+        </form>
+        <p class="item_form">
+            <div id = "new_product"></div>
+        </p>
+    </div>`
+    contenedor.appendChild(contenedorSecond)
+
+    data_product_id(id);    
+}
+
+/*Llenar select proveedores*/
+function proveedores_id(id){
+    const url = window.origin + "/proveedores" 
+    let select = document.getElementById("proveedores");
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+       for (const key in data) {
+           if (id == data[key].id_proveedor) {
+            select.options[key] = new Option(data[key].name , data[key].id_proveedor,true,true);  
+           } else {
+            select.options[key] = new Option(data[key].name , data[key].id_proveedor);
+           }
+          
+        }
+    })
+}
+
+/*Llenar select categories*/
+function categories_id(id){
+    const url = window.origin + "/categories" 
+    let select = document.getElementById("categories");
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+       for (const key in data) {
+          if (id == data[key].id_category) {
+            select.options[key] = new Option(data[key].name , data[key].id_category, true, true); 
+           } else {
+            select.options[key] = new Option(data[key].name , data[key].id_category);
+           }
+        }
+    })
+}
+
+/*Llenar select categories*/
+function productos_id(id){
+    const url = window.origin + "/productos" 
+    let select = document.getElementById("productos");
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+       for (const key in data) {
+          
+          if (id == data[key].id_product) {
+            select.options[key] = new Option(data[key].name , data[key].id_product, true, true); 
+           } else {
+            select.options[key] = new Option(data[key].name , data[key].id_product);
+           }
+        }
+    })
+}
+
+async function data_product_id(id){
+
+    try {
+        let entry = {
+            name_media_server:'hola'
+        }; 
+        const url_media_server = window.origin + "/product_id/" + id + "/";
+        const media_server = await fetch(url_media_server,{
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(entry),
+            cache: "no-cache",
+            headers: new Headers({
+              "content-type": "application/json"
+            })
+          });
+        const data = await media_server.json(); 
+        document.getElementById("name").value = data[0]["name"];
+        document.getElementById("precio").value = data[0]["precio"];
+        document.getElementById("descricion").value= data[0]["descripcion"];
+        proveedores_id(data[0]["id_proveedor"]);
+        categories_id(data[0]["id_categoria"]);
+        productos_id(data[0]["id_product"]);
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 /*****************************************************************************************

@@ -9,6 +9,13 @@ import re, shutil
 from flask import jsonify
 from werkzeug.utils import secure_filename
 
+
+
+
+
+################################################################################################
+#Validacion y cunfiguración de datos
+################################################################################################
 dir_act = os.getcwd()
 route_file_config = dir_act 
 route_exist = route_file_config.find("store")
@@ -26,26 +33,15 @@ MODODESARROLLO = 'DEFAULT'
 URLBASE = CONFIG['DEFAULT']['URLBASE']
 ROOT_FILE = CONFIG['DEFAULT']['ROOT_FILE']
 
+#------------------------------------------------------------------------------------#
+#Administrador
+#------------------------------------------------------------------------------------#
 @app.route("/admin/", methods=["GET", "POST"])
 def admin():
     urlrev = URLBASE 
     username = CONFIG['TYPE_USER']['ROOT']
     return render_template("/admin/principal.html")
 
-
-@app.route("/tablas/", methods=["GET", "POST"])
-def tablas():
-    urlrev = URLBASE 
-    username = CONFIG['TYPE_USER']['ROOT']
-    connect = Model(username) 
-    tablas = connect.SHOW_TABLES(username)
-    print(tablas)
-    nom_server = {}
-    nom_server["server"] = server 
-    tablas.append(nom_server)
-    result = json.dumps(tablas)
-
-    return (result)
 
 @app.route("/validar", methods=["GET", "POST"])
 def validar():
@@ -83,6 +79,29 @@ def validar():
     else:
         return render_template("/registro/login.html")
 
+################################################################################################
+# Metodos de selección 
+################################################################################################
+
+## Gestión base de datos #######################################################################
+
+### Mostrar Tablas base de datos ###############
+@app.route("/tablas/", methods=["GET", "POST"])
+def tablas():
+    urlrev = URLBASE 
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect = Model(username) 
+    tablas = connect.SHOW_TABLES(username)
+    print(tablas)
+    nom_server = {}
+    nom_server["server"] = server 
+    tablas.append(nom_server)
+    result = json.dumps(tablas)
+
+    return (result)
+
+
+### Mostrar Estructura Tablas base de datos ###############
 @app.route("/Estructura_tabla/", methods=["POST"])
 def Estructura_tabla():
     Urlbase = URLBASE
@@ -96,7 +115,119 @@ def Estructura_tabla():
     
     return (estructura)
 
+##Gestión tienda virtual ######################################################################
+### Selección de categorias
+@app.route("/categories")
+def categories():
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    
+    Tabla_All_Categories= dict()
+    Tabla_All_Categories = {'TABLE':'category',
+        'Col1':'id_category',
+        'Col2':'name'
+    }
+   
+    DatosAllCategories = connect.SSP_TABLE(username, Tabla_All_Categories)
 
+    DatosAllCategories_json = json.dumps(DatosAllCategories) 
+    
+    return (DatosAllCategories_json) 
+
+### Selección de productos ####################################################################
+@app.route("/productos" , methods=["GET","POST"])
+def productos():
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    
+    Tabla_All_Products = dict()
+    Tabla_All_Products = {'TABLE':'products',
+        'Col1':'id_product',
+        'Col2':'name'
+    }
+   
+    DatosAllProducts = connect.SSP_TABLE(username, Tabla_All_Products)
+
+    DatosAllProducts_json = json.dumps(DatosAllProducts) 
+    
+    return (DatosAllProducts_json) 
+
+### Selección de todos los productos store ####################################################
+@app.route("/all_productos_store" , methods=["GET","POST"])
+def all_productos_store():
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    
+    Tabla_All_Products = dict()
+    Tabla_All_Products = {'TABLE':'products',
+        'Col1':'id_product',
+        'Col2':'name',
+        'Col3':'precio'
+    }
+   
+    DatosAllProducts = connect.SSP_TABLE(username, Tabla_All_Products)
+
+    DatosAllProducts_json = json.dumps(DatosAllProducts) 
+    
+    return (DatosAllProducts_json) 
+
+### Consultar datos producto por id ###########################################################
+@app.route('/product_id/<id>/', methods=['POST', 'GET'])
+def product_id(id):
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    wid = id
+    TablaProduct = dict()
+    TablaProduct = {'TABLE':'products',
+        'Col1':'id_product ',
+        'Col2':'id_proveedor',
+        'Col3':'id_categoria',
+        'Col4':'name',
+        'Col5':'precio',
+        'Col6':'descripcion',
+        'Whe7':'id_product=%s'
+        }
+    Data = (wid,)
+
+    DatosProductId = connect.SW_TABLE(username,TablaProduct, Data)
+
+    DatosProductId_json = json.dumps(DatosProductId)
+
+    return (DatosProductId_json)  
+
+
+### Selección de todos los proveedores store ##################################################
+@app.route("/proveedores" , methods=["GET","POST"])
+def proveedores():
+    urlrev = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    
+    Tabla_All_Proveedores= dict()
+    Tabla_All_Proveedores = {'TABLE':'proveedor',
+        'Col1':'id_proveedor',
+        'Col2':'name'
+    }
+   
+    DatosAllProveedores = connect.SSP_TABLE(username, Tabla_All_Proveedores)
+
+    DatosAllProveedores_json = json.dumps(DatosAllProveedores) 
+    
+    return (DatosAllProveedores_json) 
+
+
+
+################################################################################################
+# Metodos de inserción de datos
+################################################################################################
+
+## Gestión tienda virtual ######################################################################
+
+### Agregar nueva categoria ####################################################################
 @app.route("/AddCategory/", methods=["GET","POST"])
 def AddCategory():
     Urlbase = URLBASE
@@ -122,25 +253,8 @@ def AddCategory():
     
     return result
 
-@app.route("/categories")
-def categories():
-    urlrev = URLBASE
-    username = CONFIG['TYPE_USER']['ROOT']
-    connect=Model(username) 
-    
-    Tabla_All_Categories= dict()
-    Tabla_All_Categories = {'TABLE':'category',
-        'Col1':'id_category',
-        'Col2':'name'
-    }
-   
-    DatosAllCategories = connect.SSP_TABLE(username, Tabla_All_Categories)
 
-    DatosAllCategories_json = json.dumps(DatosAllCategories) 
-    
-    return (DatosAllCategories_json) 
-
-
+### Agregar nueva media ######################################################################
 @app.route("/AddMedia/", methods=["POST"])
 def AddMedia():
     Urlbase = URLBASE
@@ -158,25 +272,10 @@ def AddMedia():
         print(route_dir_files)
     else:
        route_dir_files = dir_act + "/app/static/upload/"
-       #print(route_dir_files) 
+
     productos = req["productos"]
     media = req["media"]
-    forma = req["forma"] 
-
-    ''' if media == "1":
-        img = "1"
-        video = "0"
-        name = "img" + img
-    else:
-        img = "0"
-        video = "1"
-        name = "video" + video
-
-    if forma == "portada":
-        tipo = "portada"
-    else:
-        tipo = "miniatura" '''
-        
+    forma = req["forma"]    
     id = None
     Insert_ofMedia = dict()
     Insert_ofMedia = {'TABLE':'media',
@@ -199,7 +298,6 @@ def AddMedia():
     id_img = str(proximo_id)
     video = "img"+id_img+"m"+productos+".jpg"
     Data = [id, productos, media, video, forma]
-    ''' result["new_proveedor"] = name '''
     res_insert = connect.IT_TABLE(username, Insert_ofMedia, Data) 
     shutil.copy(os.path.join(route_dir_files, "default.jpg"), route_dir_imgs)
     os.rename(os.path.join(route_dir_imgs, "default.jpg"), os.path.join(route_dir_imgs, video))
@@ -210,8 +308,6 @@ def AddMedia():
         'Col3':'media.img',
         'Col4':'media.video'
     }
-
-
     tables = dict()
     tables = {
         'table1':'media',
@@ -219,44 +315,12 @@ def AddMedia():
         'table2':'products',
         'id_t2':'id_product'
     }
-    
-    #DatosAllProveedores = connect.SSP_TABLE(username, Tabla_All_Proveedores)
     list_images = connect.SINJ_TABLE(username, Tabla_All_Images, tables) 
-    print(list_images)
-    result = json.dumps(list_images) 
-    ''' DatosAllProveedores_json = json.dumps(DatosAllProveedores) 
-    print(productos, media, forma) '''
-    """ name = req["name"]
-    direccion = req["direccion"]
-    telefono = req["telefono"]
-    web = req["web"]
-    email = req["email"] 
-    id = None
-    Insert_ofProveedor = dict()
-    Insert_ofProveedor = {'TABLE':'proveedor',
-        'Col1':'id_proveedor',
-        'Col2':'name',
-        'Col3':'direccion',
-        'Col4':'telefono',
-        'Col5':'web',
-        'Col6':'email',
-        'Val7':'%s',
-        'Val8':'%s',
-        'Val9':'%s',
-        'Val10':'%s',
-        'Val11':'%s',
-        'Val12':'%s'
-    } 
-
-
-    Data = [id, name, direccion, telefono, web, email]
-    result["new_proveedor"] = name
-    res_insert = connect.IT_TABLE(username, Insert_ofProveedor, Data)  """
-    
+    result = json.dumps(list_images)  
     return result
 
 
-
+### Agregar nuevo proveedor ###################################################################
 @app.route("/AddProveedor", methods=["POST"])
 def AddProveedor():
     Urlbase = URLBASE
@@ -293,26 +357,7 @@ def AddProveedor():
     
     return result
 
-@app.route("/proveedores" , methods=["GET","POST"])
-def proveedores():
-    urlrev = URLBASE
-    username = CONFIG['TYPE_USER']['ROOT']
-    connect=Model(username) 
-    
-    Tabla_All_Proveedores= dict()
-    Tabla_All_Proveedores = {'TABLE':'proveedor',
-        'Col1':'id_proveedor',
-        'Col2':'name'
-    }
-   
-    DatosAllProveedores = connect.SSP_TABLE(username, Tabla_All_Proveedores)
-
-    DatosAllProveedores_json = json.dumps(DatosAllProveedores) 
-    
-    return (DatosAllProveedores_json) 
-
-
-
+### Agregar nuevo producto ####################################################################
 @app.route("/AddProduct", methods=["POST"])
 def AddProduct():
     Urlbase = URLBASE
@@ -366,71 +411,17 @@ def AddProduct():
     
     return result
 
-@app.route("/productos" , methods=["GET","POST"])
-def productos():
-    urlrev = URLBASE
-    username = CONFIG['TYPE_USER']['ROOT']
-    connect=Model(username) 
-    
-    Tabla_All_Products = dict()
-    Tabla_All_Products = {'TABLE':'products',
-        'Col1':'id_product',
-        'Col2':'name'
-    }
-   
-    DatosAllProducts = connect.SSP_TABLE(username, Tabla_All_Products)
-
-    DatosAllProducts_json = json.dumps(DatosAllProducts) 
-    
-    return (DatosAllProducts_json) 
-
-@app.route("/add_palabra/", methods=["POST"])
-def add_palabra():
-    Urlbase = URLBASE
-    username = CONFIG['TYPE_USER']['ROOT']
-    connect = Model(username)   
-    req = request.get_json()
-    result = {}
-    id = None
-    english = req["english"].upper()
-    spanish = req["spanish"].upper() 
-    grupo = req["grupo"] 
-    ejemplos = req["ejemplos"]
-    
-    
-    wid = english
-    TSWVocabulary = dict()
-    TSWVocabulary = {'TABLE': 'vocabulary', 
-        'Col1': 'english',
-        'Whe2': 'english=%s'
-    }
-         
-    Data = (wid,)
-    DatosVocabulary = connect.SW_TABLE(username, TSWVocabulary, Data)
-
-    if DatosVocabulary:
-        result["new_topico"] = "Ya se encuentra registrado " + english + " en BD"
-    else:
-        Insert_ofvocabulary = dict()
-        Insert_ofvocabulary = {'TABLE':'vocabulary',
-            'Col1':'id',
-            'Col2':'english',
-            'Col3':'spanish',
-            'Col4':'grupo',
-            'Col5':'ejemplos',
-            'Val6':'%s',
-            'Val7':'%s',
-            'Val8':'%s',
-            'Val9':'%s',
-            'Val10':'%s'
-        }
-        Data = [id,  english, spanish,  grupo, ejemplos]
-        result["new_topico"] = "Registro exitoso"
-        res_insert = connect.IT_TABLE(username,  Insert_ofvocabulary, Data) 
-        
-    return result
 
 
+
+
+################################################################################################
+# Metodos de actualización de datos
+################################################################################################
+
+## Gestión tienda virtual ######################################################################
+
+### Actualizar producto.
 
 
  
