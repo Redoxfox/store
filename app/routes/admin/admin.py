@@ -421,7 +421,82 @@ def AddProduct():
 
 ## Gestión tienda virtual ######################################################################
 
-### Actualizar producto.
+### Actualizar producto datos de producto
+@app.route('/edit_product/<id>/', methods=['POST', 'GET'])
+def edit_product(id):
+    Urlbase = URLBASE
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect = Model(username)   
+    req = request.get_json()
+    result = {}
+    """ urlrev = URLBASE 
+    username = CONFIG['TYPE_USER']['ROOT']
+    connect=Model(username) 
+    if request.method == "POST":
+        id = request.form['id']
+        tipo = request.form['tipo']
+        costo = request.form['costo']
+        obs = request.form['obs'] """
+    """ Update_ofservicio = dict()
+    Update_ofservicio = {'TABLE':'servicio',
+            'Val1':'tipo=%s',
+            'Val2':'costo=%s',
+            'Val3':'detalles=%s',
+            'Whe4':'id='+ id
+        }
+    Data = [tipo, costo, obs] """
+    '''Update_TOServicio= Model(Update_ofservicio)
+    sql = Update_TOServicio.UPT_TABLE()
+    cursor = db1.cursor()
+    cursor.execute(sql, (tipo, costo, obs))
+    cursor.close()
+    db1.commit()'''
+
+    """ res_update = connect.UPWT_TABLE(username, Update_ofservicio, Data)
+
+    TSSOfServicio = dict()
+    TSSOfServicio  = {'TABLE':'servicio',
+        'Col1':'id',
+        'Col2':'tipo',
+        'Col3':'costo',
+        'Col4':'detalles'
+        }
+    DatosOfServicio = connect.SSP_TABLE(username,TSSOfServicio)
+    return render_template("/lavasplash/ListaOfServicios.html", url = urlrev, Oferta_Servicio = DatosOfServicio) """
+
+    """   nombre_tabla = "products"
+    nombre_id = "id_product"
+    id_max = connect.MAX_ID_TABLE(username, nombre_tabla  , nombre_id) 
+    proximo_id = id_max[0]["max_id"] + 1
+    name_img_default = "img_product_" + str(proximo_id)
+    if route_exist > 0:
+        route_dir_files = dir_act + "/app/static/upload/"
+        route_dir_imgs = dir_act + "/app/static/imgs/"
+    else:
+       route_dir_files = dir_act + "/app/static/upload/"
+
+    shutil.copy(os.path.join(route_dir_files, "default.jpg"), route_dir_imgs)
+    os.rename(os.path.join(route_dir_imgs, "default.jpg"), os.path.join(route_dir_imgs, name_img_default)) """
+    
+    id_proveedor = req["id_proveedor"]
+    id_categoria = req["id_categoria"] 
+    producto = req["producto"]
+    precio = req["precio"]
+    descricion = req["descricion"]
+
+    update_ofproduct = dict()
+    update_ofproduct = {'TABLE':'products',
+        'Val1':'id_proveedor=%s',
+        'Val2':'id_categoria=%s',
+        'Val3':'name=%s',
+        'Val4':'precio=%s',
+        'Val5':'descripcion=%s',
+        'Whe6':'id_product=' + id
+    } 
 
 
- 
+    data = (id_proveedor, id_categoria, producto, precio, descricion)
+    result["new_proveedor"] = producto
+    res_insert = connect.UPWT_TABLE(username, update_ofproduct, data) 
+    
+    return result

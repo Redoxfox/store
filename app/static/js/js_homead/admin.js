@@ -429,7 +429,7 @@ function new_product(){
         productos();
 }
 
-/*Formulario agregar nuevas categorias*/
+/*Formulario agregar nuevo producto*/
 function AddProduct(evt) {
     evt.preventDefault();
     console.log(evt)
@@ -849,8 +849,7 @@ async function show_lists(){
                let func_edit_product = "edit_product('"+value_key_id+"')";
                $a_boton.setAttribute("class","btn-floating btn-large cyan pulse");
                $i_boton.setAttribute("class","material-icons");
-               $i_boton.textContent = "edit"
-            //    <a class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
+               $i_boton.textContent = "edit";
                $a_boton.appendChild($i_boton);
                $td_edit.appendChild($a_boton);
                $a_boton.setAttribute("onclick",func_edit_product);
@@ -867,37 +866,6 @@ async function show_lists(){
          } 
          $table.appendChild($tbody);
          $tbody.appendChild($fragment_tbody);
-        /* let cont = 0
-        <table>
-        <thead>
-          <tr>
-              <th>Name</th>
-              <th>Item Name</th>
-              <th>Item Price</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
-          </tr>
-        </tbody>
-      </table>
-      
-     */
-        //contenedorSecond.appendChild($collapsible);
     } catch (error) {
         console.log(error);
     }
@@ -914,9 +882,16 @@ function edit_product(id){
     listId_contenedor.setAttribute("id", "form");
     contenedorSecond.appendChild(listId_contenedor);
     document.getElementById("nodoSecond").innerHTML =`
-    <h4>Registrar Producto</h4>
+    <h4>Editar Registro Producto</h4>
     <div class="row">
         <form id="form1" class="col s12">
+            <div class="row">
+                <label>Id producto:</label>
+                <div class="input-field col s12">
+                    <input type="text"  id = "id_producto" value = ${id} disabled>
+                </div>
+            </div>
+
             <label>Proveedor:</label>
             <select name="proveedor" id="proveedores" class = "stlselect">
             </select>
@@ -947,7 +922,7 @@ function edit_product(id){
             <select name="productos" id="productos" class = "stlselect">
             </select>
             
-            <button class="btn waves-effect waves-light" type="submit" center-align onclick="AddProduct(event);">Add New
+            <button class="btn waves-effect waves-light" type="submit" center-align onclick="EditProduct(event);">Update
             </button>
            
         </form>
@@ -1040,6 +1015,56 @@ async function data_product_id(id){
     } catch (error) {
         console.log(error);
     }
+}
+
+/*Formulario agregar nuevo producto*/
+function EditProduct(evt) {
+    evt.preventDefault();
+    let id_product = evt.target.form[0].value
+    let proveedor = evt.target.form[1].value
+    let categoria = evt.target.form[2].value
+    let producto = evt.target.form[3].value
+    let precio = evt.target.form[4].value
+    let descricion = evt.target.form[5].value
+    const url = window.origin +  "/edit_product/" + id_product + "/";
+    console.log(id_product)
+    console.log(proveedor)
+    console.log(categoria)
+    console.log(producto)
+    console.log(precio)
+    console.log(descricion)
+
+    var entry = {
+        id_proveedor : proveedor,
+        id_categoria : categoria,
+        producto : producto,
+        precio : precio,
+        descricion : descricion
+    }; 
+
+    //console.log(entry)
+
+    fetch(url, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(entry),
+      cache: "no-cache",
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    })
+    .then(function (response) {
+        if (response.status !== 200) {
+            console.log(`Looks like there was a problem. Status code: ${response.status}`);
+            return;
+        }
+        response.json().then(function (data) {
+        show_lists();
+        });
+    })
+    .catch(function (error) {
+        console.log("Fetch error: " + error);
+    });    
 }
 
 

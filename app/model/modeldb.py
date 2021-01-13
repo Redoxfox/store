@@ -442,9 +442,9 @@ class Model:
             cursor.execute(sql, args_up)
             con.commit() 
             cursor.close()
-            print(args_up)
+            
 
-            update = True
+            update = True 
         except:
             update = False
         

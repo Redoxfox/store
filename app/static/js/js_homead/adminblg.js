@@ -382,6 +382,7 @@ function AddFileServer(name_img) {
         }
         response.json().then(function (data) {
             console.log(data);
+            Change_img_blg()
             
         });
     })
