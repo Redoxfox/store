@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sandyvital Store</title>
+    
     <link href= "{{ url_for('static', filename='css/css_homels/indexls.css') }}" rel="stylesheet" type="text/css" media="screen" /> 
     <link href= "{{ url_for('static', filename='css/font.css') }}" rel="stylesheet" type="text/css" media="screen" />   
     <link href="https://fonts.googleapis.com/css?family=Baskervville&display=swap" rel="stylesheet"> 
@@ -63,22 +64,62 @@
 
     <!-- Sección de imagenes y descripción breve del producto -->
     <section class="top-container">
+       <!-- Publicidad del sitio-->
+       <div class="pago">
+          <h5>MEDIOS DE PAGO:</h5>
+          <div>
+            <ul>
+              <li>Efecty</li>   
+              <li>Gana</li>
+              <li>Su Red</li>
+              <li>Bancolombia</li>
+            </ul>
+          </div>
+      </div>
       <!-- Imagen de producto-->
-      <div class="img_product" >
-        <img class="img-project" id="img_product" src="https://picsum.photos/400/400" >
+      <div class="img_product_store">
+        <img id="img_product" class="img_product" src="https://picsum.photos/400/500" >
       </div>
       <!-- Descripcion de producto-->
-      <div class="description">
+      <div class="description-product">
         <div id="id_product" class="description-product">
           <div id="title-product"> DEPILWONDER ESPUMA X 1 KIT</div>
           <div id="price-product">$69900</div>
-          <p>Dile adios a la cera y cuchillas!!!..</p>
-          <p>Sabemos que quieres estar libre de vellos, sin gastar tiempo rasurandote o usando
-            cuchillas que te dañan la piel. Quieres evitar irritación una depilación sin dolor.
-            Aplicamos diciendo adios a la irritación y ardor de forma facil y rapida. Duración 
-            aproximada para aparición de vellos de 20 a 25 días.
-          </p>
-          <div class="more-info"><a href="#" id="more-info">Saber mas ...</a></div>
+          <br>
+          <div>
+            <label class="talla_s">
+              S
+            </label >
+
+            <label class="talla_m">
+              M
+            </label>
+
+            <label class="talla_l">
+              L
+            </label>
+
+            <label class="talla_xl">
+              XL
+            </label>
+
+            <label class="talla_xxl">
+              XXL
+            </label>
+          </div>
+          <div >
+            <div class="instrucciones">
+              <h5>CARACTERÍSTICAS PRINCIPALES:</h5>
+              <div>
+                <ul>
+                  <li>Estampado</li>   
+                  <li>Genero: Hombre</li>
+                  <li>Manga: Corta</li>
+                  <li>Cuello: Redondo</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div> 
       </div>
     </section>
@@ -87,10 +128,13 @@
     <section id="more_product" class="more-products" class="boxes">
       
       <!-- Producto aleatorio 1-->
-      <div class="top-box-a" class="box" id="box_a">
-        <h4 id="product_a">Membresia <span id="azul">Azul</span></h4>
-        <p class="price" id="price_a">100000$</p>
-        <a href="" class="btn" id="url_product_a">Ver producto</a>
+      <div class="top-box-a"  id="box_a">
+        <img class="img-item"  src="{{ url_for('static', filename='imgs/img4m11.jpg') }}">
+        <div class="data_product">
+          <h4 id="product_a" class="item-data-product">Membresia <span id="azul">Azul</span></h4>
+          <p class="item-data-product" id="price_a">100000$</p>
+          <a href="" class="btn_product" id="url_product_a">Ver producto</a>
+        </div>
       </div>
 
       <!-- Publicidad del sitio-->
@@ -103,174 +147,59 @@
 
       <!-- Producto aleatorio 2-->
       <div class="top-box-b" id="box_b">
-        <h4 id="product_b">Membresia<span id="verde">Verde</span></h4>
-        <p class="price" id="price_b">200000$</p>
-        <a href="" class="btn1" id="url_product_b">Ver producto</a>
+        <img class="img-item"  src="{{ url_for('static', filename='imgs/img4m11.jpg') }}" >
+        <div class="data_product">
+          <h4 id="product_b" class="item-data-product">Membresia<span id="verde">Verde</span></h4>
+          <p class="item-data-product" id="price_b">200000$</p>
+          <a href="" class="btn_product" id="url_product_b">Ver producto</a>
+        </div>
       </div>
     </section>
 
        <!-- Sección de boxes de información del producto -->
        <section class="boxes" id="boxes">
         <div class="box">
-          <h3>INSTRUCCONES DE USO:</h3>
+          <h3>NOTAS IMPORTANTES:</h3>
           <div class="instrucciones">
             <ul>
-              <li>Leer hoja adjunta  <strong>!MUY IMPORTANTE!!!</strong></li>
-              <li>Hacer una prueba de sensibilidad en la zona a depilar. 
-                Recuerde que es un producto masivo y no todas las personas 
-                reaccionan igual a los productos cosméticos. 
-                El olor es característico de todo producto depilador.</li>
-              <li>Limpiar muy bien el área a depilar, la piel no debe tener residuos o estar 
-                impregnada de perfumes, aceites, cremas, desodorantes ni similares. 
-                Al estar en contacto con el Depilwonder puede reaccionar y causar irritación 
-                por lo tanto debe lavar muy bien la zona antes de depilar.</li>
-              <li>Agitar el producto, hacer una aplicación generosa y uniforme, esparcir con 
-                ayuda de los dedos, no realizar esta acción muy fuerte para no causar daños en 
-                la piel. procure de dejar bien empapada el área a depilar.</li>
-              <li>Espere 60 segundos hasta que el vello este oscuro y con textura chicluda limpiar con una 
-                toallita húmeda el exceso del producto y los vellos.
+              <li>El envio del producto es gratis a todo el pais siempre y cuando exista una compañia de 
+                envíos que tenga disponibilidad de entrega al lugar de residencia del cliente.
+              </li> 
+              <li>La mayoría de pedidos se despachan o se producen en el acto, si usted no informa 
+                oportunamente un error o cambio en su pedido este se podría enviar o 
+                producirse antes que usted nos escriba.</li>
+              <li>Debido al brillo del celular o monitor del computador, el color del artículo real 
+                quizá sea levemente diferente de la imagen mostrada.</li>
+              <li>El sistema de estampado con textura tipo sello hace que cada prenda tenga ligeras 
+                variaciones como manchas y tramas que hacen cada prenda única.</li>
+              <li>Revise las medidas por talla, no se realizan devoluciones por tallas equivocadas.
+                Una vez comprado el producto este podría tardar de 1 a 2 días en ser despachado.</li>
+              <li>Una vez verificado el pago se realizara el envio del producto por la compañia de envíos
+                con mayor facilidad para entrega del producto en el lugar de residencia del cliente.
               </li>
-              <li>Después que el área este totalmente limpia, aplicar suficiente crema 
-                hidratante en la zona depilada.</li> 
-              <li>Repetir estos pasos hasta terminar la depilación</li>
+              <li>Se compartira con el cliente una vez realizado el envío toda la información relacionada con
+                el numero de guía del envío por via whatsapp mensaje de texto o email.
+              </li>
+              <li>Si por algún motivo no tiene respuesta de los vendedores tenga paciencia, podrían estar ocupados 
+                en el momento.</li>
+              <li>Los envíos se realizan en días hábiles.</li>
             </ul>
           </div>
         </div>
-        <div class="box">
-          <h3>PRECAUCIONES DE USO:</h3>
-          <div class="instrucciones">
-            <ul>
-              <li>Cuando desee hacer la aplicación en áreas muy amplias como el pecho o la espalda,
-                por favor divida la zona. No haga una sola aplicación en áreas tan extensas.
-             </li>   
-             <li>No aplique dos veces el producto en la misma zona inmediatamente, 
-               esto puede causar irritación.
-             </li>
-             <li>Después de realizar la depilación lavar inmediatamente las manos, no dejar 
-               impregnada las manos o cualquier otra área del cuerpo con el producto.
-             </li>
-             <li>Uso no apto para menores de 16 años, mujeres embarazadas, personas con piel sensible, 
-               personas con heridas, quemaduras o barros</li>
-             <li> No usar en tatuajes recién hechos.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="box">
-          <h3>DATOS ADICIONALES:</h3>
-          <div class="instrucciones">
-            <h5>SE PUEDE APLICAR EN:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Axilas</li>   
-                <li>Bikini</li>
-                <li>Espalda</li>
-              </ul>
-              <ul>
-                <li>Pecho</li>   
-                <li>Brazos</li>
-                <li>Piernas</li>
-              </ul>
-            </div>
-
-            <h5>NO SE PUEDE APLICAR EN:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Cabeza</li>   
-                <li>Barba</li>
-                <li>Bozo</li>
-              </ul>
-              <ul>
-                <li>Rostro</li>   
-                <li>Pene</li>
-                <li>Testículos</li>
-                <li>Labios Vaginales</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="box">
-          <h3>DATOS TECNICOS DEL PRODUCTO:</h3>
-          <div class="instrucciones">
-            <h5>COMPONENTES:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Aqua</li>   
-                <li>Sucrose</li>
-                <li>Zea May Starch</li>
-                <li>Propylene glycol</li>
-                <li>Sodium Laureth Sulfate</li>
-                <li>Tocopheryl Acetate (Vitamina E)</li>
-              </ul>
-              <ul>
-                <li>Parfum</li>   
-                <li>Collagen</li>
-                <li>Mentha Piperita Extract</li>
-                <li>Camellia Sinensis Leaf Extract</li>
-                <li>Aloe barbadensis Leaf Extract, </li>
-              </ul>
-            </div>
-
-            <h5>TAMAÑOS:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Espuma Depilwonder </li>   
-                <li>150 ml</li>
-              </ul>
-              <ul>
-                <li>Hidratante </li>   
-                <li>120 ml</li>
-              </ul>
-            </div>
-            <h5>REGISTROS INVIMA:</h5>
-            <div class="zona1">
-              <ul>
-                <li>Espuma Depilwonder </li>   
-                <li>NSOC84490-18CO</li>
-              </ul>
-              <ul>
-                <li>Hidratante </li>   
-                <li>NSOC93885-19CO</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="box">
-          <h3>PREGUNTAS FRECUENTRES:</h3>
-          <div class="instrucciones">
-            <ul>
-              <li> <strong>¿Desaparece el vello?</strong> 
-                <br>
-                Con el USO PROLONGADO de la espuma depiladora, el vello se va adelgazando y 
-                apareciendo nuevamente en espacios más prolongados de tiempo.
-             </li>   
-             <li><strong>¿Cuánto se demora el vello en volver a salir?</strong>
-              <br> 
-              Es diferente de cada persona, lo importante es que su uso prolongado ayuda a que 
-              la aparición del vello sea más espaciado en tiempo
-             </li>
-             <li><strong>¿Es normal el olor?</strong> 
-              <br>   
-              Si, todas las depiladoras tienen ese olor característico por su componente activo SULFURO, 
-              no queda impregnado en la piel y también se dispersa rápidamente del ambiente.
-             </li>
-            </ul>
-          </div>
-        </div>
-    </section>
-
+    
     <!-- Sección de boxes de información de categorias de producto-->
     <section class="boxes">
       <div class="box_item">
-        <img src="{{ url_for('static', filename='imgs/belleza.png') }}">
-        <h3>Belleza</h3>
-        <p>Produtos para el cuidado personal y belleza.</p>
-        <a href="{{url}}/Products/1/" class="btn">Ver productos</a>
+        <img src="{{ url_for('static', filename='imgs/camisa.png') }}">
+        <h3>Camisetas y buzos</h3>
+        <p>Camisetas y buzos estampados de diseños de anime, bandas de rock, comics, video juegos y mucho mas!!!</p>
+        <a href="{{url}}/Products/1/" class="btn">Ver catalogo de productos</a>
       </div>
       <div class="box_item">
-        <img src="{{ url_for('static', filename='imgs/nutrition.png') }}">
-        <h3>Nutrición</h3>
-        <p>Productos para nutrición y salud.</p>
-        <a href="{{url}}/Products/2/" class="btn">Ver productos</a>
+        <img src="{{ url_for('static', filename='imgs/reloj.png') }}">
+        <h3>Accesorios</h3>
+        <p>Relojes de varios estilos, tamaños, marcas y colores.</p>
+        <a href="{{url}}/Products/2/" class="btn">Ver catalogo de productos</a>
       </div>
       <!--<div class="box_item">
         <img src="{{ url_for('static', filename='imgs/dryer.png') }}">

@@ -26,10 +26,8 @@ body{
 
 .items>a{
     color:white;
-    text-decoration:none;
-    
-    
- }
+    text-decoration:none; 
+}
 
  .precio>a{
     color:white;
@@ -43,9 +41,9 @@ body{
     border: 2px solid #0016b0;
  }
 
-img{
+/* img{
     width:100%;
-}
+} */
 .servicios .contenedor{
     display: grid;
 }

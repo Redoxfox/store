@@ -85,8 +85,8 @@ function background_media (){
         url_product_a.setAttribute("href", url_img_a);
         ruta_img_a = "/static/imgs/" + nom_imagen_a
         boxa.classList.add("box");
-        boxa.style.backgroundImage = "url("+ruta_img_a+")"; 
-        boxa.style.backgroundPosition="center";
+        //boxa.style.backgroundImage = "url("+ruta_img_a+")"; 
+        //boxa.style.backgroundPosition="center";
        
         nom_imagen_b = media2[0].media;
         product_b.textContent = media2[0].name;
@@ -95,7 +95,7 @@ function background_media (){
         url_product_b.setAttribute("href", url_img_b);
         ruta_img_b = "/static/imgs/" + nom_imagen_b;
         boxb.classList.add("box");
-        boxb.style.backgroundImage = "url("+ruta_img_b+")"; 
+        //boxb.style.backgroundImage = "url("+ruta_img_b+")"; 
         boxb.style.backgroundPosition="center";
        
     })

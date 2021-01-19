@@ -1,4 +1,4 @@
-//Array imagenes 
+/* //Array imagenes 
 
 let content_static = ['/static/video/DWPierna.mp4',
 '/static/video/DWBrazo.mp4',
@@ -118,3 +118,4 @@ function rotarImagenes(){
     document.getElementById(id).src= content_static[num_diapositiva];
     background_media();
 } 
+ */
