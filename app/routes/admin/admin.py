@@ -296,11 +296,12 @@ def AddMedia():
     id_max = connect.MAX_ID_TABLE(username, nombre_tabla  , nombre_id) 
     proximo_id = id_max[0]["max_id"] + 1
     id_img = str(proximo_id)
-    video = "img"+id_img+"m"+productos+".jpg"
+    # video = "img"+id_img+"m"+productos+".jpg"
+    video = "img_product_"+productos+".jpeg"
     Data = [id, productos, media, video, forma]
     res_insert = connect.IT_TABLE(username, Insert_ofMedia, Data) 
-    shutil.copy(os.path.join(route_dir_files, "default.jpg"), route_dir_imgs)
-    os.rename(os.path.join(route_dir_imgs, "default.jpg"), os.path.join(route_dir_imgs, video))
+    """ shutil.copy(os.path.join(route_dir_files, "default.jpg"), route_dir_imgs)
+    os.rename(os.path.join(route_dir_imgs, "default.jpg"), os.path.join(route_dir_imgs, video)) """
     Tabla_All_Images = dict()
     Tabla_All_Images = {'TABLE':'media',
         'Col1':'media.id',
@@ -370,7 +371,7 @@ def AddProduct():
     nombre_id = "id_product"
     id_max = connect.MAX_ID_TABLE(username, nombre_tabla  , nombre_id) 
     proximo_id = id_max[0]["max_id"] + 1
-    name_img_default = "img_product_" + str(proximo_id)
+    name_img_default = "img_product_" + str(proximo_id) + ".jpeg"
     if route_exist > 0:
         route_dir_files = dir_act + "/app/static/upload/"
         route_dir_imgs = dir_act + "/app/static/imgs/"

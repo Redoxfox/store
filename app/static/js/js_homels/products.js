@@ -10,11 +10,11 @@ function file_static(id) {
         }) 
         console.log(media1[0]["video"])
         console.log(media1.length)
-        id_ini = 0
-        id_end = media1.length - 1
-        index = aleatorio(id_ini, id_end)
-        nom_img = media1[index]["video"]
-        url_img  = "/static/imgs/" + nom_img
+        let id_ini = 0
+        let id_end = media1.length - 1
+        let index = aleatorio(id_ini, id_end)
+        let nom_img = media1[index]["video"]
+        let url_img  = "/static/imgs/" + nom_img
         document.getElementById("img_product").src= url_img 
     })
 }
@@ -29,7 +29,7 @@ var contador=0;
 
 
 window.addEventListener('load', () => {
-    cadena = window.location.href
+    let cadena = window.location.href
     console.log(cadena)
     var arrayDeCadenas = cadena.split("/");
     console.log(arrayDeCadenas[4]);
@@ -45,10 +45,10 @@ function background_media (){
     fetch(url)
     .then(res => res.json())
     .then(data =>{ 
-        b = data.length - 1
-        a = 1
-        num_imagen1 = Math.round(Math.random()*(b-a)+parseInt(a))
-        num_imagen2 = Math.round(Math.random()*(b-a)+parseInt(a))
+        let b = data.length - 1
+        let a = 1
+        let num_imagen1 = Math.round(Math.random()*(b-a)+parseInt(a))
+        let num_imagen2 = Math.round(Math.random()*(b-a)+parseInt(a))
         if (num_imagen1 == num_imagen2) {
            if (num_imagen2 == b) {
              num_imagen1 = b - 1
@@ -78,22 +78,22 @@ function background_media (){
         let product_b = document.getElementById("product_b");
         let price_b = document.getElementById("price_b");
         let url_product_b = document.getElementById("url_product_b");
-        nom_imagen_a = media1[0].media;
+        let nom_imagen_a = media1[0].media;
         product_a.textContent = media1[0].name;
         price_a.textContent = media1[0].precio + "$";
-        url_img_a = window.origin +"/" + "ver_product" + "/" + media1[0].id_product
+        let url_img_a = window.origin +"/" + "ver_product" + "/" + media1[0].id_product
         url_product_a.setAttribute("href", url_img_a);
-        ruta_img_a = "/static/imgs/" + nom_imagen_a
+        let ruta_img_a = "/static/imgs/" + nom_imagen_a
         boxa.classList.add("box");
         //boxa.style.backgroundImage = "url("+ruta_img_a+")"; 
         //boxa.style.backgroundPosition="center";
        
-        nom_imagen_b = media2[0].media;
+        let nom_imagen_b = media2[0].media;
         product_b.textContent = media2[0].name;
         price_b.textContent = media2[0].precio + "$";
-        url_img_b = window.origin + "/" + "ver_product" + "/" + media2[0].id_product
+        let url_img_b = window.origin + "/" + "ver_product" + "/" + media2[0].id_product
         url_product_b.setAttribute("href", url_img_b);
-        ruta_img_b = "/static/imgs/" + nom_imagen_b;
+        let ruta_img_b = "/static/imgs/" + nom_imagen_b;
         boxb.classList.add("box");
         //boxb.style.backgroundImage = "url("+ruta_img_b+")"; 
         boxb.style.backgroundPosition="center";

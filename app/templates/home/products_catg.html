@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestros productos</title>
-    <link href= "{{ url_for('static', filename='css/css_homels/indexls.css') }}" rel="stylesheet" type="text/css" media="screen" /> 
+    <link href= "{{ url_for('static', filename='css/css_homels/indexls.css') }}" rel="stylesheet" type="text/css" media="screen" />  
     <link href= "{{ url_for('static', filename='css/font.css') }}" rel="stylesheet" type="text/css" media="screen" />   
     <link href="https://fonts.googleapis.com/css?family=Baskervville&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet"> 
@@ -68,9 +68,9 @@
           <div class="title_ategory">Categorias:</div>
           <select name="category" id="category">
             {% for valor in Oferta_Servicio %}
-              {% if valor.id_category <= 2 %}
+               {% if valor.id_category <= 2 %} 
                 <option value={{valor.id_category }} onclick="category('{{valor.id_category }}')">{{ valor.name }}</option>
-              {% endif %}  
+               {% endif %}   
             {% endfor %}
           </select>
         </div>

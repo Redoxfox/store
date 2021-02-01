@@ -78,6 +78,7 @@ function background_media (){
         let url_img_a = window.origin +"/" + "ver_product" + "/" + media1[0].id_product
         url_product_a.setAttribute("href", url_img_a);
         let ruta_img_a = "/static/imgs/" + nom_imagen_a
+        document.getElementById("img_product_a").src= ruta_img_a
         //boxa.classList.add("box");
         //boxa.style.backgroundImage = "url("+ruta_img_a+")"; 
         //boxa.style.backgroundPosition="center";
@@ -88,7 +89,8 @@ function background_media (){
         price_b.textContent = media2[0].precio + "$";
         let url_img_b = window.origin + "/" + "ver_product" + "/" + media2[0].id_product
         url_product_b.setAttribute("href", url_img_b);
-        ruta_img_b = "/static/imgs/" + nom_imagen_b
+        let ruta_img_b = "/static/imgs/" + nom_imagen_b
+        document.getElementById("img_product_b").src= ruta_img_b
         //boxb.classList.add("box");
         //boxb.style.backgroundImage = "url("+ruta_img_b+")"; 
         //boxb.style.backgroundPosition="center";

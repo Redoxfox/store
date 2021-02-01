@@ -38,19 +38,20 @@ function category(id){
             let newarray = numbers.map(myFunction);
      
          function myFunction(item) {
-            if (item.id_product <= 12) {
-                 url_b = window.origin 
-                 show_p = "ver_product"
-                 box = `
-                 <img src="/static/imgs/${item.media}">
+            /*if (item.id_product <= 12) {
+            } } */
+                 let url_b = window.origin 
+                 let show_p = "ver_product"
+                 let box = `
+                 <img class="img_product" src="/static/imgs/${item.media}">
                  <h3>${item.name}</h3>
                  <p>$ ${item.precio}</p>
                  <p>${item.descripcion}</p>
-                 <a href="${url_b}/${show_p}/${item.id_product}" class="btn">Ver servicios</a> `;
+                 <a href="${url_b}/${show_p}/${item.id_product}" class="btn">Ver producto</a> `;
                  return box   
-                } 
+                
          }
-         for (let index = 0; index < 12; index++) {
+         for (let index = 0; index < newarray.length; index++) {
             
              console.log(typeof newarray[index])
              
@@ -59,7 +60,7 @@ function category(id){
                 listItem.innerHTML = newarray[index];
                 listItem.classList.add("box");
                 box_root.appendChild(listItem);
-             }
+             }            
              
          }
           });

@@ -133,8 +133,7 @@ body {
 .img_product_store{
   grid-area: img_ps;
   width: 300px;
-  margin: 10px;
-  
+  margin: 10px; 
 }
 
 .description-product{
@@ -551,6 +550,10 @@ select{
   border-radius: 2px;
 }
 
+ /* Showcase */
+ .img_product{
+  width: 300px;
+}
 
 /* Media Queries */
 @media (max-width: 1100px) {

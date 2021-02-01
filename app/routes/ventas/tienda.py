@@ -30,14 +30,14 @@ def images():
     urlrev = URLBASE
     username = CONFIG['TYPE_USER']['ROOT']
     connect=Model(username) 
-    wid = "11"
+    wid = "0"
     Tabla_All_Images= dict()
     Tabla_All_Images = {'TABLE':'products',
         'Col1':'id_product',
         'Col2':'name',
         'Col3':'media',
         'Col4':'precio',
-        'Whe5':'id_product<%s'
+        'Whe5':'id_product>%s'
     }
     Data = (wid,)
     # SW_TABLE(username,TablaServicioAutomotor, Data)
