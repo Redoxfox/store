@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sandyvital Store</title>
-    
-    <link href= "{{ url_for('static', filename='css/css_homels/nosotros.css') }}" rel="stylesheet" type="text/css" media="screen" /> 
+    <link href= "{{ url_for('static', filename='css/css_homels/indexls.css') }}" rel="stylesheet" type="text/css" media="screen" /> 
     <link href= "{{ url_for('static', filename='css/font.css') }}" rel="stylesheet" type="text/css" media="screen" />   
     <link href="https://fonts.googleapis.com/css?family=Baskervville&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet"> 
@@ -47,13 +46,13 @@
       <nav class="main-nav">
         <ul>
           <li>
-            <a href="{{url}}/nosotros/">Nosotros</a>
+            <a href="{{url}}">Nosotros</a>
           </li>
           <li>
             <a href="{{url}}/All_Servicios/">Productos</a>
           </li>
           <li>
-            <a href="{{url}}/blog/">blog</a>
+            <a href="{{url}}">Contactenos</a>
           </li>
           <li>
             <a href="{{url}}/login">Iniciar Sesión</a>
@@ -64,60 +63,37 @@
 
     <!-- Sección de imagenes y descripción breve del producto -->
     <section class="top-container">
-      <!-- Publicidad del sitio-->
-      <div class="pago">
-        <div class="boxn1">
-          <h5 class="items-boxn">BREVE DESCRIPCION:</h5>
-          <p class="items-boxn">Quienes Somos!!!..</p>
-          <p class="items-boxn">
-            Somos una tienda virtual dedicada a la venta de productos de camisetas, busos, accesorios y tecnología.
-          </p>
-          <p class="items-boxn">
-            Nos enfocamos en brindar productos de alta calidad a nuestros clientes. Contamos con flexibilidad
-            de envios de nuestros productos a nivel nacional y metodos de pago faciles y seguros que le brindan
-            a nuestros clientes la confianza y credibilidad de los servicios que ofrecemos. 
-          </p>
-        </div>
-      </div>
-    
       <!-- Imagen de producto-->
-      <div class="img_product_store">
-        <img id="img_product" class="img_product" src="https://picsum.photos/400/500" >
+      <div class="img_product" >
+        <img class="img-project" id="img_product" src="https://picsum.photos/400/400" >
       </div>
-        
       <!-- Descripcion de producto-->
-      <div class="description-product">
-        <div class="boxn2">
-          <h5 class="items-boxn">INFORMACION MEDIOS DE PAGO:</h5>
-          <p class="items-boxn">
-            Nos encontramos en etapa de crecimiento y actualmente solo contamos con metodos de pago como:
+      <div class="description">
+        <div id="id_product" class="description-product">
+          <div id="title-product"> {{ Oferta_Servicio[0].name }}</div>
+          <div id="price-product">${{ Oferta_Servicio[0].precio }}</div>
+          <p>¡Deseas experimentar un cambio Extremo por dentro y fuera!!!!...</p>
+          <p>Fib Pluss Es un alimento rico en fibras solubles e insolubles: 
+            complementado con vitaminas, proteínas y minerales que dan un valioso 
+            aporte a la reducción de la obesidad y control de peso.
           </p>
-          <ul class="items-boxn">
-            <li>Transferencia bancaria</li>
-            <li>Transferencia Efecty</li>
-            <li>Transferencia GANA</li>
-            <li>Transferencia Su Red</li>
-          </ul>
-          <p class="items-boxn">
-            Somos una tienda responsable y una vez recibo el pago realizamos el envio del 
-            producto por la empresa de envios mas adeacuada para nuestros clientes y lo 
-            mantendremos informado de la respectiva guia del producto y estado de su envío. 
+          <p>Oferta Incluye:</p>
+
+          <p>
+            {{ Oferta_Servicio[0].descripcion }}
           </p>
-        </div>
+          <div class="more-info"><a href="#" id="more-info">Saber mas ...</a></div>
+        </div> 
       </div>
     </section>
     
     <!-- Sección más productos disponibles en tienda-->
-    <section id="more_product" class="more-products" class="boxes">
-      
+    <section class="more-products" id="more_product">
       <!-- Producto aleatorio 1-->
-      <div class="top-box-a"  id="box_a">
-        <img class="img-item" id="img_product_a" src="{{ url_for('static', filename='imgs/img4m11.jpg') }}">
-        <div class="data_product">
-          <h4 id="product_a" class="item-data-product">Membresia <span id="azul">Azul</span></h4>
-          <p class="item-data-product" id="price_a">100000$</p>
-          <a href="" class="btn_product" id="url_product_a">Ver producto</a>
-        </div>
+      <div class="top-box-a" id="box_a">
+        <h4 id="product_a">Membresia <span id="azul">Azul</span></h4>
+        <p class="price" id="price_a">100000$</p>
+        <a href="" class="btn" id="url_product_a">Ver producto</a>
       </div>
 
       <!-- Publicidad del sitio-->
@@ -130,60 +106,86 @@
 
       <!-- Producto aleatorio 2-->
       <div class="top-box-b" id="box_b">
-        <img class="img-item" id="img_product_b" src="{{ url_for('static', filename='imgs/img4m11.jpg') }}" >
-        <div class="data_product">
-          <h4 id="product_b" class="item-data-product">Membresia<span id="verde">Verde</span></h4>
-          <p class="item-data-product" id="price_b">200000$</p>
-          <a href="" class="btn_product" id="url_product_b">Ver producto</a>
-        </div>
+        <h4 id="product_b">Membresia <span id="verde">Verde</span></h4>
+        <p class="price" id="price_b">200000$</p>
+        <a href="" class="btn1" id="url_product_b">Ver producto</a>
       </div>
     </section>
 
        <!-- Sección de boxes de información del producto -->
-       <section class="boxes" id="boxes">
+      <section class="boxes" id="boxes">
         <div class="box">
-          <h3>NOTAS IMPORTANTES:</h3>
+          <h3>INSTRUCCONES DE USO:</h3>
           <div class="instrucciones">
             <ul>
-              <li>El envio del producto es gratis a todo el pais siempre y cuando exista una compañia de 
-                envíos que tenga disponibilidad de entrega al lugar de residencia del cliente.
-              </li> 
-              <li>La mayoría de pedidos se despachan o se producen en el acto, si usted no informa 
-                oportunamente un error o cambio en su pedido este se podría enviar o 
-                producirse antes que usted nos escriba.</li>
-              <li>Debido al brillo del celular o monitor del computador, el color del artículo real 
-                quizá sea levemente diferente de la imagen mostrada.</li>
-              <li>El sistema de estampado con textura tipo sello hace que cada prenda tenga ligeras 
-                variaciones como manchas y tramas que hacen cada prenda única.</li>
-              <li>Revise las medidas por talla, no se realizan devoluciones por tallas equivocadas.
-                Una vez comprado el producto este podría tardar de 1 a 2 días en ser despachado.</li>
-              <li>Una vez verificado el pago se realizara el envio del producto por la compañia de envíos
-                con mayor facilidad para entrega del producto en el lugar de residencia del cliente.
+              <li>
+                Tomar 1 cucharada en un vaso con agua en ayunas y 1/2 cucharada en la noche (si estas alternando el tratamiento de perdida de peso con el VIT GO entonces en la noche también 1/2 cucharadita - juntos los dos)
+              </li>   
+              <li>
+                En la noche, en el último cepillado, usar la crema dental de carbón activado 
+                para cepillarse preferiblemente por 3 a 4 minutos y luego enjuagar. 
               </li>
-              <li>Se compartira con el cliente una vez realizado el envío toda la información relacionada con
-                el numero de guía del envío por via whatsapp mensaje de texto o email.
+              <li>
+                El resto de los cepillados del día lo haces con tu crema dental tradicional. 
               </li>
-              <li>Si por algún motivo no tiene respuesta de los vendedores tenga paciencia, podrían estar ocupados 
-                en el momento.</li>
-              <li>Los envíos se realizan en días hábiles.</li>
+              <li>
+                Para óptimos resultados se recomienda usar el kit diariamente 2 veces al día como se 
+                indicó anteriormente
+              </li>
             </ul>
           </div>
         </div>
-    
+        <div class="box">
+            <h3>APORTES A LA SALUD ORAL:</h3>
+            <div class="instrucciones">
+              <h5>ELIMINA MANCHAS DE:</h5>
+              <div class="zona1">
+                <ul>
+                  <li>Café</li>   
+                  <li>Cigarrillo</li>
+                  <li>Vino</li>
+                </ul>
+              </div>
+  
+              <h5>BENEFICIOS:</h5>
+              <div class="instrucciones">
+                <ul>
+                  <li>No causa sensibilidad</li>   
+                  <li>Hasta 3 tonos más de blanco</li>
+                  <li>Seguro con el esmalte</li>
+                  <li>Resultados en primera semana de uso</li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </section>
+
     <!-- Sección de boxes de información de categorias de producto-->
     <section class="boxes">
       <div class="box_item">
-        <img src="{{ url_for('static', filename='imgs/camisa.png') }}">
-        <h3>Camisetas y buzos</h3>
-        <p>Camisetas y buzos estampados de diseños de anime, bandas de rock, comics, video juegos y mucho mas!!!</p>
-        <a href="{{url}}/Products/1/" class="btn">Ver catalogo de productos</a>
+        <img src="{{ url_for('static', filename='imgs/belleza.png') }}">
+        <h3>Belleza</h3>
+        <p>Produtos para el cuidado personal y belleza.</p>
+        <a href="{{url}}/Products/1/" class="btn">Ver productos</a>
       </div>
       <div class="box_item">
-        <img src="{{ url_for('static', filename='imgs/reloj.png') }}">
-        <h3>Accesorios</h3>
-        <p>Relojes de varios estilos, tamaños, marcas y colores.</p>
-        <a href="{{url}}/Products/2/" class="btn">Ver catalogo de productos</a>
+        <img src="{{ url_for('static', filename='imgs/nutrition.png') }}">
+        <h3>Nutrición</h3>
+        <p>Productos para nutrición y salud.</p>
+        <a href="{{url}}/Products/2/" class="btn">Ver productos</a>
       </div>
+      <!--<div class="box_item">
+        <img src="{{ url_for('static', filename='imgs/dryer.png') }}">
+        <h3>Equipos Belleza</h3>
+        <p>Equpos liporeductores.</p>
+        <a href="{{url}}/Products/2/" class="btn">Ver productos</a>
+      </div>
+       <div class="box_item">
+        <img src="{{ url_for('static', filename='imgs/earrings.png') }}">
+        <h3>Accesorios</h3>
+        <p>Accesorios de moda y belleza.</p>
+        <a href="{{url}}/Products/2/" class="btn">Ver productos</a>
+      </div> -->
     </section>
     
     <!-- Sección contacto atraves de redes sociales-->
@@ -238,7 +240,7 @@
         </div>
       </div>
     </footer>
-    <script src="{{ url_for('static', filename='js/js_homels/roulette.js') }}"></script> 
-    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script>  
+    <script src="{{ url_for('static', filename='js/js_homels/products.js') }}"></script> 
+    <script src="https://kit.fontawesome.com/b6bfe8df39.js" crossorigin="anonymous"></script> 
   </body>
 </html>
