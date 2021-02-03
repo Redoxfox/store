@@ -56,7 +56,7 @@ def ver_product(id):
     wid = id
     TablaServicioAutomotor = dict()
     TablaServicioAutomotor = {'TABLE':'products',
-        'Col1':'id_product ',
+        'Col1':'id_product',
         'Col2':'id_proveedor',
         'Col3':'id_categoria',
         'Col4':'name',
@@ -69,8 +69,9 @@ def ver_product(id):
     url_product = "/home/product" + "_" + id + ".html"
     DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
     print(DatosServicioV)
+    id_pdt = "/static/imgs/img_product_"+id+".jpeg"
 
-    return render_template(url_product, url = urlrev, Oferta_Servicio = DatosServicioV) 
+    return render_template(url_product, url = urlrev, Oferta_Servicio = DatosServicioV, id_pdt = id_pdt) 
 
 #Consultar servicios prestados
 

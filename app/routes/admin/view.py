@@ -22,23 +22,28 @@ print(os.path.isdir('app/config'))
 
 @app.route("/")
 def index():
-
-    Sql="ddasddf"
-    url = URLBASE
+    urlrev = URLBASE
     username = CONFIG['TYPE_USER']['ROOT']
-    connect=Model(username)   
-    Nick = "Redoxfox"
-    TSWusers = dict()
-    TSWusers = {'TABLE':'users',
-        'Col1':'nick',
-        'Col2':'password',
-        'Col3':'salt',
-        'Whe4':'nick=%s'
+    connect=Model(username) 
+    wid = "1"
+    TablaServicioAutomotor = dict()
+    TablaServicioAutomotor = {'TABLE':'products',
+        'Col1':'id_product',
+        'Col2':'id_proveedor',
+        'Col3':'id_categoria',
+        'Col4':'name',
+        'Col5':'precio',
+        'Col6':'descripcion',
+        'Whe7':'id_product=%s'
         }
-    Data = (Nick,)
-    DatosUsers = connect.SW_TABLE(username,TSWusers,Data)
+    Data = (wid,)
+   
+    url_product = "/home/product" + "_" + wid + ".html"
+    DatosServicioV = connect.SW_TABLE(username,TablaServicioAutomotor, Data)
+    print(DatosServicioV)
+    id_pdt = "/static/imgs/img_product_"+wid+".jpeg"
     
-    return render_template("/home/index.html", url=url, lista = DatosUsers)
+    return render_template("/home/index.html", url = urlrev, Oferta_Servicio = DatosServicioV, id_pdt = id_pdt)
 
 @app.route("/perfil")
 def perfil():

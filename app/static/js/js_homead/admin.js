@@ -113,7 +113,7 @@ function ver_tablas(){
         for (const key in data) {
            if (data.hasOwnProperty(key)) {
               let key_table = Object.keys(data[key])
-              value_key_table = key_table[0]
+              let value_key_table = key_table[0]
               let nombre_tabla = data[key][value_key_table]
               let $licollapsible = document.createElement('li');
               let $div1collapsible = document.createElement('div');
@@ -526,6 +526,19 @@ function productos(){
 }
 
 /*Llenar select categories*/
+function productos_s(){
+    const url = window.origin + "/productos" 
+    let select = document.getElementById("productos_s");
+    fetch(url)
+    .then(res => res.json())
+    .then(data =>{ 
+       for (const key in data) {
+          select.options[key] = new Option(data[key].name , data[key].id_product);
+        }
+    })
+}
+
+/*Llenar select categories*/
 function productosid(){
     const url = window.origin + "/productosid" 
     let select = document.getElementById("productos");
@@ -558,6 +571,9 @@ function new_media(){
       
             <label>Producto:</label>
             <select name="productos" id="productos" class = "stlselect">
+            </select>
+
+            <select name="productos_s[]" id="productos_s" multiple class = "stlselect" >
             </select>
             
             <div class="row">
@@ -601,6 +617,7 @@ function new_media(){
     </table>
         `
         productos();
+        productos_s();
 }
 
 /*Formulario agregar nuevas categorias*/
