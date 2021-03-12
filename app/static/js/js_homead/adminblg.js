@@ -382,7 +382,7 @@ function AddFileServer(name_img) {
         }
         response.json().then(function (data) {
             console.log(data);
-            Change_img_blg()
+            Change_img_prod()
             
         });
     })
@@ -441,7 +441,7 @@ function Change_img_blg() {
               //let $pcard2 = document.createElement('p');
               let func_addfile = "AddFileServer('"+nombre_img+"')";
               let func_show_images = "media_server('"+num_card_img+"','"+nombre_img+"')"
-              url_img = "/static/imgs/" + nombre_img 
+              let url_img = "/static/imgs/" + nombre_img 
               $imgcard1.setAttribute("src",url_img);
               $imgcard1.setAttribute("id",nombre_img);
               $ipcard2.setAttribute("type","file");

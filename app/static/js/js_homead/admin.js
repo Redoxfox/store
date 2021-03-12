@@ -188,7 +188,6 @@ function new_category(){
             </div>
         </p>
     </div>`
-
     categories();
 }
 

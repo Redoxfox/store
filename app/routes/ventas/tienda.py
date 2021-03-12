@@ -32,7 +32,7 @@ def images():
     connect=Model(username) 
     wid = "0"
     Tabla_All_Images= dict()
-    Tabla_All_Images = {'TABLE':'products',
+    Tabla_All_Images = {'TABLE':'products ORDER BY name',
         'Col1':'id_product',
         'Col2':'name',
         'Col3':'media',
@@ -100,8 +100,8 @@ def All_Servicios():
     connect=Model(username) 
     
     Tabla_All_Servicios = dict()
-    Tabla_All_Servicios = {'TABLE':'products',
-        'Col1':'id_product ',
+    Tabla_All_Servicios = {'TABLE':'products ORDER BY name',
+        'Col1':'id_product',
         'Col2':'id_proveedor',
         'Col3':'id_categoria',
         'Col4':'name',
@@ -123,7 +123,7 @@ def all_products():
     connect=Model(username) 
     
     Tabla_All_Products = dict()
-    Tabla_All_Products = {'TABLE':'products',
+    Tabla_All_Products = {'TABLE':'products ORDER BY name',
         'Col1':'id_product ',
         'Col2':'id_proveedor',
         'Col3':'id_categoria',
